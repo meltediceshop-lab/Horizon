@@ -1,8 +1,8 @@
 <!-- JUGUETTOS AGE SELECTOR SECTION -->
 <style>
   .jgt-ages-section {
-    padding: 40px 0;
-    background-color: #ffffff;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
   }
   .jgt-ages-container {
     max-width: 1200px;
@@ -10,57 +10,61 @@
     padding: 0 20px;
   }
   .jgt-ages-title {
-    text-align: center;
-    color: #003087;
-    font-size: 1.5rem;
-    margin-bottom: 24px;
-    font-weight: 600;
+    text-align: {{ section.settings.title_alignment }};
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_font_size }}px;
+    margin-bottom: {{ section.settings.title_spacing }}px;
+    font-weight: {{ section.settings.title_font_weight }};
   }
   .jgt-ages-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
+    justify-content: {{ section.settings.buttons_alignment }};
+    gap: {{ section.settings.buttons_gap }}px;
   }
   .jgt-age-btn {
     display: inline-block;
-    padding: 10px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    color: #333;
+    padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;
+    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    color: {{ section.settings.button_text_color }};
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: {{ section.settings.button_font_size }}px;
     transition: all 0.2s ease;
-    background: #fff;
+    background: {{ section.settings.button_background_color }};
   }
   .jgt-age-btn:hover {
-    border-color: #003087;
-    color: #003087;
-    background: rgba(0, 48, 135, 0.05);
+    border-color: {{ section.settings.button_hover_border_color }};
+    color: {{ section.settings.button_hover_text_color }};
+    background: {{ section.settings.button_hover_background_color }};
   }
   @media (max-width: 768px) {
+    .jgt-ages-section {
+      padding: {{ section.settings.section_padding_top_mobile }}px 0 {{ section.settings.section_padding_bottom_mobile }}px;
+    }
     .jgt-ages-list {
-      gap: 8px;
+      gap: {{ section.settings.buttons_gap_mobile }}px;
     }
     .jgt-age-btn {
-      padding: 8px 16px;
-      font-size: 0.8rem;
+      padding: {{ section.settings.button_padding_y_mobile }}px {{ section.settings.button_padding_x_mobile }}px;
+      font-size: {{ section.settings.button_font_size_mobile }}px;
     }
   }
 </style>
 
 <section class="jgt-ages-section">
   <div class="jgt-ages-container">
-    <h2 class="jgt-ages-title">Juguetes para:</h2>
+    {% if section.settings.title != blank %}
+      <h2 class="jgt-ages-title">{{ section.settings.title }}</h2>
+    {% endif %}
     <div class="jgt-ages-list">
-      <a href="/collections/all" class="jgt-age-btn">bebés</a>
-      <a href="/collections/all" class="jgt-age-btn">1 a 2 años</a>
-      <a href="/collections/all" class="jgt-age-btn">3 a 4 años</a>
-      <a href="/collections/all" class="jgt-age-btn">5 a 6 años</a>
-      <a href="/collections/all" class="jgt-age-btn">7 a 8 años</a>
-      <a href="/collections/all" class="jgt-age-btn">9 a 10 años</a>
-      <a href="/collections/all" class="jgt-age-btn">11 a 12 años</a>
-      <a href="/collections/all" class="jgt-age-btn">13 a 14 años</a>
+      {% for block in section.blocks %}
+        {% if block.settings.age_label != blank %}
+          <a href="{{ block.settings.age_link }}" class="jgt-age-btn" {{ block.shopify_attributes }}>
+            {{ block.settings.age_label }}
+          </a>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -70,10 +74,348 @@
   "name": "JGT Edades",
   "tag": "section",
   "class": "section-jgt-ages",
-  "settings": [],
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Juguetes para:"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color del título",
+      "default": "#003087"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamaño del título",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Grosor del título",
+      "default": 600
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Alineación del título",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Espaciado del título",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Configuración de botones"
+    },
+    {
+      "type": "select",
+      "id": "buttons_alignment",
+      "label": "Alineación de botones",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "flex-end",
+          "label": "Derecha"
+        },
+        {
+          "value": "space-between",
+          "label": "Espaciado uniforme"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "buttons_gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Espacio entre botones (escritorio)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno horizontal del botón",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno vertical del botón",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Radio de borde del botón",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Ancho del borde del botón",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Color de fondo del botón",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Color del borde del botón",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Color del texto del botón",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Color de fondo al pasar el cursor",
+      "default": "rgba(0, 48, 135, 0.05)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Color del borde al pasar el cursor",
+      "default": "#003087"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Color del texto al pasar el cursor",
+      "default": "#003087"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamaño de fuente del botón",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Configuración de espaciado"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno superior (escritorio)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno inferior (escritorio)",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Configuración móvil"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno superior (móvil)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno inferior (móvil)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "buttons_gap_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Espacio entre botones (móvil)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x_mobile",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno horizontal del botón (móvil)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y_mobile",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Relleno vertical del botón (móvil)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamaño de fuente del botón (móvil)",
+      "default": 13
+    }
+  ],
+  "blocks": [
+    {
+      "type": "age_button",
+      "name": "Botón de edad",
+      "settings": [
+        {
+          "type": "text",
+          "id": "age_label",
+          "label": "Etiqueta de la edad",
+          "default": "1 a 2 años"
+        },
+        {
+          "type": "url",
+          "id": "age_link",
+          "label": "Enlace de la edad",
+          "default": "/collections/all"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "JGT Edades"
+      "name": "JGT Edades",
+      "blocks": [
+        {
+          "type": "age_button",
+          "settings": {
+            "age_label": "bebés",
+            "age_link": "/collections/all"
+          }
+        },
+        {
+          "type": "age_button",
+          "settings": {
+            "age_label": "1 a 2 años",
+            "age_link": "/collections/all"
+          }
+        },
+        {
+          "type": "age_button",
+          "settings": {
+            "age_label": "3 a 4 años",
+            "age_link": "/collections/all"
+          }
+        },
+        {
+          "type": "age_button",
+          "settings": {
+            "age_label": "5 a 6 años",
+            "age_link": "/collections/all"
+          }
+        },
+        {
+          "type": "age_button",
+          "settings": {
+            "age_label": "7 a 8 años",
+            "age_link": "/collections/all"
+          }
+        }
+      ]
     }
   ]
 }

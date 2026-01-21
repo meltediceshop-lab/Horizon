@@ -87,6 +87,11 @@
         "padding_bottom": 12
       }
     },
+    "jgt_promo_k8EJCN": {
+      "type": "jgt-promo",
+      "name": "JGT Promociones",
+      "settings": {}
+    },
     "jgt_edades_HW37WG": {
       "type": "jgt-edades",
       "name": "JGT Edades",
@@ -291,6 +296,7 @@
     "hero_jVaWmY",
     "collection_circles_wRYMFc",
     "info_ipfwMm",
+    "jgt_promo_k8EJCN",
     "jgt_edades_HW37WG",
     "product_list_fa6P9H"
   ]

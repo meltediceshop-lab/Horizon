@@ -11,6 +11,67 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "banner_1_dinamico_qNk3gQ": {
+      "type": "banner-1-dinamico",
+      "blocks": {
+        "promo_item_cQ6fkU": {
+          "type": "promo_item",
+          "settings": {
+            "image": "shopify://shop_images/marcaspropias.png",
+            "text": "10% en marcas propias"
+          }
+        },
+        "promo_item_xa3ikw": {
+          "type": "promo_item",
+          "settings": {
+            "image": "shopify://shop_images/chequedescuento.png",
+            "text": "Cheque descuento\nde bienvenida"
+          }
+        },
+        "promo_item_V7fgbz": {
+          "type": "promo_item",
+          "settings": {
+            "image": "shopify://shop_images/cumpleanos.png",
+            "text": "Cheque descuento\npara cumpleaños"
+          }
+        },
+        "promo_item_EgQQ9W": {
+          "type": "promo_item",
+          "settings": {
+            "image": "shopify://shop_images/promocionesespeciales.png",
+            "text": "Promociones\nespeciales"
+          }
+        },
+        "promo_item_i6dtBB": {
+          "type": "promo_item",
+          "settings": {
+            "image": "shopify://shop_images/marcapropia.png",
+            "text": "20% en marca propia\nfamilia numerosa"
+          }
+        },
+        "promo_item_eJNxhw": {
+          "type": "promo_item",
+          "settings": {
+            "image": "shopify://shop_images/club.png",
+            "text": "Ampas Club\n20% de descuento"
+          }
+        }
+      },
+      "block_order": [
+        "promo_item_cQ6fkU",
+        "promo_item_xa3ikw",
+        "promo_item_V7fgbz",
+        "promo_item_EgQQ9W",
+        "promo_item_i6dtBB",
+        "promo_item_eJNxhw"
+      ],
+      "name": "Banner Promociones Dinámico",
+      "settings": {
+        "bg_color": "#f0f4f9",
+        "button_label": "Registrarme",
+        "button_link": ""
+      }
+    },
     "dynamic_footer_7QKM4Q": {
       "type": "dynamic-footer",
       "blocks": {
@@ -69,6 +130,7 @@
     }
   },
   "order": [
+    "banner_1_dinamico_qNk3gQ",
     "dynamic_footer_7QKM4Q"
   ]
 }

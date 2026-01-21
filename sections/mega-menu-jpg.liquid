@@ -1,39 +1,78 @@
 {% comment %}
-  MEGA MENÚ DINÁMICO JGT - Versión Corregida y Altamente Configurable
+  MEGA MENÚ DINÁMICO JGT - Con Control de Grosor Ajustable
 {% endcomment %}
 
-<nav class="jgt-nav-mega" style="background-color: {{ section.settings.bg_color }};">
-  <div class="jgt-nav-container">
-    <ul class="jgt-nav-list">
+{%- style -%}
+  .jgt-nav-mega-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .jgt-nav-link-{{ section.id }} {
+    /* Control de grosor mediante padding vertical */
+    padding-top: {{ section.settings.padding_vertical }}px;
+    padding-bottom: {{ section.settings.padding_vertical }}px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #002266;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    gap: 5px;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .jgt-nav-link-{{ section.id }}:hover {
+    color: #e30613;
+  }
+
+  .jgt-nav-link-{{ section.id }}.is-red {
+    color: #e30613;
+  }
+{%- endstyle -%}
+
+<nav class="jgt-nav-mega-{{ section.id }}">
+  <div class="jgt-nav-container" style="max-width: 1440px; margin: 0 auto; padding: 0 20px;">
+    <ul class="jgt-nav-list" style="display: flex; list-style: none; margin: 0; padding: 0; align-items: center; justify-content: center; flex-wrap: wrap;">
       {% for block in section.blocks %}
-        <li class="jgt-nav-item {% if block.type == 'mega_menu' %}has-mega{% endif %}" {{ block.shopify_attributes }}>
+        <li class="jgt-nav-item" style="position: {% if block.type == 'mega_menu' %}static{% else %}relative{% endif %};" {{ block.shopify_attributes }}>
           
-          <a href="{{ block.settings.link | default: '#' }}" class="jgt-nav-link {% if block.settings.highlight %}is-red{% endif %}">
+          <a href="{{ block.settings.link | default: '#' }}" class="jgt-nav-link-{{ section.id }} {% if block.settings.highlight %}is-red{% endif %}">
             {% if block.settings.icon_img != blank %}
-              <img src="{{ block.settings.icon_img | image_url: width: 40 }}" alt="" class="jgt-nav-icon">
+              <img src="{{ block.settings.icon_img | image_url: width: 40 }}" alt="" style="height: 20px; width: auto; object-fit: contain;">
             {% endif %}
             
             <span>{{ block.settings.title }}</span>
 
             {% if block.settings.badge != blank %}
-              <span class="jgt-nav-badge">{{ block.settings.badge }}</span>
+              <span style="position: absolute; top: 5px; right: -5px; color: #e30613; font-size: 10px; font-weight: 900; background: white; padding: 0 2px;">
+                {{ block.settings.badge }}
+              </span>
             {% endif %}
 
             {% if block.type == 'mega_menu' %}
-              <svg class="jgt-caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              <svg style="width: 8px; height: 8px; margin-left: 2px;" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
             {% endif %}
           </a>
 
           {% if block.type == 'mega_menu' and block.settings.menu != blank %}
-            <div class="jgt-mega-dropdown">
-              <div class="jgt-mega-grid">
+            <div class="jgt-mega-dropdown" style="position: absolute; top: 100%; left: 0; width: 100%; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: none; padding: 40px 0; border-top: 1px solid #eee;">
+              <div class="jgt-mega-grid" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; padding: 0 20px;">
                 {% for link in block.settings.menu.links %}
                   <div class="jgt-mega-column">
-                    <a href="{{ link.url }}" class="jgt-mega-title">{{ link.title }}</a>
+                    <a href="{{ link.url }}" style="font-weight: 800; color: #002266; text-decoration: none; margin-bottom: 15px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px;">{{ link.title }}</a>
                     {% if link.links != blank %}
-                      <ul class="jgt-mega-sublist">
+                      <ul style="list-style: none; padding: 0; margin: 0;">
                         {% for child in link.links %}
-                          <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                          <li><a href="{{ child.url }}" style="text-decoration: none; color: #555; font-size: 13px; line-height: 2.4; display: block;">{{ child.title }}</a></li>
                         {% endfor %}
                       </ul>
                     {% endif %}
@@ -42,58 +81,41 @@
               </div>
             </div>
           {% endif %}
-
         </li>
       {% endfor %}
     </ul>
   </div>
 </nav>
 
-<style>
-  .jgt-nav-mega { border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; z-index: 99; font-family: sans-serif; }
-  .jgt-nav-container { max-width: 1440px; margin: 0 auto; padding: 0 20px; }
-  .jgt-nav-list { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; justify-content: center; flex-wrap: wrap; }
-  
-  .jgt-nav-item { position: static; }
-  .jgt-nav-link { 
-    display: flex; align-items: center; padding: 15px 12px; text-decoration: none; 
-    color: #002266; font-size: 13px; font-weight: 800; text-transform: uppercase; gap: 5px;
-    position: relative;
-  }
-  .jgt-nav-link:hover { color: #e30613; }
-  .jgt-nav-link.is-red { color: #e30613; }
-  
-  .jgt-nav-icon { height: 20px; width: auto; object-fit: contain; }
-  .jgt-nav-badge { 
-    position: absolute; top: 5px; right: -5px; color: #e30613; 
-    font-size: 10px; font-weight: 900; background: white; padding: 0 2px;
-  }
-  .jgt-caret { width: 8px; height: 8px; margin-left: 2px; }
-
-  /* MEGA MENÚ */
-  .jgt-mega-dropdown {
-    position: absolute; top: 100%; left: 0; width: 100%; background: white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: none; padding: 40px 0;
-  }
-  .jgt-nav-item:hover .jgt-mega-dropdown { display: block; }
-  
-  .jgt-mega-grid { 
-    max-width: 1200px; margin: 0 auto; display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; padding: 0 20px; 
-  }
-  .jgt-mega-title { font-weight: 800; color: #002266; text-decoration: none; margin-bottom: 15px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-  .jgt-mega-sublist { list-style: none; padding: 0; margin: 0; }
-  .jgt-mega-sublist li a { text-decoration: none; color: #555; font-size: 13px; line-height: 2.4; display: block; transition: 0.2s; }
-  .jgt-mega-sublist li a:hover { color: #002266; font-weight: bold; padding-left: 5px; }
-
-  @media (max-width: 990px) { .jgt-nav-mega { display: none; } }
-</style>
+<script>
+  // Script para manejar el hover en el mega menú
+  document.querySelectorAll('.jgt-nav-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const dropdown = item.querySelector('.jgt-mega-dropdown');
+      if(dropdown) dropdown.style.display = 'block';
+    });
+    item.addEventListener('mouseleave', () => {
+      const dropdown = item.querySelector('.jgt-mega-dropdown');
+      if(dropdown) dropdown.style.display = 'none';
+    });
+  });
+</script>
 
 {% schema %}
 {
   "name": "Menú Dinámico JGT",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Color Fondo", "default": "#ffffff" }
+    { "type": "color", "id": "bg_color", "label": "Color Fondo", "default": "#ffffff" },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Grosor del menú (Espaciado vertical)",
+      "default": 15
+    }
   ],
   "blocks": [
     {
@@ -120,9 +142,7 @@
     }
   ],
   "presets": [
-    {
-      "name": "Menú Dinámico JGT"
-    }
+    { "name": "Menú Dinámico JGT" }
   ]
 }
 {% endschema %}

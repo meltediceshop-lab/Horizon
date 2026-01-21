@@ -4037,3 +4037,34 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
+:root {
+  --font-juguettos: 'Nunito', sans-serif;
+  --color-jgt-blue: #002266;
+}
+
+body, p, span, li, a {
+  font-family: var(--font-juguettos) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .jgt-title {
+  font-family: var(--font-juguettos) !important;
+  font-weight: 800 !important; /* Peso extra bold para títulos como en Juguettos */
+  color: var(--color-jgt-blue);
+  text-transform: none; /* Juguettos no suele usar mayúsculas forzadas en todo */
+}
+
+/* Ajuste específico para precios (más grandes y bold) */
+.price, .jgt-price, .jgt-product-price {
+  font-family: var(--font-juguettos) !important;
+  font-weight: 800;
+  color: var(--color-jgt-blue);
+}
+
+/* Ajuste para botones (redondeados y bold) */
+button, .button, .jgt-add-button, .jgt-add-to-cart {
+  font-family: var(--font-juguettos) !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 50px !important; /* Forma de píldora característica */
+}

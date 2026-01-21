@@ -291,7 +291,7 @@
       "settings": {
         "bg_color": "#f0f4f9",
         "button_label": "Registrarme",
-        "button_link": ""
+        "button_link": "shopify://pages/contact"
       }
     }
   },

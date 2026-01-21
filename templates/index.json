@@ -9,6 +9,60 @@
  */
 {
   "sections": {
+    "mega_menu_jpg_HNKdw8": {
+      "type": "mega-menu-jpg",
+      "blocks": {
+        "simple_link_nXnUYw": {
+          "type": "simple_link",
+          "settings": {
+            "title": "Enlace",
+            "link": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "mega_menu_gWJWgE": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "Categoría",
+            "link": "",
+            "menu": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "mega_menu_D7WULk": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "Categoría",
+            "link": "",
+            "menu": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "simple_link_ftWkpw": {
+          "type": "simple_link",
+          "settings": {
+            "title": "Enlace",
+            "link": "",
+            "highlight": false,
+            "badge": ""
+          }
+        }
+      },
+      "block_order": [
+        "simple_link_nXnUYw",
+        "mega_menu_gWJWgE",
+        "mega_menu_D7WULk",
+        "simple_link_ftWkpw"
+      ],
+      "name": "Menú Dinámico JGT",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_vertical": 11
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "name": "t:names.hero",
@@ -231,59 +285,6 @@
         "columns_desktop": 3,
         "padding_top": 40,
         "padding_bottom": 40
-      }
-    },
-    "mega_menu_jpg_HNKdw8": {
-      "type": "mega-menu-jpg",
-      "blocks": {
-        "simple_link_nXnUYw": {
-          "type": "simple_link",
-          "settings": {
-            "title": "Enlace",
-            "link": "",
-            "highlight": false,
-            "badge": ""
-          }
-        },
-        "mega_menu_gWJWgE": {
-          "type": "mega_menu",
-          "settings": {
-            "title": "Categoría",
-            "link": "",
-            "menu": "",
-            "highlight": false,
-            "badge": ""
-          }
-        },
-        "mega_menu_D7WULk": {
-          "type": "mega_menu",
-          "settings": {
-            "title": "Categoría",
-            "link": "",
-            "menu": "",
-            "highlight": false,
-            "badge": ""
-          }
-        },
-        "simple_link_ftWkpw": {
-          "type": "simple_link",
-          "settings": {
-            "title": "Enlace",
-            "link": "",
-            "highlight": false,
-            "badge": ""
-          }
-        }
-      },
-      "block_order": [
-        "simple_link_nXnUYw",
-        "mega_menu_gWJWgE",
-        "mega_menu_D7WULk",
-        "simple_link_ftWkpw"
-      ],
-      "name": "Menú Dinámico JGT",
-      "settings": {
-        "bg_color": "#ffffff"
       }
     }
   },

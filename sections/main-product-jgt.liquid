@@ -1,15 +1,24 @@
-{% comment %} Sección de Producto JGT Totalmente Dinámica {% endcomment %}
+{% comment %}
+  MAIN-PRODUCT-JGT.LIQUID COMPLETO
+  Diseño dinámico estilo Juguettos con galería interactiva.
+{% endcomment %}
+
 <section class="jgt-product-section" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
   <div class="jgt-product-layout">
     
     <div class="jgt-product-media">
       <div class="jgt-thumbnails-side">
         {% for image in product.images %}
-          <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt }}" class="jgt-thumb">
+          <img src="{{ image | image_url: width: 150 }}" 
+               alt="{{ image.alt }}" 
+               class="jgt-thumb"
+               onclick="document.getElementById('MainProductImage').src='{{ image | image_url: width: 1000 }}'">
         {% endfor %}
       </div>
       <div class="jgt-featured-media">
-        <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title }}">
+        <img id="MainProductImage" 
+             src="{{ product.featured_image | image_url: width: 1000 }}" 
+             alt="{{ product.title }}">
       </div>
     </div>
 
@@ -17,12 +26,12 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           
-          {%- when '@app' -%}
-            {% render block %}
-
           {%- when 'sku' -%}
             <div class="jgt-ref-ean" {{ block.shopify_attributes }}>
-              REF: {{ product.variants.first.sku }} - EAN: {{ product.metafields.custom.ean }}
+              REF: {{ product.variants.first.sku }} 
+              {% if product.metafields.custom.ean != blank %}
+                - EAN: {{ product.metafields.custom.ean }}
+              {% endif %}
             </div>
 
           {%- when 'title' -%}
@@ -54,7 +63,9 @@
             </div>
 
           {%- when 'description' -%}
-            <div class="jgt-description" {{ block.shopify_attributes }}>{{ product.description }}</div>
+            <div class="jgt-description" {{ block.shopify_attributes }}>
+              {{ product.description }}
+            </div>
 
         {%- endcase -%}
       {%- endfor -%}
@@ -65,22 +76,36 @@
 <style>
   .jgt-product-section { max-width: 1400px; margin: 0 auto; padding: 30px; font-family: sans-serif; }
   .jgt-product-layout { display: flex; gap: 40px; }
+  
+  /* Estilos de Galería */
   .jgt-product-media { display: flex; flex: 1.2; gap: 15px; }
   .jgt-thumbnails-side { display: flex; flex-direction: column; gap: 10px; width: 100px; }
-  .jgt-thumb { border: 1px solid #ddd; padding: 5px; cursor: pointer; }
+  .jgt-thumb { border: 1px solid #ddd; padding: 5px; cursor: pointer; transition: opacity 0.2s; border-radius: 4px; }
+  .jgt-thumb:hover { opacity: 0.7; }
   .jgt-featured-media { flex: 1; text-align: center; }
-  .jgt-featured-media img { max-width: 100%; height: auto; }
+  .jgt-featured-media img { max-width: 100%; height: auto; border-radius: 4px; }
+
+  /* Información del producto */
   .jgt-product-details { flex: 1; display: flex; flex-direction: column; gap: 15px; }
   .jgt-ref-ean { color: #888; font-size: 13px; }
-  .jgt-title { font-size: 26px; margin: 0; }
-  .jgt-price { font-size: 36px; font-weight: bold; }
+  .jgt-title { font-size: 28px; margin: 0; color: #002266; font-weight: bold; }
+  .jgt-price { font-size: 32px; font-weight: bold; color: #002266; }
+  
+  /* Botones estilo Juguettos */
   .jgt-buttons-flex { display: flex; align-items: center; gap: 15px; width: 100%; }
   .jgt-quantity { display: flex; border: 1px solid #ccc; border-radius: 20px; padding: 5px 15px; align-items: center; width: fit-content; }
   .qty-input { border: none; width: 40px; text-align: center; font-size: 16px; outline: none; background: transparent; color: inherit; }
   .qty-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: inherit; }
-  .jgt-add-button { background: #002266; color: white; border: none; padding: 12px 40px; border-radius: 30px; font-weight: bold; flex: 1; cursor: pointer; }
-  .jgt-wishlist { background: none; border: none; color: inherit; cursor: pointer; }
-  @media (max-width: 768px) { .jgt-product-layout { flex-direction: column; } }
+  .jgt-add-button { background: #002266; color: white; border: none; padding: 12px 40px; border-radius: 30px; font-weight: bold; flex: 1; cursor: pointer; transition: 0.3s; }
+  .jgt-add-button:hover { background: #001a4d; }
+  .jgt-wishlist { background: none; border: none; color: #002266; cursor: pointer; }
+
+  @media (max-width: 768px) {
+    .jgt-product-layout { flex-direction: column; }
+    .jgt-product-media { flex-direction: column-reverse; }
+    .jgt-thumbnails-side { flex-direction: row; width: 100%; overflow-x: auto; }
+    .jgt-thumbnails-side img { width: 80px; }
+  }
 </style>
 
 {% schema %}
@@ -90,7 +115,7 @@
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Color de fondo de sección",
+      "label": "Color de fondo",
       "default": "#ffffff"
     },
     {
@@ -101,7 +126,6 @@
     }
   ],
   "blocks": [
-    { "type": "@app" },
     { "type": "sku", "name": "Referencia/SKU", "limit": 1 },
     { "type": "title", "name": "Título", "limit": 1 },
     { "type": "price", "name": "Precio", "limit": 1 },

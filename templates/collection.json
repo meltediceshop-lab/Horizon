@@ -14,9 +14,8 @@
       "name": "JGT Banner Colección",
       "settings": {
         "banner_image": "shopify://shop_images/avland-11_600ea049-b7a8-4cd6-9dcd-01316c7c1e77.jpg",
-        "height_desktop": 200,
-        "height_mobile": 100,
-        "bg_color": "#f4f4f4"
+        "height_desktop": 105,
+        "height_mobile": 100
       }
     },
     "jgt_circular_list_k8iw9W": {
@@ -25,42 +24,36 @@
         "circle_4kM63n": {
           "type": "circle",
           "settings": {
-            "label": "Subcategoría",
             "link": ""
           }
         },
         "circle_pUUAa7": {
           "type": "circle",
           "settings": {
-            "label": "Subcategoría",
             "link": ""
           }
         },
         "circle_7FGWCV": {
           "type": "circle",
           "settings": {
-            "label": "Subcategoría",
             "link": ""
           }
         },
         "circle_CpYTHp": {
           "type": "circle",
           "settings": {
-            "label": "Subcategoría",
             "link": ""
           }
         },
         "circle_RFJUn4": {
           "type": "circle",
           "settings": {
-            "label": "Subcategoría",
             "link": ""
           }
         },
         "circle_gXnVmg": {
           "type": "circle",
           "settings": {
-            "label": "Subcategoría",
             "link": ""
           }
         }

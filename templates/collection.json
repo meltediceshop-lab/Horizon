@@ -23,17 +23,18 @@
       "name": "JGT Descripción Pro",
       "settings": {
         "custom_text": "<p>Nuestra tienda ofrece una amplia variedad de <strong>figuras de LEGO</strong> y sets únicos, incluyendo ediciones especiales y colecciones exclusivas que encantarán tanto a niños como a adultos. Descubre nuestra <strong>colección de juguetes LEGO</strong> para construir y crear las mejores aventuras con los bloques de la marca más divertida de construcciones con piezas. Desde una increíble variedad de clásicos sets de LEGO hasta las ediciones especiales de Star Wars, Minecraft o Harry Potter hasta otras gamas como Lego Technic, Creator o Marvel. Es el momento de dar vida a increíbles estructuras bloque a bloque.</p>",
+        "font_size": 9,
+        "btn_font_size": 8,
+        "max_width": 780,
         "bg_color": "#ffffff",
-        "text_color": "#333333",
+        "text_color": "#1d3686",
         "accent_color": "#002266",
-        "max_width": 1200,
-        "alignment": "center",
-        "padding_top": 0,
+        "padding_top": 6,
         "padding_bottom": 0,
-        "collapsed_height": 40,
+        "alignment": "center",
+        "collapsed_height": 25,
         "label_more": "Leer más",
-        "label_less": "Leer menos",
-        "font_size": 12
+        "label_less": "Leer menos"
       }
     },
     "jgt_circular_list_k8iw9W": {
@@ -97,7 +98,7 @@
           "static": true,
           "settings": {
             "enable_filtering": true,
-            "filter_style": "horizontal",
+            "filter_style": "vertical",
             "filter_width": "centered",
             "text_label_case": "default",
             "show_swatch_label": false,

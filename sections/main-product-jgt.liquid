@@ -1,5 +1,5 @@
-{% comment %} Sección principal de producto dinámica {% endcomment %}
-<section class="jgt-product-section">
+{% comment %} Sección de Producto JGT Totalmente Dinámica {% endcomment %}
+<section class="jgt-product-section" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
   <div class="jgt-product-layout">
     
     <div class="jgt-product-media">
@@ -14,34 +14,50 @@
     </div>
 
     <div class="jgt-product-details">
-      <div class="jgt-ref-ean">
-        REF: {{ product.variants.first.sku }} - EAN: {{ product.metafields.custom.ean }}
-      </div>
-      <h1 class="jgt-title">{{ product.title }}</h1>
-      <div class="jgt-price">{{ product.price | money }}</div>
-
-      {% form 'product', product %}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        
-        <div class="jgt-action-row">
-          <div class="jgt-quantity">
-            <button type="button" class="qty-btn" onclick="this.parentNode.querySelector('input').stepDown()">-</button>
-            <input type="number" name="quantity" value="1" min="1" class="qty-input">
-            <button type="button" class="qty-btn" onclick="this.parentNode.querySelector('input').stepUp()">+</button>
-          </div>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
           
-          <button type="submit" class="jgt-add-button">AÑADIR A MI CESTA</button>
-          
-          <button type="button" class="jgt-wishlist">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          </button>
-        </div>
-      {% endform %}
+          {%- when '@app' -%}
+            {% render block %}
 
-      <div class="jgt-extra-links">
-        <a href="#">MÉTODOS DE PAGO</a>
-        <a href="#">ENVÍOS CAMBIOS Y DEVOLUCIONES</a>
-      </div>
+          {%- when 'sku' -%}
+            <div class="jgt-ref-ean" {{ block.shopify_attributes }}>
+              REF: {{ product.variants.first.sku }} - EAN: {{ product.metafields.custom.ean }}
+            </div>
+
+          {%- when 'title' -%}
+            <h1 class="jgt-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+          {%- when 'price' -%}
+            <div class="jgt-price" {{ block.shopify_attributes }}>{{ product.price | money }}</div>
+
+          {%- when 'quantity_selector' -%}
+            <div class="jgt-quantity-wrapper" {{ block.shopify_attributes }}>
+              <div class="jgt-quantity">
+                <button type="button" class="qty-btn" onclick="this.parentNode.querySelector('input').stepDown()">-</button>
+                <input type="number" name="quantity" form="product-form-{{ section.id }}" value="1" min="1" class="qty-input">
+                <button type="button" class="qty-btn" onclick="this.parentNode.querySelector('input').stepUp()">+</button>
+              </div>
+            </div>
+
+          {%- when 'buy_buttons' -%}
+            <div class="jgt-action-row" {{ block.shopify_attributes }}>
+              {% form 'product', product, id: "product-form-{{ section.id }}" %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <div class="jgt-buttons-flex">
+                  <button type="submit" class="jgt-add-button">AÑADIR A MI CESTA</button>
+                  <button type="button" class="jgt-wishlist">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </button>
+                </div>
+              {% endform %}
+            </div>
+
+          {%- when 'description' -%}
+            <div class="jgt-description" {{ block.shopify_attributes }}>{{ product.description }}</div>
+
+        {%- endcase -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -54,27 +70,55 @@
   .jgt-thumb { border: 1px solid #ddd; padding: 5px; cursor: pointer; }
   .jgt-featured-media { flex: 1; text-align: center; }
   .jgt-featured-media img { max-width: 100%; height: auto; }
-  .jgt-product-details { flex: 1; color: #002266; }
-  .jgt-ref-ean { color: #888; font-size: 13px; margin-bottom: 10px; }
-  .jgt-title { font-size: 26px; margin: 0 0 15px; }
-  .jgt-price { font-size: 36px; font-weight: bold; margin-bottom: 25px; }
-  .jgt-action-row { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
-  .jgt-quantity { display: flex; border: 1px solid #ccc; border-radius: 20px; padding: 5px 15px; align-items: center; }
-  .qty-input { border: none; width: 40px; text-align: center; font-size: 16px; outline: none; }
-  .qty-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: #002266; }
+  .jgt-product-details { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+  .jgt-ref-ean { color: #888; font-size: 13px; }
+  .jgt-title { font-size: 26px; margin: 0; }
+  .jgt-price { font-size: 36px; font-weight: bold; }
+  .jgt-buttons-flex { display: flex; align-items: center; gap: 15px; width: 100%; }
+  .jgt-quantity { display: flex; border: 1px solid #ccc; border-radius: 20px; padding: 5px 15px; align-items: center; width: fit-content; }
+  .qty-input { border: none; width: 40px; text-align: center; font-size: 16px; outline: none; background: transparent; color: inherit; }
+  .qty-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: inherit; }
   .jgt-add-button { background: #002266; color: white; border: none; padding: 12px 40px; border-radius: 30px; font-weight: bold; flex: 1; cursor: pointer; }
-  .jgt-wishlist { background: none; border: none; color: #002266; cursor: pointer; }
-  .jgt-extra-links { display: flex; flex-direction: column; gap: 10px; margin-top: 25px; }
-  .jgt-extra-links a { color: #002266; font-size: 12px; font-weight: bold; text-decoration: underline; }
+  .jgt-wishlist { background: none; border: none; color: inherit; cursor: pointer; }
+  @media (max-width: 768px) { .jgt-product-layout { flex-direction: column; } }
 </style>
 
 {% schema %}
 {
-  "name": "Producto JGT Principal",
-  "settings": [],
+  "name": "Producto JGT Dinámico",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo de sección",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color de texto",
+      "default": "#002266"
+    }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "sku", "name": "Referencia/SKU", "limit": 1 },
+    { "type": "title", "name": "Título", "limit": 1 },
+    { "type": "price", "name": "Precio", "limit": 1 },
+    { "type": "quantity_selector", "name": "Selector de cantidad", "limit": 1 },
+    { "type": "buy_buttons", "name": "Botones de compra", "limit": 1 },
+    { "type": "description", "name": "Descripción", "limit": 1 }
+  ],
   "presets": [
     {
-      "name": "Producto JGT Principal"
+      "name": "Producto JGT Dinámico",
+      "blocks": [
+        { "type": "sku" },
+        { "type": "title" },
+        { "type": "price" },
+        { "type": "quantity_selector" },
+        { "type": "buy_buttons" }
+      ]
     }
   ]
 }

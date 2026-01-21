@@ -127,6 +127,42 @@
     },
     "jgt_edades_htRWKc": {
       "type": "jgt-edades",
+      "blocks": {
+        "age_button_gwbErb": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "1 a 2 años",
+            "age_link": "shopify://collections/all"
+          }
+        },
+        "age_button_mQJQh4": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "3 a 4 años",
+            "age_link": "shopify://collections/all"
+          }
+        },
+        "age_button_qWkFzb": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "4 a 5 años",
+            "age_link": "shopify://collections/all"
+          }
+        },
+        "age_button_VgiJ6x": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "5 a 6 años",
+            "age_link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "age_button_gwbErb",
+        "age_button_mQJQh4",
+        "age_button_qWkFzb",
+        "age_button_VgiJ6x"
+      ],
       "name": "JGT Edades",
       "settings": {}
     },

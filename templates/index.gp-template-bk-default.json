@@ -8,284 +8,284 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/656_Banner_Principal-Home-Desk_1920x500_15a3ac9e-f9c5-4536-b1fd-3a390329886e.jpg",
-        "media_type_2": "image",
-        "image_2": "shopify://shop_images/670_OFBanner_Principal-Home-Desk_1920x500_ce387e93-220e-467e-b593-b3c4fc75c474.jpg",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
-      }
-    },
-    "collection_circles_wRYMFc": {
-      "type": "collection-circles",
-      "blocks": {
-        "collection_gMQ9Wn": {
-          "type": "collection",
-          "settings": {
-            "collection": "lego",
-            "custom_image": "shopify://shop_images/LEGO_logo_svg.png",
-            "placeholder_text": ""
-          }
-        },
-        "collection_jWxdRU": {
-          "type": "collection",
-          "settings": {
-            "collection": "playmobil",
-            "custom_image": "shopify://shop_images/640_playmobil_377x377_bc19ae2a-6ca9-459d-b700-a6823cfc8065.png",
-            "placeholder_text": "Select Collection"
-          }
-        }
-      },
-      "block_order": [
-        "collection_gMQ9Wn",
-        "collection_jWxdRU"
-      ],
-      "name": "Collection Circles",
-      "settings": {
-        "color_scheme": "",
-        "padding_top": 12,
-        "padding_bottom": 16
-      }
-    },
-    "info_ipfwMm": {
-      "type": "info",
-      "name": "Info Text",
-      "settings": {
-        "heading": "Juguetería online",
-        "description": "<h6>Descubre en nuestra tienda de juguetes más de 1000 referencias diferentes con las mejores marcas y licencias en todos los productos. Desde <a href=\"/collections/all\" title=\"Todos los productos\">juguetes educativos</a>, <a href=\"/collections/all\" title=\"Todos los productos\">juegos de mesa</a>, pasando por las <a href=\"/collections/all\" title=\"Todos los productos\">mejores disfraces</a> para las celebraciones más divertidas.</h6>",
-        "color_scheme": "scheme-2",
-        "padding_top": 16,
-        "padding_bottom": 12
-      }
-    },
-    "product_list_fa6P9H": {
-      "type": "product-list",
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
-        }
-      },
-      "name": "Featured collection",
-      "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "color_scheme": "scheme-2",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    }
-  },
   "order": [
     "hero_jVaWmY",
     "collection_circles_wRYMFc",
     "info_ipfwMm",
     "product_list_fa6P9H"
-  ]
+  ],
+  "sections": {
+    "collection_circles_wRYMFc": {
+      "block_order": [
+        "collection_gMQ9Wn",
+        "collection_jWxdRU"
+      ],
+      "blocks": {
+        "collection_gMQ9Wn": {
+          "settings": {
+            "collection": "lego",
+            "custom_image": "shopify://shop_images/LEGO_logo_svg.png",
+            "placeholder_text": ""
+          },
+          "type": "collection"
+        },
+        "collection_jWxdRU": {
+          "settings": {
+            "collection": "playmobil",
+            "custom_image": "shopify://shop_images/640_playmobil_377x377_bc19ae2a-6ca9-459d-b700-a6823cfc8065.png",
+            "placeholder_text": "Select Collection"
+          },
+          "type": "collection"
+        }
+      },
+      "name": "Collection Circles",
+      "settings": {
+        "color_scheme": "",
+        "padding_bottom": 16,
+        "padding_top": 12
+      },
+      "type": "collection-circles"
+    },
+    "hero_jVaWmY": {
+      "name": "t:names.hero",
+      "settings": {
+        "align_baseline": true,
+        "blurred_reflection": false,
+        "color_scheme": "scheme-6",
+        "content_direction": "column",
+        "custom_mobile_media": false,
+        "gap": 24,
+        "gradient_direction": "to bottom",
+        "horizontal_alignment": "space-between",
+        "horizontal_alignment_flex_direction_column": "center",
+        "image_1": "shopify://shop_images/656_Banner_Principal-Home-Desk_1920x500_15a3ac9e-f9c5-4536-b1fd-3a390329886e.jpg",
+        "image_2": "shopify://shop_images/670_OFBanner_Principal-Home-Desk_1920x500_ce387e93-220e-467e-b593-b3c4fc75c474.jpg",
+        "link": "",
+        "media_type_1": "image",
+        "media_type_1_mobile": "image",
+        "media_type_2": "image",
+        "media_type_2_mobile": "image",
+        "open_in_new_tab": false,
+        "overlay_color": "#12121266",
+        "overlay_style": "solid",
+        "padding-block-end": 72,
+        "padding-block-start": 100,
+        "reflection_opacity": 75,
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "section_width": "page-width",
+        "stack_media_on_mobile": false,
+        "toggle_overlay": true,
+        "vertical_alignment": "flex-end",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "vertical_on_mobile": true
+      },
+      "type": "hero"
+    },
+    "info_ipfwMm": {
+      "name": "Info Text",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "description": "<h6>Descubre en nuestra tienda de juguetes más de 1000 referencias diferentes con las mejores marcas y licencias en todos los productos. Desde <a href=\"/collections/all\" title=\"Todos los productos\">juguetes educativos</a>, <a href=\"/collections/all\" title=\"Todos los productos\">juegos de mesa</a>, pasando por las <a href=\"/collections/all\" title=\"Todos los productos\">mejores disfraces</a> para las celebraciones más divertidas.</h6>",
+        "heading": "Juguetería online",
+        "padding_bottom": 12,
+        "padding_top": 16
+      },
+      "type": "info"
+    },
+    "product_list_fa6P9H": {
+      "blocks": {
+        "static-header": {
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "product_list_button_MWeP9V"
+          ],
+          "blocks": {
+            "product_list_button_MWeP9V": {
+              "blocks": {},
+              "name": "t:names.product_list_button",
+              "settings": {
+                "custom_width": 100,
+                "custom_width_mobile": 100,
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "width_mobile": "fit-content"
+              },
+              "type": "_product-list-button"
+            },
+            "product_list_text_YFtzcL": {
+              "blocks": {},
+              "name": "t:names.collection_title",
+              "settings": {
+                "alignment": "left",
+                "background": false,
+                "background_color": "#00000026",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "corner_radius": 0,
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "letter_spacing": "normal",
+                "line_height": "normal",
+                "max_width": "normal",
+                "padding-block-end": 0,
+                "padding-block-start": 0,
+                "padding-inline-end": 0,
+                "padding-inline-start": 0,
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "type_preset": "h4",
+                "width": "fit-content",
+                "wrap": "pretty"
+              },
+              "type": "_product-list-text"
+            }
+          },
+          "name": "t:names.header",
+          "settings": {
+            "align_baseline": true,
+            "background_image_position": "cover",
+            "background_media": "none",
+            "border": "none",
+            "border_opacity": 100,
+            "border_radius": 0,
+            "border_width": 1,
+            "color_scheme": "",
+            "content_direction": "row",
+            "custom_height": 100,
+            "custom_width": 100,
+            "custom_width_mobile": 100,
+            "gap": 12,
+            "height": "fit",
+            "horizontal_alignment": "space-between",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "inherit_color_scheme": true,
+            "padding-block-end": 0,
+            "padding-block-start": 0,
+            "padding-inline-end": 0,
+            "padding-inline-start": 0,
+            "vertical_alignment": "flex-end",
+            "vertical_alignment_flex_direction_column": "center",
+            "vertical_on_mobile": false,
+            "video_position": "cover",
+            "width": "fill",
+            "width_mobile": "fill"
+          },
+          "static": true,
+          "type": "_product-list-content"
+        },
+        "static-product-card": {
+          "block_order": [
+            "product_card_gallery_677WP3",
+            "product_title_YXxMTj",
+            "price_JQzVV4"
+          ],
+          "blocks": {
+            "price_JQzVV4": {
+              "blocks": {},
+              "name": "t:names.product_price",
+              "settings": {
+                "alignment": "left",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "letter_spacing": "normal",
+                "line_height": "normal",
+                "padding-block-end": 0,
+                "padding-block-start": 0,
+                "padding-inline-end": 0,
+                "padding-inline-start": 0,
+                "show_installments": false,
+                "show_sale_price_first": true,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%"
+              },
+              "type": "price"
+            },
+            "product_card_gallery_677WP3": {
+              "blocks": {},
+              "name": "t:names.product_card_media",
+              "settings": {
+                "border": "none",
+                "border_opacity": 100,
+                "border_radius": 0,
+                "border_width": 1,
+                "image_ratio": "adapt",
+                "padding-block-end": 0,
+                "padding-block-start": 0,
+                "padding-inline-end": 0,
+                "padding-inline-start": 0
+              },
+              "type": "_product-card-gallery"
+            },
+            "product_title_YXxMTj": {
+              "blocks": {},
+              "name": "t:names.product_title",
+              "settings": {
+                "alignment": "left",
+                "background": false,
+                "background_color": "#00000026",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "corner_radius": 0,
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "letter_spacing": "normal",
+                "line_height": "normal",
+                "max_width": "normal",
+                "padding-block-end": 0,
+                "padding-block-start": 4,
+                "padding-inline-end": 0,
+                "padding-inline-start": 0,
+                "type_preset": "rte",
+                "width": "100%",
+                "wrap": "pretty"
+              },
+              "type": "product-title"
+            }
+          },
+          "name": "t:names.product_card",
+          "settings": {
+            "border": "none",
+            "border_opacity": 100,
+            "border_radius": 0,
+            "border_width": 1,
+            "color_scheme": "",
+            "inherit_color_scheme": true,
+            "padding-block-end": 0,
+            "padding-block-start": 0,
+            "padding-inline-end": 0,
+            "padding-inline-start": 0,
+            "product_card_gap": 4
+          },
+          "static": true,
+          "type": "_product-card"
+        }
+      },
+      "name": "Featured collection",
+      "settings": {
+        "carousel_on_mobile": false,
+        "collection": "all",
+        "color_scheme": "scheme-2",
+        "columns": 4,
+        "columns_gap": 8,
+        "gap": 28,
+        "horizontal_alignment": "flex-start",
+        "icons_shape": "none",
+        "icons_style": "arrow",
+        "layout_type": "grid",
+        "max_products": 8,
+        "mobile_card_size": "60cqw",
+        "mobile_columns": "2",
+        "padding-block-end": 48,
+        "padding-block-start": 48,
+        "rows_gap": 24,
+        "section_width": "page-width"
+      },
+      "type": "product-list"
+    }
+  }
 }

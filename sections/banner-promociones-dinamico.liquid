@@ -1,0 +1,139 @@
+{% style %}
+  .promo-banner-section {
+    padding: 40px 20px;
+    background-color: {{ section.settings.bg_color }};
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  .promo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .promo-item {
+    flex: 1 1 150px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .promo-image {
+    width: 100px; /* Ajusta el tamaño de los iconos */
+    height: auto;
+    margin-bottom: 15px;
+    object-fit: contain;
+  }
+  .promo-text {
+    font-size: 14px;
+    color: #001e80; /* Color azul del texto */
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .promo-btn {
+    display: inline-block;
+    padding: 12px 40px;
+    background-color: #001e80; /* Color del botón */
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: opacity 0.3s;
+  }
+  .promo-btn:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .promo-container {
+      gap: 15px;
+    }
+    .promo-item {
+      flex: 1 1 40%;
+    }
+  }
+{% endstyle %}
+
+<section class="promo-banner-section">
+  <div class="promo-container">
+    {% for block in section.blocks %}
+      <div class="promo-item" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <img src="{{ block.settings.image | image_url: width: 300 }}" alt="{{ block.settings.text }}" class="promo-image" loading="lazy">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'promo-image' }}
+        {% endif %}
+        
+        <div class="promo-text">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.button_label != blank %}
+    <a href="{{ section.settings.button_link }}" class="promo-btn">
+      {{ section.settings.button_label }}
+    </a>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Banner Promociones",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#f0f4f9"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Registrarme"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promo_item",
+      "name": "Promoción",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icono/Imagen"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto",
+          "default": "10% en marcas propias"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Promociones Dinámico",
+      "blocks": [
+        { "type": "promo_item" },
+        { "type": "promo_item" },
+        { "type": "promo_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

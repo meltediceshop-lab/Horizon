@@ -249,11 +249,23 @@
         "padding-block-start": 0,
         "padding-block-end": 32
       }
+    },
+    "jgt_collection_banner_QMG7bM": {
+      "type": "jgt-collection-banner",
+      "name": "JGT Banner Colección",
+      "settings": {
+        "show_image": true,
+        "banner_height": 300,
+        "overlay_opacity": 30,
+        "bg_color": "#f4f4f4",
+        "text_color": "#002266"
+      }
     }
   },
   "order": [
     "section",
     "collection_circles_7tmFcW",
-    "main"
+    "main",
+    "jgt_collection_banner_QMG7bM"
   ]
 }

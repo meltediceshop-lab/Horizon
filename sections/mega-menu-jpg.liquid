@@ -1,0 +1,128 @@
+{% comment %}
+  MEGA MENÚ DINÁMICO JGT - Versión Corregida y Altamente Configurable
+{% endcomment %}
+
+<nav class="jgt-nav-mega" style="background-color: {{ section.settings.bg_color }};">
+  <div class="jgt-nav-container">
+    <ul class="jgt-nav-list">
+      {% for block in section.blocks %}
+        <li class="jgt-nav-item {% if block.type == 'mega_menu' %}has-mega{% endif %}" {{ block.shopify_attributes }}>
+          
+          <a href="{{ block.settings.link | default: '#' }}" class="jgt-nav-link {% if block.settings.highlight %}is-red{% endif %}">
+            {% if block.settings.icon_img != blank %}
+              <img src="{{ block.settings.icon_img | image_url: width: 40 }}" alt="" class="jgt-nav-icon">
+            {% endif %}
+            
+            <span>{{ block.settings.title }}</span>
+
+            {% if block.settings.badge != blank %}
+              <span class="jgt-nav-badge">{{ block.settings.badge }}</span>
+            {% endif %}
+
+            {% if block.type == 'mega_menu' %}
+              <svg class="jgt-caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            {% endif %}
+          </a>
+
+          {% if block.type == 'mega_menu' and block.settings.menu != blank %}
+            <div class="jgt-mega-dropdown">
+              <div class="jgt-mega-grid">
+                {% for link in block.settings.menu.links %}
+                  <div class="jgt-mega-column">
+                    <a href="{{ link.url }}" class="jgt-mega-title">{{ link.title }}</a>
+                    {% if link.links != blank %}
+                      <ul class="jgt-mega-sublist">
+                        {% for child in link.links %}
+                          <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .jgt-nav-mega { border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; z-index: 99; font-family: sans-serif; }
+  .jgt-nav-container { max-width: 1440px; margin: 0 auto; padding: 0 20px; }
+  .jgt-nav-list { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; justify-content: center; flex-wrap: wrap; }
+  
+  .jgt-nav-item { position: static; }
+  .jgt-nav-link { 
+    display: flex; align-items: center; padding: 15px 12px; text-decoration: none; 
+    color: #002266; font-size: 13px; font-weight: 800; text-transform: uppercase; gap: 5px;
+    position: relative;
+  }
+  .jgt-nav-link:hover { color: #e30613; }
+  .jgt-nav-link.is-red { color: #e30613; }
+  
+  .jgt-nav-icon { height: 20px; width: auto; object-fit: contain; }
+  .jgt-nav-badge { 
+    position: absolute; top: 5px; right: -5px; color: #e30613; 
+    font-size: 10px; font-weight: 900; background: white; padding: 0 2px;
+  }
+  .jgt-caret { width: 8px; height: 8px; margin-left: 2px; }
+
+  /* MEGA MENÚ */
+  .jgt-mega-dropdown {
+    position: absolute; top: 100%; left: 0; width: 100%; background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: none; padding: 40px 0;
+  }
+  .jgt-nav-item:hover .jgt-mega-dropdown { display: block; }
+  
+  .jgt-mega-grid { 
+    max-width: 1200px; margin: 0 auto; display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; padding: 0 20px; 
+  }
+  .jgt-mega-title { font-weight: 800; color: #002266; text-decoration: none; margin-bottom: 15px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+  .jgt-mega-sublist { list-style: none; padding: 0; margin: 0; }
+  .jgt-mega-sublist li a { text-decoration: none; color: #555; font-size: 13px; line-height: 2.4; display: block; transition: 0.2s; }
+  .jgt-mega-sublist li a:hover { color: #002266; font-weight: bold; padding-left: 5px; }
+
+  @media (max-width: 990px) { .jgt-nav-mega { display: none; } }
+</style>
+
+{% schema %}
+{
+  "name": "Menú Dinámico JGT",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color Fondo", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "simple_link",
+      "name": "Enlace Simple",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nombre", "default": "Enlace" },
+        { "type": "url", "id": "link", "label": "Enlace" },
+        { "type": "image_picker", "id": "icon_img", "label": "Icono pequeño" },
+        { "type": "checkbox", "id": "highlight", "label": "Resaltar en rojo", "default": false },
+        { "type": "text", "id": "badge", "label": "Etiqueta (ej: -10%)" }
+      ]
+    },
+    {
+      "type": "mega_menu",
+      "name": "Mega Menú",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nombre", "default": "Categoría" },
+        { "type": "url", "id": "link", "label": "Enlace Principal" },
+        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" },
+        { "type": "checkbox", "id": "highlight", "label": "Resaltar en rojo", "default": false },
+        { "type": "text", "id": "badge", "label": "Etiqueta" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menú Dinámico JGT"
+    }
+  ]
+}
+{% endschema %}

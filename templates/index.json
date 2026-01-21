@@ -233,75 +233,67 @@
         "padding_bottom": 40
       }
     },
-    "banner_1_dinamico_V4iexy": {
-      "type": "banner-1-dinamico",
+    "mega_menu_jpg_HNKdw8": {
+      "type": "mega-menu-jpg",
       "blocks": {
-        "promo_item_DCamJz": {
-          "type": "promo_item",
+        "simple_link_nXnUYw": {
+          "type": "simple_link",
           "settings": {
-            "image": "shopify://shop_images/marcaspropias.png",
-            "text": "10% en marcas propias"
+            "title": "Enlace",
+            "link": "",
+            "highlight": false,
+            "badge": ""
           }
         },
-        "promo_item_RJaNVx": {
-          "type": "promo_item",
+        "mega_menu_gWJWgE": {
+          "type": "mega_menu",
           "settings": {
-            "image": "shopify://shop_images/chequedescuento.png",
-            "text": "Cheque descuento\nde bienvenida"
+            "title": "Categoría",
+            "link": "",
+            "menu": "",
+            "highlight": false,
+            "badge": ""
           }
         },
-        "promo_item_4NUPgd": {
-          "type": "promo_item",
+        "mega_menu_D7WULk": {
+          "type": "mega_menu",
           "settings": {
-            "image": "shopify://shop_images/cumpleanos.png",
-            "text": "Cheque descuento\npara cumpleaños"
+            "title": "Categoría",
+            "link": "",
+            "menu": "",
+            "highlight": false,
+            "badge": ""
           }
         },
-        "promo_item_yRWNqT": {
-          "type": "promo_item",
+        "simple_link_ftWkpw": {
+          "type": "simple_link",
           "settings": {
-            "image": "shopify://shop_images/promocionesespeciales.png",
-            "text": "Promociones\nespeciales"
-          }
-        },
-        "promo_item_HEJJBC": {
-          "type": "promo_item",
-          "settings": {
-            "image": "shopify://shop_images/promocionesespeciales.png",
-            "text": "20% en marca propia\nfamilia numerosa"
-          }
-        },
-        "promo_item_eURFzL": {
-          "type": "promo_item",
-          "settings": {
-            "image": "shopify://shop_images/club.png",
-            "text": "Ampas Club\n20% de descuento"
+            "title": "Enlace",
+            "link": "",
+            "highlight": false,
+            "badge": ""
           }
         }
       },
       "block_order": [
-        "promo_item_DCamJz",
-        "promo_item_RJaNVx",
-        "promo_item_4NUPgd",
-        "promo_item_yRWNqT",
-        "promo_item_HEJJBC",
-        "promo_item_eURFzL"
+        "simple_link_nXnUYw",
+        "mega_menu_gWJWgE",
+        "mega_menu_D7WULk",
+        "simple_link_ftWkpw"
       ],
-      "name": "Banner Promociones Dinámico",
+      "name": "Menú Dinámico JGT",
       "settings": {
-        "bg_color": "#f0f4f9",
-        "button_label": "Registrarme",
-        "button_link": "shopify://pages/contact"
+        "bg_color": "#ffffff"
       }
     }
   },
   "order": [
+    "mega_menu_jpg_HNKdw8",
     "hero_jVaWmY",
     "collection_circles_wRYMFc",
     "info_ipfwMm",
     "jgt_promo_k8EJCN",
     "jgt_edades_htRWKc",
-    "jgt_promo_qVAWpx",
-    "banner_1_dinamico_V4iexy"
+    "jgt_promo_qVAWpx"
   ]
 }

@@ -9,6 +9,37 @@
  */
 {
   "sections": {
+    "custom_header_HHWhYn": {
+      "type": "custom-header",
+      "blocks": {
+        "icon_link_gVeetE": {
+          "type": "icon_link",
+          "settings": {
+            "label": "",
+            "link": "",
+            "custom_icon_svg": "<svg viewbox=\"0 0 24 24\"><path d=\"M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12C20,12.76 19.89,13.5 19.7,14.2L16,11V10H15V8H13V7H12V5H10V7H9V8H8V11H9V12H8V15H9V17H10V18H12V20A8,8 0 0,1 4,12A8,8 0 0,1 12,4Z\"></path></svg>"
+          }
+        },
+        "cart_icon_hcEdgw": {
+          "type": "cart_icon",
+          "settings": {
+            "label": "MI CESTA",
+            "custom_icon_svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_link_gVeetE",
+        "cart_icon_hcEdgw"
+      ],
+      "name": "Header Juguettos PRO",
+      "settings": {
+        "bg_color": "#002266",
+        "logo": "shopify://shop_images/Juguettos.png",
+        "logo_width": 160,
+        "search_placeholder": "Buscar"
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "name": "t:names.hero",
@@ -296,6 +327,7 @@
     }
   },
   "order": [
+    "custom_header_HHWhYn",
     "hero_jVaWmY",
     "collection_circles_wRYMFc",
     "info_ipfwMm",

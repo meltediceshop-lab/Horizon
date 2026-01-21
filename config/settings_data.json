@@ -59,6 +59,7 @@
     "cart_price_font": "secondary",
     "show_cart_note": false,
     "show_add_discount_code": true,
+    "drawer_color_scheme": "scheme-2",
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
     "input_border_width": 1,
@@ -81,11 +82,6 @@
     "blocks": {
       "6478312753674380289": {
         "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
-        "disabled": false,
-        "settings": {}
-      },
-      "5182184951224911228": {
-        "type": "shopify://apps/rapid-search/blocks/script/bd827795-feaa-41a8-9219-2b83f238aa7d",
         "disabled": false,
         "settings": {}
       }

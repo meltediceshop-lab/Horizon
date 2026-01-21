@@ -1,0 +1,67 @@
+<style>
+  .jgt-promo-section {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+  }
+  .jgt-promo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .jgt-promo-card {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .jgt-promo-card:hover {
+    transform: scale(1.05);
+  }
+  .jgt-promo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    .jgt-promo-card {
+      width: 150px;
+      height: 150px;
+    }
+    .jgt-promo-container {
+      gap: 15px;
+    }
+  }
+</style>
+
+<section class="jgt-promo-section">
+  <div class="jgt-promo-container">
+    <a href="/collections/all" class="jgt-promo-card">
+      <img src="{{ '584_Landing_Nancy_Juguetos_400x400px_JPG' | asset_url }}" alt="Nancy" loading="lazy"/>
+    </a>
+    <a href="/collections/all" class="jgt-promo-card">
+      <img src="{{ '502_JUEGATERAPIA_MINNIE_4...3-4c05-aa9a-4fff10eda9efJPG' | asset_url }}" alt="Juguetarapia Minnie" loading="lazy"/>
+    </a>
+    <a href="/collections/all" class="jgt-promo-card">
+      <img src="{{ '504_440X440_HOT_WHEELS_JPG' | asset_url }}" alt="Hot Wheels" loading="lazy"/>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JGT Promociones",
+  "tag": "section",
+  "class": "section-jgt-promo",
+  "settings": [],
+  "presets": [
+    {
+      "name": "JGT Promociones"
+    }
+  ]
+}
+{% endschema %}

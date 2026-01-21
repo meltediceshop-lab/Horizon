@@ -89,10 +89,81 @@
     },
     "jgt_promo_k8EJCN": {
       "type": "jgt-promo",
+      "blocks": {
+        "image_block_HfNmDG": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/667_Banner_Secundario-Home_440x440_c548ffaf-153f-4cc6-82eb-ad29992347b1.jpg",
+            "link": ""
+          }
+        },
+        "image_block_WnQBpb": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/655_banner_home_WOW_Movil.jpg",
+            "link": ""
+          }
+        },
+        "image_block_REnrh4": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/666_HP_Banner_home_440x440_MVL.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_HfNmDG",
+        "image_block_WnQBpb",
+        "image_block_REnrh4"
+      ],
       "name": "JGT Promociones",
-      "settings": {}
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     },
-    "jgt_edades_HW37WG": {
+    "jgt_promo_qVAWpx": {
+      "type": "jgt-promo",
+      "blocks": {
+        "image_block_Fr3QUx": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/584_Landing_Nancy_Juguettos_400x400px.jpg",
+            "link": ""
+          }
+        },
+        "image_block_k7LYfF": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/502_JUEGATERAPIA_MINNIE_440X440_54237f40-8603-4c05-aa9a-4fff10eda9ef.jpg",
+            "link": ""
+          }
+        },
+        "image_block_qadrPY": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/504_440X440_HOT_WHEELS.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_Fr3QUx",
+        "image_block_k7LYfF",
+        "image_block_qadrPY"
+      ],
+      "name": "JGT Promociones Dinámicas",
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "jgt_edades_htRWKc": {
       "type": "jgt-edades",
       "name": "JGT Edades",
       "settings": {}
@@ -297,7 +368,8 @@
     "collection_circles_wRYMFc",
     "info_ipfwMm",
     "jgt_promo_k8EJCN",
-    "jgt_edades_HW37WG",
+    "jgt_edades_htRWKc",
+    "jgt_promo_qVAWpx",
     "product_list_fa6P9H"
   ]
 }

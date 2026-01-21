@@ -1,0 +1,39 @@
+<section class="jgt-desc-box">
+  <div class="jgt-desc-wrapper" id="DescContainer-{{ section.id }}" style="max-height: {{ section.settings.collapsed_height }}px;">
+    <div class="rte">
+      {{ collection.description }}
+    </div>
+  </div>
+  {% if collection.description.size > 100 %}
+    <button class="jgt-read-more" onclick="toggleDesc('{{ section.id }}', this)">Leer más</button>
+  {% endif %}
+</section>
+
+<script>
+function toggleDesc(id, btn) {
+  var container = document.getElementById('DescContainer-' + id);
+  if (container.style.maxHeight !== 'none') {
+    container.style.maxHeight = 'none';
+    btn.innerText = 'Leer menos';
+  } else {
+    container.style.maxHeight = '{{ section.settings.collapsed_height }}px';
+    btn.innerText = 'Leer más';
+  }
+}
+</script>
+
+<style>
+  .jgt-desc-box { max-width: 800px; margin: 30px auto; text-align: center; padding: 0 20px; }
+  .jgt-desc-wrapper { overflow: hidden; transition: max-height 0.4s ease; position: relative; font-size: 15px; color: #444; line-height: 1.6; }
+  .jgt-read-more { background: none; border: none; color: #002266; font-weight: bold; text-decoration: underline; cursor: pointer; margin-top: 15px; }
+</style>
+
+{% schema %}
+{
+  "name": "JGT Descripción Dinámica",
+  "settings": [
+    { "type": "range", "id": "collapsed_height", "min": 50, "max": 200, "step": 10, "unit": "px", "label": "Altura visible inicial", "default": 80 }
+  ],
+  "presets": [ { "name": "JGT Descripción Dinámica" } ]
+}
+{% endschema %}

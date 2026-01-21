@@ -1,41 +1,39 @@
-{% comment %} Sección Banner de Colección Estilo JGT {% endcomment %}
-<div class="jgt-collection-header relative">
-  {%- if section.settings.show_image and collection.image -%}
-    <div class="jgt-banner-image-container" style="height: {{ section.settings.banner_height }}px;">
-      <img
-        src="{{ collection.image | image_url: width: 2000 }}"
-        alt="{{ collection.title | escape }}"
-        class="w-full h-full object-cover"
-        loading="lazy"
-      >
-      <div class="jgt-banner-overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+<section class="jgt-banner" style="background-color: {{ section.settings.bg_color }};">
+  <div class="jgt-banner-container" style="height: {{ section.settings.height }}px;">
+    {%- assign banner_img = section.settings.custom_image | default: collection.image -%}
+    {%- if banner_img != blank -%}
+      <img src="{{ banner_img | image_url: width: 2000 }}" alt="{{ collection.title }}" class="jgt-banner-img">
+      <div class="jgt-overlay" style="background: rgba(0,0,0,{{ section.settings.overlay | divided_by: 100.0 }});"></div>
+    {%- endif -%}
+    
+    <div class="jgt-banner-content">
+      <h1 style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;">
+        {{ section.settings.title | default: collection.title }}
+      </h1>
     </div>
-  {%- endif -%}
-
-  <div class="jgt-banner-content container mx-auto px-4 {% if collection.image and section.settings.show_image %}absolute inset-0 flex items-center justify-center text-white{% else %}py-8 text-blue-900{% endif %}">
-    <h1 class="text-4xl font-bold uppercase text-center" style="color: {{ section.settings.text_color }}">{{ collection.title }}</h1>
   </div>
-</div>
+</header>
 
 <style>
-  .jgt-collection-header { position: relative; background-color: {{ section.settings.bg_color }}; }
-  .jgt-banner-image-container { position: relative; width: 100%; }
-  .jgt-banner-image-container img { width: 100%; height: 100%; object-fit: cover; }
-  .jgt-banner-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; }
-  .jgt-banner-content.absolute { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;}
-  .jgt-banner-content h1 { margin: 0; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; }
+  .jgt-banner-container { position: relative; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .jgt-banner-img { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .jgt-overlay { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 2; }
+  .jgt-banner-content { position: relative; z-index: 3; text-align: center; padding: 0 20px; }
+  .jgt-banner-content h1 { margin: 0; font-weight: bold; text-transform: uppercase; }
 </style>
 
 {% schema %}
 {
   "name": "JGT Banner Colección",
   "settings": [
-    { "type": "checkbox", "id": "show_image", "label": "Mostrar imagen de colección", "default": true },
-    { "type": "range", "id": "banner_height", "min": 200, "max": 600, "step": 50, "unit": "px", "label": "Altura del banner", "default": 300 },
-    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 90, "step": 10, "unit": "%", "label": "Opacidad de superposición oscura", "default": 30 },
-    { "type": "color", "id": "bg_color", "label": "Color de fondo (si no hay imagen)", "default": "#f4f4f4" },
-    { "type": "color", "id": "text_color", "label": "Color del texto", "default": "#002266" }
+    { "type": "image_picker", "id": "custom_image", "label": "Imagen personalizada (Sustituye a la de colección)" },
+    { "type": "text", "id": "title", "label": "Título alternativo" },
+    { "type": "range", "id": "height", "min": 150, "max": 600, "step": 10, "unit": "px", "label": "Altura del banner", "default": 300 },
+    { "type": "range", "id": "font_size", "min": 20, "max": 60, "step": 2, "unit": "px", "label": "Tamaño de letra", "default": 40 },
+    { "type": "range", "id": "overlay", "min": 0, "max": 80, "step": 10, "unit": "%", "label": "Oscurecer imagen", "default": 20 },
+    { "type": "color", "id": "bg_color", "label": "Fondo (si no hay foto)", "default": "#f4f4f4" },
+    { "type": "color", "id": "text_color", "label": "Color texto", "default": "#ffffff" }
   ],
-  "presets": [{ "name": "JGT Banner Colección" }]
+  "presets": [ { "name": "JGT Banner Colección" } ]
 }
 {% endschema %}

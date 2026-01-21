@@ -1,203 +1,61 @@
-{% comment %} Sección Principal de Colección con Filtros Laterales {% endcomment %}
 {% paginate collection.products by section.settings.products_per_page %}
-<div class="jgt-collection-main container mx-auto px-4 py-8">
-  <div class="jgt-collection-layout">
+<section class="jgt-grid-section">
+  <div class="jgt-grid-layout">
     
-    <aside class="jgt-filters-sidebar">
-      <h2 class="font-bold text-lg mb-4 text-blue-900">Filtros</h2>
-      <form class="jgt-filter-form">
+    <aside class="jgt-filters">
+      <form class="filter-form">
         {%- for filter in collection.filters -%}
-          <details class="jgt-filter-group open" open>
-            <summary class="jgt-filter-summary">
-              <span>{{ filter.label }}</span>
-              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path></svg>
-            </summary>
-            <div class="jgt-filter-content">
-              {%- case filter.type -%}
-                {%- when 'list' -%}
-                  <ul class="jgt-filter-list">
-                    {%- for filter_value in filter.values -%}
-                      <li>
-                        <label class="jgt-checkbox-label {% if filter_value.count == 0 and filter_value.active == false %}disabled{% endif %}">
-                          <input type="checkbox"
-                            name="{{ filter_value.param_name }}"
-                            value="{{ filter_value.value }}"
-                            {% if filter_value.active %}checked{% endif %}
-                            {% if filter_value.count == 0 and filter_value.active == false %}disabled{% endif %}
-                          >
-                          <span class="checkmark"></span>
-                          {{ filter_value.label }} <span class="count">({{ filter_value.count }})</span>
-                        </label>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                {%- when 'price_range' -%}
-                  <div class="jgt-price-range">
-                    <div class="price-field">
-                      <span>Desde</span>
-                      <input name="{{ filter.min_value.param_name }}"
-                        id="Filter-{{ filter.label | escape }}-GTE"
-                        {% if filter.min_value.value -%}
-                          value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
-                        {%- endif %}
-                        type="number"
-                        placeholder="0"
-                        min="0"
-                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                      >
-                       <span>€</span>
-                    </div>
-                     <div class="price-field">
-                      <span>Hasta</span>
-                      <input name="{{ filter.max_value.param_name }}"
-                        id="Filter-{{ filter.label | escape }}-LTE"
-                        {% if filter.max_value.value -%}
-                          value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                        {%- endif %}
-                        type="number"
-                        min="0"
-                        placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                      >
-                       <span>€</span>
-                    </div>
-                  </div>
-              {%- endcase -%}
+          <div class="filter-group">
+            <p class="filter-title">{{ filter.label }}</p>
+            <div class="filter-values">
+              {%- for value in filter.values -%}
+                <label>
+                  <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %}>
+                  {{ value.label }} ({{ value.count }})
+                </label>
+              {%- endfor -%}
             </div>
-          </details>
-        {%- endfor -%}
-          <div class="jgt-filter-actions">
-            <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="jgt-clear-filters">Borrar todo</a>
-            <button type="submit" class="jgt-apply-filters-btn">Aplicar</button>
           </div>
+        {%- endfor -%}
+        <button type="submit" class="apply-btn">Aplicar</button>
       </form>
     </aside>
 
-    <div class="jgt-product-grid-container">
-      {% if collection.products.size == 0 %}
-        <p class="text-center py-12 text-gray-500">No se encontraron productos con estos filtros.</p>
-      {% else %}
-        <div class="jgt-product-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-{{ section.settings.columns_desktop }} gap-6">
-          {%- for product in collection.products -%}
-            <div class="jgt-product-card group relative">
-              <a href="{{ product.url }}" class="block overflow-hidden rounded-lg border border-gray-200">
-                <div class="aspect-square relative overflow-hidden bg-gray-100">
-                  <img
-                    src="{{ product.featured_media | image_url: width: 500 }}"
-                    alt="{{ product.featured_media.alt | escape }}"
-                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  >
-                   {% if product.compare_at_price > product.price %}
-                    <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">OFERTA</span>
-                  {% endif %}
-                </div>
-                <div class="p-4 text-center">
-                  <h3 class="font-bold text-blue-900 truncate">{{ product.title }}</h3>
-                  <div class="mt-2">
-                    {% if product.compare_at_price > product.price %}
-                      <span class="text-gray-500 line-through text-sm mr-2">{{ product.compare_at_price | money }}</span>
-                    {% endif %}
-                    <span class="text-blue-900 font-bold text-lg">{{ product.price | money }}</span>
-                  </div>
-                </div>
-              </a>
-               <form method="post" action="/cart/add" class="mt-2">
-                  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-                  <button type="submit" class="w-full bg-blue-900 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-800 transition-colors text-sm">
-                      AÑADIR
-                  </button>
-                </form>
-            </div>
-          {%- endfor -%}
-        </div>
-
-        {% if paginate.pages > 1 %}
-          <div class="jgt-pagination mt-12 flex justify-center gap-2">
-            {{ paginate | default_pagination: next: '>', previous: '<', class: 'flex gap-2' }}
-          </div>
-        {% endif %}
-      {% endif %}
+    <div class="jgt-products">
+      <div class="jgt-products-grid">
+        {% for product in collection.products %}
+          <a href="{{ product.url }}" class="jgt-card">
+            <img src="{{ product.featured_image | image_url: width: 400 }}">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.price | money }}</p>
+          </a>
+        {% endfor %}
+      </div>
     </div>
+
   </div>
-</div>
+</section>
 {% endpaginate %}
 
 <style>
-  .jgt-collection-main { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
-  .jgt-collection-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
-  
-  /* Sidebar Filtros */
-  .jgt-filters-sidebar { border-right: 1px solid #eee; padding-right: 20px; }
-  .jgt-filter-group { border-bottom: 1px solid #eee; padding: 15px 0; }
-  .jgt-filter-summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; color: #002266; list-style: none; }
-  .jgt-filter-summary::-webkit-details-marker { display: none; }
-  .jgt-filter-summary .icon-caret { width: 10px; transition: transform 0.3s; }
-  .jgt-filter-group[open] .icon-caret { transform: rotate(180deg); }
-  .jgt-filter-content { margin-top: 15px; padding-bottom: 5px; }
-  .jgt-filter-list { list-style: none; padding: 0; margin: 0; max-height: 250px; overflow-y: auto; }
-  .jgt-filter-list li { margin-bottom: 8px; }
-  
-  /* Checkboxes personalizados */
-  .jgt-checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #333; }
-  .jgt-checkbox-label.disabled { opacity: 0.5; cursor: not-allowed; }
-  .jgt-checkbox-label input { display: none; }
-  .checkmark { width: 18px; height: 18px; border: 2px solid #ccc; border-radius: 3px; margin-right: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-  .jgt-checkbox-label input:checked + .checkmark { background-color: #002266; border-color: #002266; }
-  .jgt-checkbox-label input:checked + .checkmark::after { content: '✓'; color: white; font-size: 12px; }
-  .count { color: #888; margin-left: 5px; font-size: 12px; }
-
-  /* Filtro Precio */
-  .jgt-price-range { display: flex; gap: 10px; }
-  .price-field { display: flex; align-items: center; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; flex: 1; }
-  .price-field input { border: none; outline: none; width: 100%; padding: 0 5px; -moz-appearance: textfield; }
-  .price-field input::-webkit-outer-spin-button, .price-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-
-  .jgt-filter-actions { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-  .jgt-clear-filters { font-size: 13px; text-decoration: underline; color: #666; }
-  .jgt-apply-filters-btn { background: #002266; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; }
-
-  /* Parrilla Productos */
-  .jgt-product-grid { display: grid; grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr); gap: 25px; }
-  .jgt-product-card { display: flex; flex-direction: column; }
-  .jgt-product-card a.block { border: 1px solid #eee; border-radius: 8px; overflow: hidden; flex-grow: 1; display: flex; flex-direction: column; }
-  .aspect-square { aspect-ratio: 1 / 1; position: relative; overflow: hidden; background: #f9f9f9; }
-  .aspect-square img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s; }
-  .jgt-product-card:hover img { transform: scale(1.05); }
-  .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-  /* Paginación */
-  .jgt-pagination span, .jgt-pagination a { padding: 8px 12px; border: 1px solid #eee; border-radius: 4px; text-decoration: none; color: #333; }
-  .jgt-pagination .current { background: #002266; color: white; border-color: #002266; }
-
-  @media (max-width: 1024px) {
-    .jgt-product-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 768px) {
-    .jgt-collection-layout { grid-template-columns: 1fr; }
-    .jgt-filters-sidebar { display: none; /* En móvil requeriría un botón para abrirlo en modal */ }
-    .jgt-product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-  }
+  .jgt-grid-section { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+  .jgt-grid-layout { display: grid; grid-template-columns: 250px 1fr; gap: 40px; }
+  .filter-group { border-bottom: 1px solid #eee; padding: 15px 0; }
+  .filter-title { font-weight: bold; margin-bottom: 10px; color: #002266; }
+  .filter-values label { display: block; font-size: 13px; margin-bottom: 5px; cursor: pointer; }
+  .jgt-products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .jgt-card { text-decoration: none; color: inherit; text-align: center; border: 1px solid #eee; padding: 15px; border-radius: 8px; }
+  .jgt-card img { width: 100%; height: auto; }
+  .jgt-card h3 { font-size: 14px; margin: 10px 0; color: #002266; }
+  .apply-btn { background: #002266; color: white; border: none; padding: 10px; width: 100%; margin-top: 15px; border-radius: 20px; cursor: pointer; }
 </style>
-
-<script>
-  // Script simple para el filtro de precio y recarga automática
-  document.querySelectorAll('.jgt-filter-form input').forEach(input => {
-    input.addEventListener('change', () => {
-      // Idealmente aquí usarías AJAX para recargar solo la parrilla,
-      // pero para este ejemplo simple, enviamos el formulario.
-      input.closest('form').submit();
-    });
-  });
-</script>
 
 {% schema %}
 {
-  "name": "JGT Parrilla Principal",
+  "name": "JGT Parrilla y Filtros",
   "settings": [
-    { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "label": "Productos por página", "default": 24 },
-    { "type": "range", "id": "columns_desktop", "min": 2, "max": 5, "step": 1, "label": "Columnas en escritorio", "default": 4 }
+    { "type": "range", "id": "products_per_page", "min": 6, "max": 48, "step": 6, "label": "Productos por página", "default": 24 }
   ],
-  "presets": [{ "name": "JGT Parrilla Principal" }]
+  "presets": [ { "name": "JGT Parrilla y Filtros" } ]
 }
 {% endschema %}

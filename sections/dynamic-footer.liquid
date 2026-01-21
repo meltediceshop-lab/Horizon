@@ -1,0 +1,182 @@
+{% comment %}
+  FOOTER DINÁMICO ESTILO JUGUETTOS
+{% endcomment %}
+
+<footer class="jgt-footer" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+  <div class="jgt-footer-wrapper">
+    
+    <div class="jgt-footer-grid">
+      {% for block in section.blocks %}
+        <div class="jgt-footer-col" {{ block.shopify_attributes }}>
+          
+          <h3 class="jgt-footer-title">{{ block.settings.title }}</h3>
+          
+          {% case block.type %}
+            {% when 'link_list' %}
+              <ul class="jgt-footer-menu">
+                {% for link in block.settings.menu.links %}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+
+            {% when 'social_column' %}
+              <ul class="jgt-footer-social">
+                {% if block.settings.show_blog %}
+                  <li><a href="{{ block.settings.blog_url }}"><span class="social-icon">{% render 'icon-rss' %}</span> Blog</a></li>
+                {% endif %}
+                {% if block.settings.facebook_url != blank %}
+                  <li><a href="{{ block.settings.facebook_url }}"><span class="social-icon">{% render 'icon-facebook' %}</span> Facebook</a></li>
+                {% endif %}
+                {% if block.settings.youtube_url != blank %}
+                  <li><a href="{{ block.settings.youtube_url }}"><span class="social-icon">{% render 'icon-youtube' %}</span> Youtube</a></li>
+                {% endif %}
+                {% if block.settings.instagram_url != blank %}
+                  <li><a href="{{ block.settings.instagram_url }}"><span class="social-icon">{% render 'icon-instagram' %}</span> Instagram</a></li>
+                {% endif %}
+                {% if block.settings.tiktok_url != blank %}
+                  <li><a href="{{ block.settings.tiktok_url }}"><span class="social-icon">{% render 'icon-tiktok' %}</span> Tiktok</a></li>
+                {% endif %}
+              </ul>
+          {% endcase %}
+          
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .jgt-footer {
+    padding: 50px 0;
+    font-family: sans-serif;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .jgt-footer-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .jgt-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  .jgt-footer-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    display: inline-block;
+    min-width: 150px;
+  }
+  .jgt-footer-menu, .jgt-footer-social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .jgt-footer-menu li, .jgt-footer-social li {
+    margin-bottom: 12px;
+  }
+  .jgt-footer-menu a, .jgt-footer-social a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .jgt-footer-menu a:hover, .jgt-footer-social a:hover {
+    opacity: 0.7;
+  }
+  .social-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .social-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+
+  @media (max-width: 768px) {
+    .jgt-footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .jgt-footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer Dinámico JGT",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#002266"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color de texto",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Columna de Enlaces",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título de la columna",
+          "default": "Menú"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Seleccionar menú"
+        }
+      ]
+    },
+    {
+      "type": "social_column",
+      "name": "Columna de Comunidad",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Comunidad"
+        },
+        { "type": "checkbox", "id": "show_blog", "label": "Mostrar Blog", "default": true },
+        { "type": "url", "id": "blog_url", "label": "Enlace Blog" },
+        { "type": "url", "id": "facebook_url", "label": "Enlace Facebook" },
+        { "type": "url", "id": "youtube_url", "label": "Enlace Youtube" },
+        { "type": "url", "id": "instagram_url", "label": "Enlace Instagram" },
+        { "type": "url", "id": "tiktok_url", "label": "Enlace Tiktok" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Dinámico JGT",
+      "blocks": [
+        { "type": "link_list", "settings": { "title": "Quiénes somos" } },
+        { "type": "link_list", "settings": { "title": "Atención al cliente" } },
+        { "type": "link_list", "settings": { "title": "Promociones" } },
+        { "type": "social_column", "settings": { "title": "Comunidad" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

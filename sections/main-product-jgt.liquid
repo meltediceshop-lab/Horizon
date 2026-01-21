@@ -1,0 +1,85 @@
+{% comment %} Sección principal de producto estilo Juguettos {% endcomment %}
+<section class="jgt-product-container">
+  <div class="jgt-product-main">
+    
+    <div class="jgt-product-gallery">
+      <div class="jgt-thumbnails">
+        {% for image in product.images %}
+          <img src="{{ image | image_url: width: 100 }}" alt="{{ image.alt }}" class="jgt-thumb-img">
+        {% endfor %}
+      </div>
+      <div class="jgt-main-image">
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}">
+      </div>
+    </div>
+
+    <div class="jgt-product-info">
+      <p class="jgt-ref">
+        REF: {{ product.variants.first.sku }} 
+        {% if product.metafields.custom.ean != blank %}
+          - EAN: {{ product.metafields.custom.ean }}
+        {% endif %}
+      </p>
+      <h1 class="jgt-product-title">{{ product.title }}</h1>
+      <div class="jgt-product-price">{{ product.price | money }}</div>
+
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        
+        <div class="jgt-purchase-row">
+          <div class="jgt-qty-selector">
+            <button type="button" onclick="this.parentNode.querySelector('input').stepDown()">-</button>
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="button" onclick="this.parentNode.querySelector('input').stepUp()">+</button>
+          </div>
+          <button type="submit" class="jgt-add-to-cart">AÑADIR A MI CESTA</button>
+          <button type="button" class="jgt-wishlist-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C8.64,5 9.74,5.54 10.4,6.44L12,8.64L13.6,6.44C14.26,5.54 15.36,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"/></svg>
+          </button>
+        </div>
+      {% endform %}
+
+      <div class="jgt-product-meta">
+        {% if product.metafields.custom.edad_recomendada != blank %}
+          <div class="meta-item"><span>Edad recomendada:</span> {{ product.metafields.custom.edad_recomendada }}</div>
+        {% endif %}
+        <div class="meta-link">MÉTODOS DE PAGO</div>
+        <div class="meta-link">ENVÍOS CAMBIOS Y DEVOLUCIONES</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .jgt-product-container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; font-family: sans-serif; }
+  .jgt-product-main { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; }
+  .jgt-product-gallery { display: flex; gap: 15px; }
+  .jgt-thumbnails { display: flex; flex-direction: column; gap: 10px; width: 80px; }
+  .jgt-thumb-img { width: 100%; border: 1px solid #eee; cursor: pointer; }
+  .jgt-main-image img { width: 100%; object-fit: contain; }
+  .jgt-ref { color: #888; font-size: 13px; }
+  .jgt-product-title { color: #002266; font-size: 28px; margin: 10px 0; font-weight: bold; }
+  .jgt-product-price { font-size: 32px; font-weight: bold; color: #002266; margin-bottom: 30px; }
+  .jgt-purchase-row { display: flex; align-items: center; gap: 15px; }
+  .jgt-qty-selector { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 20px; padding: 5px 15px; }
+  .jgt-qty-selector input { width: 40px; border: none; text-align: center; font-size: 18px; outline: none; }
+  .jgt-qty-selector button { background: none; border: none; font-size: 20px; cursor: pointer; color: #002266; }
+  .jgt-add-to-cart { background-color: #002266; color: white; border: none; padding: 12px 40px; border-radius: 30px; font-weight: bold; cursor: pointer; flex-grow: 1; }
+  .jgt-wishlist-btn { background: none; border: none; color: #002266; cursor: pointer; }
+  .jgt-product-meta { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+  .meta-item { margin-bottom: 15px; font-size: 14px; }
+  .meta-item span { font-weight: bold; }
+  .meta-link { font-size: 12px; font-weight: bold; color: #002266; text-decoration: underline; margin-bottom: 10px; cursor: pointer; }
+</style>
+
+{% schema %}
+{
+  "name": "Producto Juguettos Principal",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Producto Juguettos Principal"
+    }
+  ]
+}
+{% endschema %}

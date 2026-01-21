@@ -9,115 +9,73 @@
  */
 {
   "sections": {
-    "section": {
-      "type": "section",
-      "blocks": {
-        "text_tqQTNE": {
-          "type": "text",
-          "name": "Title",
-          "settings": {
-            "text": "<h1>{{ closest.collection.title }}</h1>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_twGGkJ": {
-          "type": "text",
-          "name": "Description",
-          "settings": {
-            "text": "{{ closest.collection.description }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_tqQTNE",
-        "text_twGGkJ"
-      ],
-      "name": "Collection heading",
+    "jgt_collection_banner_QMG7bM": {
+      "type": "jgt-collection-banner",
+      "name": "JGT Banner Colección",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "banner_image": "shopify://shop_images/avland-11_600ea049-b7a8-4cd6-9dcd-01316c7c1e77.jpg",
+        "height_desktop": 200,
+        "height_mobile": 100,
+        "bg_color": "#f4f4f4"
       }
     },
-    "collection_circles_7tmFcW": {
-      "type": "collection-circles",
+    "jgt_circular_list_k8iw9W": {
+      "type": "jgt-circular-list",
       "blocks": {
-        "collection_6tD46K": {
-          "type": "collection",
+        "circle_4kM63n": {
+          "type": "circle",
           "settings": {
-            "collection": "lego",
-            "custom_image": "shopify://shop_images/LEGO_logo_svg.png",
-            "placeholder_text": "Select Collection"
+            "label": "Subcategoría",
+            "link": ""
+          }
+        },
+        "circle_pUUAa7": {
+          "type": "circle",
+          "settings": {
+            "label": "Subcategoría",
+            "link": ""
+          }
+        },
+        "circle_7FGWCV": {
+          "type": "circle",
+          "settings": {
+            "label": "Subcategoría",
+            "link": ""
+          }
+        },
+        "circle_CpYTHp": {
+          "type": "circle",
+          "settings": {
+            "label": "Subcategoría",
+            "link": ""
+          }
+        },
+        "circle_RFJUn4": {
+          "type": "circle",
+          "settings": {
+            "label": "Subcategoría",
+            "link": ""
+          }
+        },
+        "circle_gXnVmg": {
+          "type": "circle",
+          "settings": {
+            "label": "Subcategoría",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "collection_6tD46K"
+        "circle_4kM63n",
+        "circle_pUUAa7",
+        "circle_7FGWCV",
+        "circle_CpYTHp",
+        "circle_RFJUn4",
+        "circle_gXnVmg"
       ],
-      "name": "Collection Circles",
+      "name": "JGT Círculos Colección",
       "settings": {
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "bg_color": "#ffffff"
       }
     },
     "main": {
@@ -249,23 +207,11 @@
         "padding-block-start": 0,
         "padding-block-end": 32
       }
-    },
-    "jgt_collection_banner_QMG7bM": {
-      "type": "jgt-collection-banner",
-      "name": "JGT Banner Colección",
-      "settings": {
-        "show_image": true,
-        "banner_height": 300,
-        "overlay_opacity": 30,
-        "bg_color": "#f4f4f4",
-        "text_color": "#002266"
-      }
     }
   },
   "order": [
-    "section",
-    "collection_circles_7tmFcW",
-    "main",
-    "jgt_collection_banner_QMG7bM"
+    "jgt_collection_banner_QMG7bM",
+    "jgt_circular_list_k8iw9W",
+    "main"
   ]
 }

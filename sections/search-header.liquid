@@ -1,4 +1,35 @@
+{%- style -%}
+  /* Contenedor principal de la búsqueda */
+  #shopify-section-{{ section.id }} .search-page__header {
+    display: flex;
+    flex-direction: column;
+    align-items: {{ section.settings.alignment }};
+    width: 100%;
+  }
 
+  /* Ajuste de la longitud (más larga) */
+  #shopify-section-{{ section.id }} [data-block-id="search"] {
+    width: 100%;
+    max-width: 800px; /* Ajusta este valor para hacerla tan larga como quieras */
+    margin-left: {% if section.settings.alignment == 'center' %}auto{% else %}0{% endif %};
+    margin-right: {% if section.settings.alignment == 'center' %}auto{% else %}0{% endif %};
+  }
+
+  /* Ajuste de la altura (más estrecha) */
+  #shopify-section-{{ section.id }} input[type="search"],
+  #shopify-section-{{ section.id }} .search__input {
+    padding-top: 8px !important;    /* Reduce el espacio interno superior */
+    padding-bottom: 8px !important; /* Reduce el espacio interno inferior */
+    min-height: 40px !important;    /* Altura mínima más pequeña */
+    height: 40px !important;
+  }
+
+  /* Ajuste del icono para que no se vea descentrado */
+  #shopify-section-{{ section.id }} .search__button {
+    height: 40px !important;
+    min-height: 40px !important;
+  }
+{%- endstyle -%}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section section--page-width color-{{ section.settings.color_scheme }}">

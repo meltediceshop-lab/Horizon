@@ -1,5 +1,6 @@
 import { Component } from '@theme/component';
 import { onDocumentLoaded, changeMetaThemeColor } from '@theme/utilities';
+import '@theme/search-inline';
 
 /**
  * @typedef {Object} HeaderComponentRefs

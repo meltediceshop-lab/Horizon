@@ -1,33 +1,151 @@
 {%- style -%}
-  /* Contenedor principal de la búsqueda */
+  /* Contenedor principal - Centrado y ancho completo */
   #shopify-section-{{ section.id }} .search-page__header {
     display: flex;
     flex-direction: column;
     align-items: {{ section.settings.alignment }};
-    width: 10%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
   }
 
-  /* Ajuste de la longitud (más larga) */
+  /* Contenedor de la barra de búsqueda - Muy larga como en la imagen */
   #shopify-section-{{ section.id }} [data-block-id="search"] {
     width: 100%;
-    max-width: 800px; /* Ajusta este valor para hacerla tan larga como quieras */
-    margin-left: {% if section.settings.alignment == 'center' %}auto{% else %}0{% endif %};
-    margin-right: {% if section.settings.alignment == 'center' %}auto{% else %}0{% endif %};
+    max-width: 900px; /* Más ancho para imitar la imagen */
+    margin: 0 auto;
+    position: relative;
   }
 
-  /* Ajuste de la altura (más estrecha) */
+  /* Estilo de la barra de búsqueda - Idéntica a la imagen */
   #shopify-section-{{ section.id }} input[type="search"],
   #shopify-section-{{ section.id }} .search__input {
-    padding-top: 8px !important;    /* Reduce el espacio interno superior */
-    padding-bottom: 8px !important; /* Reduce el espacio interno inferior */
-    min-height: 40px !important;    /* Altura mínima más pequeña */
-    height: 40px !important;
+    width: 100%;
+    padding: 10px 20px !important;
+    padding-right: 50px !important; /* Espacio para el ícono */
+    min-height: 44px !important;
+    height: 44px !important;
+    border: 2px solid #e5e5e5 !important;
+    border-radius: 24px !important;
+    font-size: 16px !important;
+    font-family: inherit;
+    background: white !important;
+    color: #333 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
   }
 
-  /* Ajuste del icono para que no se vea descentrado */
+  /* Efecto hover y focus */
+  #shopify-section-{{ section.id }} input[type="search"]:hover,
+  #shopify-section-{{ section.id }} .search__input:hover {
+    border-color: #d1d5db !important;
+  }
+
+  #shopify-section-{{ section.id }} input[type="search"]:focus,
+  #shopify-section-{{ section.id }} .search__input:focus {
+    border-color: #3a3a3a !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+    outline: none !important;
+  }
+
+  /* Botón de búsqueda - Posicionado dentro del input */
   #shopify-section-{{ section.id }} .search__button {
-    height: 40px !important;
-    min-height: 40px !important;
+    position: absolute !important;
+    right: 4px !important;
+    top: 4px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+  }
+
+  #shopify-section-{{ section.id }} .search__button:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Icono de búsqueda - Estilo simple */
+  #shopify-section-{{ section.id }} .search__button .icon {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: #6b7280 !important;
+    stroke-width: 2 !important;
+  }
+
+  #shopify-section-{{ section.id }} .search__button:hover .icon {
+    stroke: #374151 !important;
+  }
+
+  /* Título centrado y estilo */
+  #shopify-section-{{ section.id }} .search-page__header h3 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  /* Contenedor del formulario */
+  #shopify-section-{{ section.id }} .search-form {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Placeholder estilo */
+  #shopify-section-{{ section.id }} input::placeholder {
+    color: #9ca3af !important;
+    font-size: 15px !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .search-page__header {
+      padding: 1rem;
+    }
+    
+    #shopify-section-{{ section.id }} [data-block-id="search"] {
+      max-width: 100%;
+    }
+    
+    #shopify-section-{{ section.id }} .search-page__header h3 {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #shopify-section-{{ section.id }} input[type="search"],
+    #shopify-section-{{ section.id }} .search__input {
+      font-size: 14px !important;
+      padding: 8px 16px !important;
+      padding-right: 45px !important;
+      min-height: 40px !important;
+      height: 40px !important;
+    }
+    
+    #shopify-section-{{ section.id }} .search__button {
+      height: 32px !important;
+      min-height: 32px !important;
+      width: 32px !important;
+      min-width: 32px !important;
+      right: 4px !important;
+      top: 4px !important;
+    }
+    
+    #shopify-section-{{ section.id }} .search__button .icon {
+      width: 18px !important;
+      height: 18px !important;
+    }
   }
 {%- endstyle -%}
 
@@ -51,7 +169,10 @@
     {% endcapture %}
 
     {% content_for 'block', id: 'heading', type: '_heading', text: heading_text %}
-    {% content_for 'block', id: 'search', type: '_search-input' %}
+    
+    <div class="search-form">
+      {% content_for 'block', id: 'search', type: '_search-input' %}
+    </div>
   </div>
 </div>
 
@@ -66,7 +187,7 @@
       "options": [
         {
           "value": "flex-start",
-          "label": "t:options.right"
+          "label": "t:options.left"
         },
         {
           "value": "center",
@@ -77,7 +198,7 @@
           "label": "t:options.right"
         }
       ],
-      "default": "flex-start"
+      "default": "center"
     },
     {
       "type": "color_scheme",
@@ -97,7 +218,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 40
     },
     {
       "type": "range",
@@ -107,7 +228,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 0
+      "default": 40
     }
   ]
 }

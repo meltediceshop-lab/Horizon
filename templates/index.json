@@ -23,7 +23,7 @@
         "icon_link_raceK7": {
           "type": "icon_link",
           "settings": {
-            "label": "",
+            "label": "TIENDAS",
             "link": "",
             "custom_icon_svg": "<svg viewbox=\"0 0 24 24\"><path d=\"M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M12,4A5,5 0 0,1 17,9C17,12.42 12,18.1 12,18.1C12,18.1 7,12.42 7,9A5,5 0 0,1 12,4M12,6.5A2.5,2.5 0 0,0 9.5,9A2.5,2.5 0 0,0 12,11.5A2.5,2.5 0 0,0 14.5,9A2.5,2.5 0 0,0 12,6.5Z\"></path></svg>"
           }
@@ -31,7 +31,7 @@
         "icon_link_kBAMaw": {
           "type": "icon_link",
           "settings": {
-            "label": "",
+            "label": "EL CLUB",
             "link": "",
             "custom_icon_svg": "<svg viewbox=\"0 0 24 24\"><path d=\"M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z\"></path></svg>"
           }
@@ -39,7 +39,7 @@
         "cart_icon_hcEdgw": {
           "type": "cart_icon",
           "settings": {
-            "label": "",
+            "label": "MI CESTA",
             "custom_icon_svg": "<svg viewbox=\"0 0 24 24\"><path d=\"M19,7H16V7A4,4 0 0,0 12,3A4,4 0 0,0 8,7V7H5A2,2 0 0,0 3,9V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V9A2,2 0 0,0 19,7M12,5A2,2 0 0,1 14,7H10A2,2 0 0,1 12,5M19,19H5V9H8V12H10V9H14V12H16V9H19V19Z\"></path></svg>"
           }
         }

@@ -89,206 +89,83 @@
     },
     "jgt_promo_k8EJCN": {
       "type": "jgt-promo",
+      "blocks": {
+        "image_block_HfNmDG": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/667_Banner_Secundario-Home_440x440_c548ffaf-153f-4cc6-82eb-ad29992347b1.jpg",
+            "link": ""
+          }
+        },
+        "image_block_WnQBpb": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/655_banner_home_WOW_Movil.jpg",
+            "link": ""
+          }
+        },
+        "image_block_REnrh4": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/666_HP_Banner_home_440x440_MVL.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_HfNmDG",
+        "image_block_WnQBpb",
+        "image_block_REnrh4"
+      ],
       "name": "JGT Promociones",
-      "settings": {}
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     },
-    "jgt_edades_HW37WG": {
+    "jgt_edades_htRWKc": {
       "type": "jgt-edades",
       "name": "JGT Edades",
       "settings": {}
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "jgt_promo_qVAWpx": {
+      "type": "jgt-promo",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "image_block_Fr3QUx": {
+          "type": "image_block",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "image": "shopify://shop_images/584_Landing_Nancy_Juguettos_400x400px.jpg",
+            "link": ""
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "image_block_k7LYfF": {
+          "type": "image_block",
           "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "image": "shopify://shop_images/502_JUEGATERAPIA_MINNIE_440X440_54237f40-8603-4c05-aa9a-4fff10eda9ef.jpg",
+            "link": ""
+          }
+        },
+        "image_block_qadrPY": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/504_440X440_HOT_WHEELS.jpg",
+            "link": ""
+          }
         }
       },
-      "name": "Featured collection",
+      "block_order": [
+        "image_block_Fr3QUx",
+        "image_block_k7LYfF",
+        "image_block_qadrPY"
+      ],
+      "name": "JGT Promociones Dinámicas",
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "color_scheme": "scheme-2",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
@@ -297,7 +174,7 @@
     "collection_circles_wRYMFc",
     "info_ipfwMm",
     "jgt_promo_k8EJCN",
-    "jgt_edades_HW37WG",
-    "product_list_fa6P9H"
+    "jgt_edades_htRWKc",
+    "jgt_promo_qVAWpx"
   ]
 }

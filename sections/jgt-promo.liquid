@@ -41,15 +41,11 @@
 <section class="jgt-promo-section">
   <div class="jgt-promo-container">
     <div class="jgt-promo-grid">
-      <a href="/collections/all" class="jgt-promo-card">
-        <img src="{{ '584_Landing_Nancy_Juguettos_400x400px.jpg' | asset_url }}" alt="Nancy" loading="lazy">
-      </a>
-      <a href="/collections/all" class="jgt-promo-card">
-        <img src="{{ '502_JUEGATERAPIA MINNIE 440X440.jpg' | asset_url }}" alt="Juegaterapia Minnie" loading="lazy">
-      </a>
-      <a href="/collections/all" class="jgt-promo-card">
-        <img src="{{ '504_440X440 HOT WHEELS.jpg' | asset_url }}" alt="Hot Wheels" loading="lazy">
-      </a>
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="jgt-promo-card">
+          <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.alt_text }}" loading="lazy">
+        </a>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -60,6 +56,30 @@
   "tag": "section",
   "class": "section-jgt-promo",
   "settings": [],
+  "blocks": [
+    {
+      "type": "promo_image",
+      "name": "Promo Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text",
+          "default": ""
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "JGT Promociones"

@@ -1,0 +1,80 @@
+<!-- JUGUETTOS AGE SELECTOR SECTION -->
+<style>
+  .jgt-ages-section {
+    padding: 40px 0;
+    background-color: #ffffff;
+  }
+  .jgt-ages-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .jgt-ages-title {
+    text-align: center;
+    color: #003087;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .jgt-ages-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .jgt-age-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    background: #fff;
+  }
+  .jgt-age-btn:hover {
+    border-color: #003087;
+    color: #003087;
+    background: rgba(0, 48, 135, 0.05);
+  }
+  @media (max-width: 768px) {
+    .jgt-ages-list {
+      gap: 8px;
+    }
+    .jgt-age-btn {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<section class="jgt-ages-section">
+  <div class="jgt-ages-container">
+    <h2 class="jgt-ages-title">Juguetes para:</h2>
+    <div class="jgt-ages-list">
+      <a href="/collections/all" class="jgt-age-btn">bebés</a>
+      <a href="/collections/all" class="jgt-age-btn">1 a 2 años</a>
+      <a href="/collections/all" class="jgt-age-btn">3 a 4 años</a>
+      <a href="/collections/all" class="jgt-age-btn">5 a 6 años</a>
+      <a href="/collections/all" class="jgt-age-btn">7 a 8 años</a>
+      <a href="/collections/all" class="jgt-age-btn">9 a 10 años</a>
+      <a href="/collections/all" class="jgt-age-btn">11 a 12 años</a>
+      <a href="/collections/all" class="jgt-age-btn">13 a 14 años</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JGT Edades",
+  "tag": "section",
+  "class": "section-jgt-ages",
+  "settings": [],
+  "presets": [
+    {
+      "name": "JGT Edades"
+    }
+  ]
+}
+{% endschema %}

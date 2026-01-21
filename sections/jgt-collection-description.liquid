@@ -1,10 +1,9 @@
 {% comment %}
-  JGT DESCRIPCIÓN DINÁMICA - Versión Ultra Configurable
-  Soluciona el error de visibilidad y permite control total de diseño.
+  JGT DESCRIPCIÓN DINÁMICA - Texto Editable desde Administrador
 {% endcomment %}
 
 {%- style -%}
-  .jgt-desc-section-{{ section.id }} {
+  .jgt-desc-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -26,12 +25,10 @@
     position: relative;
   }
 
-  /* Altura cuando está cerrado */
   .jgt-text-content-{{ section.id }}.collapsed {
     max-height: {{ section.settings.collapsed_height }}px;
   }
 
-  /* Degradado para indicar que hay más texto */
   .jgt-text-content-{{ section.id }}.collapsed::after {
     content: "";
     position: absolute;
@@ -56,28 +53,33 @@
   }
 {%- endstyle -%}
 
-<section class="jgt-desc-section-{{ section.id }}">
+<section class="jgt-desc-{{ section.id }}">
   <div class="jgt-desc-wrapper-{{ section.id }}">
     
     <div id="JgtDescText-{{ section.id }}" class="jgt-text-content-{{ section.id }} collapsed">
       <div class="rte">
-        {%- if collection.description != blank -%}
-          {{ collection.description }}
+        {%- liquid
+          assign text_to_show = section.settings.custom_text
+          if text_to_show == blank
+            assign text_to_show = collection.description
+          endif
+        -%}
+        
+        {%- if text_to_show != blank -%}
+          {{ text_to_show }}
         {%- else -%}
-          <p>Añade la descripción de la colección en el administrador de Shopify para ver el contenido aquí.</p>
+          <p>Escribe algo en el administrador o añade una descripción a la colección.</p>
         {%- endif -%}
       </div>
     </div>
 
-    {%- if collection.description.size > 150 -%}
-      <button 
-        id="JgtBtn-{{ section.id }}" 
-        class="jgt-btn-{{ section.id }}"
-        onclick="toggleJgtDescription('{{ section.id }}')"
-      >
-        {{ section.settings.label_more }}
-      </button>
-    {%- endif -%}
+    <button 
+      id="JgtBtn-{{ section.id }}" 
+      class="jgt-btn-{{ section.id }}"
+      onclick="toggleJgtDescription('{{ section.id }}')"
+    >
+      {{ section.settings.label_more }}
+    </button>
 
   </div>
 </section>
@@ -104,7 +106,17 @@
   "settings": [
     {
       "type": "header",
-      "content": "Ajustes de Diseño"
+      "content": "Contenido Editable"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_text",
+      "label": "Texto de la sección",
+      "info": "Si lo dejas vacío, mostrará la descripción de la colección."
+    },
+    {
+      "type": "header",
+      "content": "Diseño y Colores"
     },
     {
       "type": "color",
@@ -131,23 +143,19 @@
       "max": 1200,
       "step": 50,
       "unit": "px",
-      "label": "Ancho máximo del contenido",
+      "label": "Ancho máximo",
       "default": 800
     },
     {
       "type": "select",
       "id": "alignment",
-      "label": "Alineación del texto",
+      "label": "Alineación",
       "options": [
         { "value": "left", "label": "Izquierda" },
         { "value": "center", "label": "Centro" },
         { "value": "right", "label": "Derecha" }
       ],
       "default": "center"
-    },
-    {
-      "type": "header",
-      "content": "Espaciado (Grosor)"
     },
     {
       "type": "range",
@@ -171,28 +179,28 @@
     },
     {
       "type": "header",
-      "content": "Configuración 'Leer más'"
+      "content": "Control del Botón"
     },
     {
       "type": "range",
       "id": "collapsed_height",
       "min": 40,
-      "max": 300,
+      "max": 400,
       "step": 10,
       "unit": "px",
-      "label": "Altura visible (Cerrado)",
+      "label": "Altura cuando está cerrado",
       "default": 80
     },
     {
       "type": "text",
       "id": "label_more",
-      "label": "Etiqueta para abrir",
+      "label": "Texto abrir",
       "default": "Leer más"
     },
     {
       "type": "text",
       "id": "label_less",
-      "label": "Etiqueta para cerrar",
+      "label": "Texto cerrar",
       "default": "Leer menos"
     },
     {

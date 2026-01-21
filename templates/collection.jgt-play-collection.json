@@ -13,28 +13,9 @@
       "type": "jgt-collection-banner",
       "name": "JGT Banner Colección",
       "settings": {
-        "banner_image": "shopify://shop_images/avland-11_600ea049-b7a8-4cd6-9dcd-01316c7c1e77.jpg",
+        "banner_image": "shopify://shop_images/avland-21.jpg",
         "height_desktop": 105,
         "height_mobile": 100
-      }
-    },
-    "jgt_collection_description_MXbW6t": {
-      "type": "jgt-collection-description",
-      "name": "JGT Descripción Pro",
-      "settings": {
-        "custom_text": "<p>Nuestra tienda ofrece una amplia variedad de <strong>figuras de LEGO</strong> y sets únicos, incluyendo ediciones especiales y colecciones exclusivas que encantarán tanto a niños como a adultos. Descubre nuestra <strong>colección de juguetes LEGO</strong> para construir y crear las mejores aventuras con los bloques de la marca más divertida de construcciones con piezas. Desde una increíble variedad de clásicos sets de LEGO hasta las ediciones especiales de Star Wars, Minecraft o Harry Potter hasta otras gamas como Lego Technic, Creator o Marvel. Es el momento de dar vida a increíbles estructuras bloque a bloque.</p>",
-        "font_size": 9,
-        "btn_font_size": 8,
-        "max_width": 780,
-        "bg_color": "#ffffff",
-        "text_color": "#1d3686",
-        "accent_color": "#002266",
-        "padding_top": 6,
-        "padding_bottom": 0,
-        "alignment": "center",
-        "collapsed_height": 25,
-        "label_more": "Leer más",
-        "label_less": "Leer menos"
       }
     },
     "jgt_circular_list_k8iw9W": {
@@ -223,7 +204,6 @@
   },
   "order": [
     "jgt_collection_banner_QMG7bM",
-    "jgt_collection_description_MXbW6t",
     "jgt_circular_list_k8iw9W",
     "main"
   ]

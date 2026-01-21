@@ -1,121 +1,57 @@
 {% comment %}
-  Sección Banner de Imagen Completa (Estilo Juguettos "Vuelta al cole")
-  Muestra solo la imagen subida, sin texto superpuesto ni overlays.
+  Banner de Imagen Estrecho - Estilo Juguettos
 {% endcomment %}
 
-<section class="jgt-full-banner-section" style="background-color: {{ section.settings.bg_color }};">
-  <div class="jgt-banner-wrapper-final">
+<section class="jgt-full-banner-section">
+  <div class="jgt-banner-wrapper-compact">
     {%- if section.settings.banner_image != blank -%}
-      {% comment %} Mostramos la imagen subida por el usuario {% endcomment %}
       <img src="{{ section.settings.banner_image | image_url: width: 2000 }}" 
-           alt="{{ section.settings.banner_image.alt | default: collection.title | escape }}" 
-           class="jgt-banner-img-final"
+           alt="{{ collection.title | escape }}" 
+           class="jgt-banner-img-compact"
            loading="lazy">
     {%- else -%}
-      {% comment %} Placeholder por si no se ha subido imagen {% endcomment %}
-      <div class="jgt-banner-placeholder-final">
-        <span>Sube la imagen del banner aquí</span>
-      </div>
+      <div class="jgt-banner-placeholder-compact">Sube la imagen del banner</div>
     {%- endif -%}
   </div>
 </section>
 
 <style>
-  /* Contenedor principal que asegura el ancho completo */
-  .jgt-full-banner-section {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Wrapper que controla la altura */
-  .jgt-banner-wrapper-final {
+  .jgt-full-banner-section { width: 100%; margin: 0; padding: 0; }
+  
+  .jgt-banner-wrapper-compact {
     width: 100%;
     position: relative;
     overflow: hidden;
-    /* Altura para escritorio configurable desde el panel */
+    /* Grosor reducido para escritorio y móvil */
     height: {{ section.settings.height_desktop }}px;
   }
 
-  /* La imagen en sí */
-  .jgt-banner-img-final {
+  .jgt-banner-img-compact {
     width: 100%;
     height: 100%;
     display: block;
-    /* 'cover' asegura que la imagen cubra todo el espacio sin deformarse, 
-       recortando los bordes si es necesario. Centramos la imagen. */
     object-fit: cover;
     object-position: center center;
   }
 
-  /* Estilo del placeholder */
-  .jgt-banner-placeholder-final {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e0e0e0;
-    color: #666;
-    font-weight: bold;
-    border: 2px dashed #ccc;
+  .jgt-banner-placeholder-compact {
+    width: 100%; height: 100%; display: flex; justify-content: center; 
+    align-items: center; background-color: #f0f0f0; color: #999;
   }
 
-  /* Ajuste de altura para dispositivos móviles */
   @media (max-width: 768px) {
-    .jgt-banner-wrapper-final {
-      height: {{ section.settings.height_mobile }}px;
-    }
+    .jgt-banner-wrapper-compact { height: {{ section.settings.height_mobile }}px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "JGT Banner Imagen Fija",
+  "name": "JGT Banner Estrecho",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "banner_image",
-      "label": "Imagen del Banner",
-      "info": "Sube aquí la imagen completa (ej. 'Vuelta al cole')."
-    },
-    {
-      "type": "header",
-      "content": "Dimensiones"
-    },
-    {
-      "type": "range",
-      "id": "height_desktop",
-      "min": 200,
-      "max": 600,
-      "step": 10,
-      "unit": "px",
-      "label": "Altura en Escritorio",
-      "default": 350,
-      "info": "Ajusta para que se vea como en la referencia."
-    },
-    {
-      "type": "range",
-      "id": "height_mobile",
-      "min": 100,
-      "max": 400,
-      "step": 10,
-      "unit": "px",
-      "label": "Altura en Móvil",
-      "default": 200
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Color de fondo de relleno",
-      "default": "#ffffff",
-      "info": "Se verá mientras carga la imagen."
-    }
+    { "type": "image_picker", "id": "banner_image", "label": "Imagen del Banner" },
+    { "type": "range", "id": "height_desktop", "min": 50, "max": 300, "step": 10, "unit": "px", "label": "Grosor en Escritorio", "default": 180 },
+    { "type": "range", "id": "height_mobile", "min": 40, "max": 200, "step": 10, "unit": "px", "label": "Grosor en Móvil", "default": 100 }
   ],
-  "presets": [
-    {
-      "name": "JGT Banner Imagen Fija"
-    }
-  ]
+  "presets": [{ "name": "JGT Banner Estrecho" }]
 }
 {% endschema %}

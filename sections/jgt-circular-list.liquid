@@ -1,48 +1,81 @@
-<section class="jgt-circles" style="background-color: {{ section.settings.bg_color }};">
-  <div class="jgt-circles-grid">
-    {% for block in section.blocks %}
-      <a href="{{ block.settings.link }}" class="jgt-circle-item">
-        <div class="jgt-circle-img">
-          {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 200, height: 200, crop: 'center' }}">
-          {% else %}
-            <div class="jgt-circle-placeholder"></div>
-          {% endif %}
-        </div>
-        <span>{{ block.settings.label }}</span>
-      </a>
-    {% endfor %}
+{% comment %}
+  Lista de Círculos Compactos (Sin texto)
+{% endcomment %}
+
+<section class="jgt-circles-compact" style="background-color: {{ section.settings.bg_color }};">
+  <div class="jgt-circles-container">
+    <div class="jgt-circles-flex-compact">
+      {% for block in section.blocks %}
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}" class="jgt-circle-link">
+        {%- else -%}
+          <div class="jgt-circle-link">
+        {%- endif -%}
+          
+          <div class="jgt-circle-img-small">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 120, height: 120, crop: 'center' }}" loading="lazy">
+            {% else %}
+              <div class="jgt-circle-empty"></div>
+            {% endif %}
+          </div>
+
+        {%- if block.settings.link != blank -%}
+          </a>
+        {%- else -%}
+          </div>
+        {%- endif -%}
+      {% endfor %}
+    </div>
   </div>
 </section>
 
 <style>
-  .jgt-circles { padding: 40px 0; border-bottom: 1px solid #eee; }
-  .jgt-circles-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; margin: 0 auto; }
-  .jgt-circle-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 110px; }
-  .jgt-circle-img { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; border: 2px solid transparent; transition: 0.3s; margin-bottom: 10px; }
-  .jgt-circle-item:hover .jgt-circle-img { border-color: #002266; }
-  .jgt-circle-img img { width: 100%; height: 100%; object-fit: cover; }
-  .jgt-circle-item span { font-size: 12px; font-weight: bold; color: #333; text-align: center; text-transform: uppercase; }
-  .jgt-circle-placeholder { background: #eee; width: 100%; height: 100%; }
+  /* Grosor de la sección reducido */
+  .jgt-circles-compact { padding: 15px 0; border-bottom: 1px solid #eee; }
+  
+  .jgt-circles-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+  
+  .jgt-circles-flex-compact { 
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; 
+  }
+
+  .jgt-circle-link { text-decoration: none; cursor: pointer; }
+
+  /* Tamaño de los círculos reducido a estilo burbuja pequeña */
+  .jgt-circle-img-small { 
+    width: 60px; height: 60px; /* Tamaño similar a image_b85380.jpg */
+    border-radius: 50%; overflow: hidden; 
+    border: 1px solid #ddd; background-color: #fff;
+    transition: transform 0.2s;
+  }
+
+  .jgt-circle-img-small:hover { transform: scale(1.1); border-color: #002266; }
+  .jgt-circle-img-small img { width: 100%; height: 100%; object-fit: cover; }
+  .jgt-circle-empty { width: 100%; height: 100%; background: #eee; }
+
+  @media (max-width: 640px) {
+    .jgt-circles-flex-compact { justify-content: flex-start; overflow-x: auto; padding-bottom: 10px; }
+    .jgt-circle-img-small { width: 50px; height: 50px; }
+  }
 </style>
 
 {% schema %}
 {
-  "name": "JGT Círculos Colección",
+  "name": "JGT Círculos Compactos",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" }
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#ffffff" }
   ],
   "blocks": [
     {
       "type": "circle",
-      "name": "Círculo",
+      "name": "Subcategoría",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Imagen" },
-        { "type": "text", "id": "label", "label": "Texto", "default": "Subcategoría" },
-        { "type": "url", "id": "link", "label": "Enlace" }
+        { "type": "image_picker", "id": "image", "label": "Imagen circular" },
+        { "type": "url", "id": "link", "label": "Enlace (Opcional)" }
       ]
     }
   ],
-  "presets": [ { "name": "JGT Círculos Colección" } ]
+  "presets": [{ "name": "JGT Círculos Compactos" }]
 }
 {% endschema %}

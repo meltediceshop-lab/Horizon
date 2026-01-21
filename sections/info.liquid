@@ -1,0 +1,124 @@
+<div
+  id="InfoText-{{ section.id }}"
+  class="info-text color-{{ section.settings.color_scheme }}"
+  style="
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="info-text__container page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="info-text__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="info-text__description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .info-text {
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    text-align: center;
+  }
+
+  .info-text__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .info-text__heading {
+    font-family: var(--font-primary--family);
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1e3a8a;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .info-text__description {
+    font-family: var(--font-primary--family);
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .info-text__description a {
+    color: #1e3a8a;
+    text-decoration: underline;
+  }
+
+  .info-text__description a:hover {
+    color: #2563eb;
+  }
+
+  @media screen and (min-width: 750px) {
+    .info-text__heading {
+      font-size: 2.5rem;
+    }
+
+    .info-text__description {
+      font-size: 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Info Text",
+  "tag": "section",
+  "class": "section-info-text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Juguetería online"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Descubre en nuestra tienda de juguetes más de 1000 referencias diferentes con las mejores marcas y licencias en todos los productos. Desde <a href='/collections/juguetes-educativos'>juguetes educativos</a>, <a href='/collections/juegos-de-mesa'>juegos de mesa</a>, pasando por las <a href='/collections/mejores-disfraces'>mejores disfraces</a> para las celebraciones más divertidas.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Info Text"
+    }
+  ]
+}
+{% endschema %}

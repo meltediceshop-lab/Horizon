@@ -1,88 +1,4 @@
-{%- style -%}
-  /* Header de búsqueda minimalista */
-  #shopify-section-{{ section.id }} .search-page__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 2rem 1rem;
-  }
 
-  /* Barra de búsqueda idéntica a la del header principal */
-  #shopify-section-{{ section.id }} [data-block-id="search"] {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  /* Estilo consistente con el header principal */
-  #shopify-section-{{ section.id }} input[type="search"],
-  #shopify-section-{{ section.id }} .search__input {
-    width: 100%;
-    padding: 12px 24px !important;
-    padding-right: 50px !important;
-    min-height: 50px !important;
-    height: 50px !important;
-    border: 2px solid #e5e7eb !important;
-    border-radius: 25px !important;
-    font-size: 16px !important;
-    background: white !important;
-    color: #333 !important;
-  }
-
-  #shopify-section-{{ section.id }} input[type="search"]:focus,
-  #shopify-section-{{ section.id }} .search__input:focus {
-    border-color: #000 !important;
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.1) !important;
-    outline: none !important;
-  }
-
-  /* Botón de búsqueda */
-  #shopify-section-{{ section.id }} .search__button {
-    position: absolute !important;
-    right: 16px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  #shopify-section-{{ section.id }} .search__button .icon {
-    width: 20px !important;
-    height: 20px !important;
-    stroke: #6b7280 !important;
-  }
-
-  /* Título centrado */
-  #shopify-section-{{ section.id }} .search-page__header h3 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    #shopify-section-{{ section.id }} .search-page__header {
-      padding: 1.5rem 1rem;
-    }
-    
-    #shopify-section-{{ section.id }} .search-page__header h3 {
-      font-size: 24px;
-    }
-    
-    #shopify-section-{{ section.id }} input[type="search"],
-    #shopify-section-{{ section.id }} .search__input {
-      min-height: 44px !important;
-      height: 44px !important;
-      font-size: 14px !important;
-      padding: 10px 20px !important;
-      padding-right: 45px !important;
-    }
-  }
-{%- endstyle -%}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div class="section section--page-width color-{{ section.settings.color_scheme }}">
@@ -104,10 +20,7 @@
     {% endcapture %}
 
     {% content_for 'block', id: 'heading', type: '_heading', text: heading_text %}
-    
-    <div class="search-form w-full max-w-3xl mx-auto">
-      {% content_for 'block', id: 'search', type: '_search-input' %}
-    </div>
+    {% content_for 'block', id: 'search', type: '_search-input' %}
   </div>
 </div>
 
@@ -133,7 +46,7 @@
           "label": "t:options.right"
         }
       ],
-      "default": "center"
+      "default": "flex-start"
     },
     {
       "type": "color_scheme",
@@ -153,7 +66,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 40
+      "default": 0
     },
     {
       "type": "range",
@@ -163,7 +76,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 40
+      "default": 0
     }
   ]
 }

@@ -1,39 +1,106 @@
 {%- doc -%}
   Renders the search action button.
 
-  @param {string} [style] - The style of the search action.
+  @param {string} [style] - The style of the search action ('modal', 'inline', 'none').
   @param {string} [class] - Additional classes for the search action.
 
   @example
-  {% render 'search', style: 'default', class: 'custom-class' %}
+  {% render 'search', style: 'modal', class: 'custom-class' %}
+  {% render 'search', style: 'inline', class: 'custom-class' %}
 {%- enddoc -%}
 
 {% unless style == 'none' %}
-  <search-button class="search-action{% if class != blank %} {{ class | strip }}{% endif %}">
-    <button
-      on:click="#search-modal/showDialog"
-      class="button button-unstyled search-modal__button header-actions__action"
-      aria-label="{{ 'content.search_input_label' | t }}"
-      aria-haspopup="dialog"
-    >
-      <span
-        aria-hidden="true"
-        class="svg-wrapper"
+  {% if style == 'inline' %}
+    {%# BÚSQUEDA INLINE VISIBLE EN HEADER #%}
+    <search-inline class="search-action search-inline{% if class != blank %} {{ class | strip }}{% endif %}">
+      <div class="search-inline__input-container">
+        <input
+          type="text"
+          class="search-inline__input"
+          placeholder="{{ 'content.search_input_label' | t }}"
+          aria-label="{{ 'content.search_input_label' | t }}"
+          autocomplete="off"
+          data-search-input
+        />
+        <button
+          type="submit"
+          class="button button-unstyled search-inline__button"
+          aria-label="{{ 'content.search_input_label' | t }}"
+        >
+          <span class="svg-wrapper">
+            {{ 'icon-search.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+    </search-inline>
+  {% else %}
+    {%# BÚSQUEDA MODAL (POR DEFECTO) #%}
+    <search-button class="search-action{% if class != blank %} {{ class | strip }}{% endif %}">
+      <button
+        on:click="#search-modal/showDialog"
+        class="button button-unstyled search-modal__button header-actions__action"
+        aria-label="{{ 'content.search_input_label' | t }}"
+        aria-haspopup="dialog"
       >
-        {{ 'icon-search.svg' | inline_asset_content }}
-      </span>
-    </button>
-  </search-button>
+        <span
+          aria-hidden="true"
+          class="svg-wrapper"
+        >
+          {{ 'icon-search.svg' | inline_asset_content }}
+        </span>
+      </button>
+    </search-button>
+  {% endif %}
 {% endunless %}
 
 {% stylesheet %}
   .search-action {
     --search-border-radius: var(--style-border-radius-inputs);
     --search-border-width: var(--style-border-width-inputs);
-
     display: flex;
   }
 
+  /* Estilos para búsqueda inline */
+  .search-inline {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .search-inline__input-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    padding: 0 15px;
+    height: 36px;
+    width: 100%;
+    max-width: 550px;
+  }
+
+  .search-inline__input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .search-inline__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-inline__button .svg-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Estilos para búsqueda modal */
   .header__column--center .search-action {
     width: auto;
     flex-grow: 1;

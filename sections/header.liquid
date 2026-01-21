@@ -272,6 +272,100 @@
 
 <script src="{{ 'header.js' | asset_url }}" type="module"></script>
 
+{% stylesheet %}
+  /* --- ESTILOS CORPORATIVOS JUGUETTOS --- */
+  .header, .header__row {
+    background-color: #003087 !important; /* Azul Juguettos [cite: 78, 79] */
+  }
+
+  /* Forzar colores blancos para textos e iconos [cite: 82] */
+  .header, .header .header-logo, .header .menu-list__link, .header .dropdown-localization, .header .header-actions__action, .header .header__icon svg {
+    --color-foreground: 255, 255, 255 !important;
+    color: white !important;
+    fill: white !important;
+  }
+
+  /* --- BARRA DE BÚSQUEDA CENTRADA Y FINA --- */
+  .header .search-modal__button {
+    background-color: white !important;
+    border-radius: 30px !important; /* Estilo píldora  */
+    padding: 0 15px !important;
+    height: 36px !important; /* Más fina para que coincida con la imagen */
+    min-width: 320px !important;
+    max-width: 550px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin: 0 auto !important;
+  }
+
+  .header .search-modal__button::after {
+    content: 'Buscar'; /* Texto personalizado [cite: 85] */
+    color: #003087 !important;
+    font-size: 15px !important;
+    font-weight: 500;
+    order: -1;
+  }
+
+  .header .search-modal__button svg {
+    color: #003087 !important; /* Lupa en azul */
+    fill: #003087 !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* --- REJILLA (GRID) DE 3 COLUMNAS --- */
+  @media screen and (min-width: 750px) {
+    .header__columns {
+      display: grid !important;
+      grid-template-areas: 'left center right' !important;
+      grid-template-columns: 1fr 2fr 1fr !important; /* El centro es más ancho [cite: 125, 126] */
+      align-items: center !important;
+    }
+
+    .header__column--left { grid-area: left !important; }
+    .header__column--right { grid-area: right !important; }
+    
+    /* Mover el buscador específicamente al centro */
+    .search-action {
+      grid-area: center !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
+  }
+
+  /* --- ICONOS CON TEXTO DEBAJO --- */
+  .header-actions, .dropdown-localization {
+    display: flex !important;
+    align-items: flex-end !important;
+    gap: 15px !important;
+  }
+
+  .header-actions__action, .dropdown-localization__button {
+    display: flex !important;
+    flex-direction: column !important; /* Icono arriba, texto abajo */
+    align-items: center !important;
+    text-decoration: none !important;
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+    gap: 2px !important;
+  }
+
+  .header-actions__action svg, .dropdown-localization__button svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* Badge del carrito en rojo Juguettos [cite: 92] */
+  .cart-count-bubble {
+    background-color: #e30613 !important;
+    color: white !important;
+    top: -5px !important;
+    right: -2px !important;
+    font-size: 10px !important;
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.header",

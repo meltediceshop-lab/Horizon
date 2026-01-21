@@ -1,84 +1,80 @@
-{% comment %} Sección principal de producto estilo Juguettos {% endcomment %}
-<section class="jgt-product-container">
-  <div class="jgt-product-main">
+{% comment %} Sección principal de producto dinámica {% endcomment %}
+<section class="jgt-product-section">
+  <div class="jgt-product-layout">
     
-    <div class="jgt-product-gallery">
-      <div class="jgt-thumbnails">
+    <div class="jgt-product-media">
+      <div class="jgt-thumbnails-side">
         {% for image in product.images %}
-          <img src="{{ image | image_url: width: 100 }}" alt="{{ image.alt }}" class="jgt-thumb-img">
+          <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt }}" class="jgt-thumb">
         {% endfor %}
       </div>
-      <div class="jgt-main-image">
-        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}">
+      <div class="jgt-featured-media">
+        <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title }}">
       </div>
     </div>
 
-    <div class="jgt-product-info">
-      <p class="jgt-ref">
-        REF: {{ product.variants.first.sku }} 
-        {% if product.metafields.custom.ean != blank %}
-          - EAN: {{ product.metafields.custom.ean }}
-        {% endif %}
-      </p>
-      <h1 class="jgt-product-title">{{ product.title }}</h1>
-      <div class="jgt-product-price">{{ product.price | money }}</div>
+    <div class="jgt-product-details">
+      <div class="jgt-ref-ean">
+        REF: {{ product.variants.first.sku }} - EAN: {{ product.metafields.custom.ean }}
+      </div>
+      <h1 class="jgt-title">{{ product.title }}</h1>
+      <div class="jgt-price">{{ product.price | money }}</div>
 
       {% form 'product', product %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         
-        <div class="jgt-purchase-row">
-          <div class="jgt-qty-selector">
-            <button type="button" onclick="this.parentNode.querySelector('input').stepDown()">-</button>
-            <input type="number" name="quantity" value="1" min="1">
-            <button type="button" onclick="this.parentNode.querySelector('input').stepUp()">+</button>
+        <div class="jgt-action-row">
+          <div class="jgt-quantity">
+            <button type="button" class="qty-btn" onclick="this.parentNode.querySelector('input').stepDown()">-</button>
+            <input type="number" name="quantity" value="1" min="1" class="qty-input">
+            <button type="button" class="qty-btn" onclick="this.parentNode.querySelector('input').stepUp()">+</button>
           </div>
-          <button type="submit" class="jgt-add-to-cart">AÑADIR A MI CESTA</button>
-          <button type="button" class="jgt-wishlist-btn">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C8.64,5 9.74,5.54 10.4,6.44L12,8.64L13.6,6.44C14.26,5.54 15.36,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"/></svg>
+          
+          <button type="submit" class="jgt-add-button">AÑADIR A MI CESTA</button>
+          
+          <button type="button" class="jgt-wishlist">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           </button>
         </div>
       {% endform %}
 
-      <div class="jgt-product-meta">
-        {% if product.metafields.custom.edad_recomendada != blank %}
-          <div class="meta-item"><span>Edad recomendada:</span> {{ product.metafields.custom.edad_recomendada }}</div>
-        {% endif %}
-        <div class="meta-link">MÉTODOS DE PAGO</div>
-        <div class="meta-link">ENVÍOS CAMBIOS Y DEVOLUCIONES</div>
+      <div class="jgt-extra-links">
+        <a href="#">MÉTODOS DE PAGO</a>
+        <a href="#">ENVÍOS CAMBIOS Y DEVOLUCIONES</a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .jgt-product-container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; font-family: sans-serif; }
-  .jgt-product-main { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; }
-  .jgt-product-gallery { display: flex; gap: 15px; }
-  .jgt-thumbnails { display: flex; flex-direction: column; gap: 10px; width: 80px; }
-  .jgt-thumb-img { width: 100%; border: 1px solid #eee; cursor: pointer; }
-  .jgt-main-image img { width: 100%; object-fit: contain; }
-  .jgt-ref { color: #888; font-size: 13px; }
-  .jgt-product-title { color: #002266; font-size: 28px; margin: 10px 0; font-weight: bold; }
-  .jgt-product-price { font-size: 32px; font-weight: bold; color: #002266; margin-bottom: 30px; }
-  .jgt-purchase-row { display: flex; align-items: center; gap: 15px; }
-  .jgt-qty-selector { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 20px; padding: 5px 15px; }
-  .jgt-qty-selector input { width: 40px; border: none; text-align: center; font-size: 18px; outline: none; }
-  .jgt-qty-selector button { background: none; border: none; font-size: 20px; cursor: pointer; color: #002266; }
-  .jgt-add-to-cart { background-color: #002266; color: white; border: none; padding: 12px 40px; border-radius: 30px; font-weight: bold; cursor: pointer; flex-grow: 1; }
-  .jgt-wishlist-btn { background: none; border: none; color: #002266; cursor: pointer; }
-  .jgt-product-meta { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
-  .meta-item { margin-bottom: 15px; font-size: 14px; }
-  .meta-item span { font-weight: bold; }
-  .meta-link { font-size: 12px; font-weight: bold; color: #002266; text-decoration: underline; margin-bottom: 10px; cursor: pointer; }
+  .jgt-product-section { max-width: 1400px; margin: 0 auto; padding: 30px; font-family: sans-serif; }
+  .jgt-product-layout { display: flex; gap: 40px; }
+  .jgt-product-media { display: flex; flex: 1.2; gap: 15px; }
+  .jgt-thumbnails-side { display: flex; flex-direction: column; gap: 10px; width: 100px; }
+  .jgt-thumb { border: 1px solid #ddd; padding: 5px; cursor: pointer; }
+  .jgt-featured-media { flex: 1; text-align: center; }
+  .jgt-featured-media img { max-width: 100%; height: auto; }
+  .jgt-product-details { flex: 1; color: #002266; }
+  .jgt-ref-ean { color: #888; font-size: 13px; margin-bottom: 10px; }
+  .jgt-title { font-size: 26px; margin: 0 0 15px; }
+  .jgt-price { font-size: 36px; font-weight: bold; margin-bottom: 25px; }
+  .jgt-action-row { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+  .jgt-quantity { display: flex; border: 1px solid #ccc; border-radius: 20px; padding: 5px 15px; align-items: center; }
+  .qty-input { border: none; width: 40px; text-align: center; font-size: 16px; outline: none; }
+  .qty-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: #002266; }
+  .jgt-add-button { background: #002266; color: white; border: none; padding: 12px 40px; border-radius: 30px; font-weight: bold; flex: 1; cursor: pointer; }
+  .jgt-wishlist { background: none; border: none; color: #002266; cursor: pointer; }
+  .jgt-extra-links { display: flex; flex-direction: column; gap: 10px; margin-top: 25px; }
+  .jgt-extra-links a { color: #002266; font-size: 12px; font-weight: bold; text-decoration: underline; }
 </style>
 
 {% schema %}
 {
-  "name": "Producto Juguettos Principal",
+  "name": "Producto JGT Principal",
   "settings": [],
   "presets": [
     {
-      "name": "Producto Juguettos Principal"
+      "name": "Producto JGT Principal"
     }
   ]
 }

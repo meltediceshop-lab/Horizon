@@ -1,49 +1,49 @@
 {% comment %}
-  JGT DESCRIPCIÓN DINÁMICA - Versión Pro
-  Permite texto colapsable con efecto degradado y control total de estilo.
+  JGT DESCRIPCIÓN DINÁMICA - Versión Ultra Configurable
+  Soluciona el error de visibilidad y permite control total de diseño.
 {% endcomment %}
 
 {%- style -%}
-  .jgt-desc-{{ section.id }} {
+  .jgt-desc-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  .jgt-desc-container-{{ section.id }} {
-    max-width: {{ section.settings.content_width }}px;
+  .jgt-desc-wrapper-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
     margin: 0 auto;
     padding: 0 20px;
-    text-align: {{ section.settings.text_alignment }};
+    text-align: {{ section.settings.alignment }};
   }
 
-  .jgt-text-wrapper-{{ section.id }} {
-    position: relative;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out;
+  .jgt-text-content-{{ section.id }} {
     color: {{ section.settings.text_color }};
     font-size: {{ section.settings.font_size }}px;
     line-height: 1.6;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    position: relative;
   }
 
-  /* Estado colapsado con altura ajustable */
-  .jgt-text-wrapper-{{ section.id }}.is-collapsed {
+  /* Altura cuando está cerrado */
+  .jgt-text-content-{{ section.id }}.collapsed {
     max-height: {{ section.settings.collapsed_height }}px;
   }
 
-  /* Efecto degradado para indicar que hay más texto */
-  .jgt-text-wrapper-{{ section.id }}.is-collapsed::after {
+  /* Degradado para indicar que hay más texto */
+  .jgt-text-content-{{ section.id }}.collapsed::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background: linear-gradient(transparent, {{ section.settings.bg_color }});
     pointer-events: none;
   }
 
-  .jgt-read-more-btn-{{ section.id }} {
+  .jgt-btn-{{ section.id }} {
     background: none;
     border: none;
     color: {{ section.settings.accent_color }};
@@ -51,52 +51,49 @@
     text-decoration: underline;
     cursor: pointer;
     margin-top: 15px;
+    font-size: 14px;
     text-transform: uppercase;
-    font-size: 13px;
-    display: inline-block;
   }
 {%- endstyle -%}
 
-<section class="jgt-desc-{{ section.id }} shadow-sm">
-  <div class="jgt-desc-container-{{ section.id }}">
+<section class="jgt-desc-section-{{ section.id }}">
+  <div class="jgt-desc-wrapper-{{ section.id }}">
     
-    <div id="JgtDesc-{{ section.id }}" class="jgt-text-wrapper-{{ section.id }} is-collapsed">
+    <div id="JgtDescText-{{ section.id }}" class="jgt-text-content-{{ section.id }} collapsed">
       <div class="rte">
         {%- if collection.description != blank -%}
           {{ collection.description }}
         {%- else -%}
-          <p>Añade una descripción a tu colección desde el administrador de productos para verla aquí.</p>
+          <p>Añade la descripción de la colección en el administrador de Shopify para ver el contenido aquí.</p>
         {%- endif -%}
       </div>
     </div>
 
-    {%- if collection.description.size > 100 -%}
+    {%- if collection.description.size > 150 -%}
       <button 
         id="JgtBtn-{{ section.id }}" 
-        class="jgt-read-more-btn-{{ section.id }}"
-        onclick="toggleJgtDesc('{{ section.id }}')"
+        class="jgt-btn-{{ section.id }}"
+        onclick="toggleJgtDescription('{{ section.id }}')"
       >
-        {{ section.settings.btn_label_more }}
+        {{ section.settings.label_more }}
       </button>
     {%- endif -%}
-    
+
   </div>
 </section>
 
 <script>
-  function toggleJgtDesc(id) {
-    const container = document.getElementById('JgtDesc-' + id);
+  function toggleJgtDescription(id) {
+    const text = document.getElementById('JgtDescText-' + id);
     const btn = document.getElementById('JgtBtn-' + id);
-    const isCollapsed = container.classList.contains('is-collapsed');
+    const isCollapsed = text.classList.contains('collapsed');
 
     if (isCollapsed) {
-      container.classList.remove('is-collapsed');
-      btn.textContent = "{{ section.settings.btn_label_less }}";
+      text.classList.remove('collapsed');
+      btn.textContent = "{{ section.settings.label_less }}";
     } else {
-      container.classList.add('is-collapsed');
-      btn.textContent = "{{ section.settings.btn_label_more }}";
-      // Opcional: scroll suave hacia arriba al cerrar
-      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      text.classList.add('collapsed');
+      btn.textContent = "{{ section.settings.label_more }}";
     }
   }
 </script>
@@ -107,7 +104,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "Estilo de Contenedor"
+      "content": "Ajustes de Diseño"
     },
     {
       "type": "color",
@@ -116,55 +113,31 @@
       "default": "#ffffff"
     },
     {
-      "type": "range",
-      "id": "content_width",
-      "min": 400,
-      "max": 1200,
-      "step": 50,
-      "unit": "px",
-      "label": "Ancho máximo del texto",
-      "default": 800
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Espacio superior",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Espacio inferior",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "Tipografía y Contenido"
-    },
-    {
       "type": "color",
       "id": "text_color",
       "label": "Color del texto",
-      "default": "#444444"
+      "default": "#333333"
     },
     {
       "type": "color",
       "id": "accent_color",
-      "label": "Color del botón (Leer más)",
+      "label": "Color del botón",
       "default": "#002266"
     },
     {
+      "type": "range",
+      "id": "max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Ancho máximo del contenido",
+      "default": 800
+    },
+    {
       "type": "select",
-      "id": "text_alignment",
-      "label": "Alineación",
+      "id": "alignment",
+      "label": "Alineación del texto",
       "options": [
         { "value": "left", "label": "Izquierda" },
         { "value": "center", "label": "Centro" },
@@ -173,18 +146,32 @@
       "default": "center"
     },
     {
+      "type": "header",
+      "content": "Espaciado (Grosor)"
+    },
+    {
       "type": "range",
-      "id": "font_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
       "unit": "px",
-      "label": "Tamaño de fuente",
-      "default": 16
+      "label": "Espacio arriba",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Espacio abajo",
+      "default": 40
     },
     {
       "type": "header",
-      "content": "Configuración del Botón"
+      "content": "Configuración 'Leer más'"
     },
     {
       "type": "range",
@@ -193,20 +180,30 @@
       "max": 300,
       "step": 10,
       "unit": "px",
-      "label": "Altura del texto contraído",
+      "label": "Altura visible (Cerrado)",
       "default": 80
     },
     {
       "type": "text",
-      "id": "btn_label_more",
-      "label": "Etiqueta 'Leer más'",
+      "id": "label_more",
+      "label": "Etiqueta para abrir",
       "default": "Leer más"
     },
     {
       "type": "text",
-      "id": "btn_label_less",
-      "label": "Etiqueta 'Leer menos'",
+      "id": "label_less",
+      "label": "Etiqueta para cerrar",
       "default": "Leer menos"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamaño de letra",
+      "default": 16
     }
   ],
   "presets": [

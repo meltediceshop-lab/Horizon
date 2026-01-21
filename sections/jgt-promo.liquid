@@ -1,50 +1,56 @@
+<!-- JUGUETTOS PROMO CATEGORIES SECTION -->
 <style>
   .jgt-promo-section {
-    padding: 40px 20px;
-    background-color: #f8f9fa;
+    padding: 40px 0;
+    background-color: #f8f8f8;
   }
   .jgt-promo-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
+    padding: 0 20px;
+  }
+  .jgt-promo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
   }
   .jgt-promo-card {
+    position: relative;
     display: block;
-    width: 200px;
-    height: 200px;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .jgt-promo-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
   .jgt-promo-card img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
   }
   @media (max-width: 768px) {
-    .jgt-promo-card {
-      width: 150px;
-      height: 150px;
-    }
-    .jgt-promo-container {
-      gap: 15px;
+    .jgt-promo-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
 
 <section class="jgt-promo-section">
   <div class="jgt-promo-container">
-   
-    <a href="/collections/all" class="jgt-promo-card">
-    
-<img src="{{ '504_440X440_HOT_WHEELS_JPG' | asset_url }}" alt="Test">
-    </a>
+    <div class="jgt-promo-grid">
+      <a href="/collections/all" class="jgt-promo-card">
+        <img src="{{ '584_Landing_Nancy_Juguettos_400x400px.jpg' | asset_url }}" alt="Nancy" loading="lazy">
+      </a>
+      <a href="/collections/all" class="jgt-promo-card">
+        <img src="{{ '502_JUEGATERAPIA MINNIE 440X440.jpg' | asset_url }}" alt="Juegaterapia Minnie" loading="lazy">
+      </a>
+      <a href="/collections/all" class="jgt-promo-card">
+        <img src="{{ '504_440X440 HOT WHEELS.jpg' | asset_url }}" alt="Hot Wheels" loading="lazy">
+      </a>
+    </div>
   </div>
 </section>
 

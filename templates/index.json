@@ -12,6 +12,14 @@
     "custom_header_HHWhYn": {
       "type": "custom-header",
       "blocks": {
+        "icon_link_raceK7": {
+          "type": "icon_link",
+          "settings": {
+            "label": "",
+            "link": "",
+            "custom_icon_svg": "<svg viewbox=\"0 0 24 24\"><path d=\"M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2M12,4A5,5 0 0,1 17,9C17,12.42 12,18.1 12,18.1C12,18.1 7,12.42 7,9A5,5 0 0,1 12,4M12,6.5A2.5,2.5 0 0,0 9.5,9A2.5,2.5 0 0,0 12,11.5A2.5,2.5 0 0,0 14.5,9A2.5,2.5 0 0,0 12,6.5Z\"></path></svg>"
+          }
+        },
         "icon_link_gVeetE": {
           "type": "icon_link",
           "settings": {
@@ -29,6 +37,7 @@
         }
       },
       "block_order": [
+        "icon_link_raceK7",
         "icon_link_gVeetE",
         "cart_icon_hcEdgw"
       ],

@@ -1,5 +1,5 @@
 {% comment %}
-  FOOTER DINÁMICO ESTILO JUGUETTOS
+  FOOTER DINÁMICO JGT - Versión con Iconos Integrados (Sin Errores)
 {% endcomment %}
 
 <footer class="jgt-footer" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
@@ -14,27 +14,32 @@
           {% case block.type %}
             {% when 'link_list' %}
               <ul class="jgt-footer-menu">
-                {% for link in block.settings.menu.links %}
-                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                {% endfor %}
+                {% if block.settings.menu != blank %}
+                  {% for link in block.settings.menu.links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                {% else %}
+                  <li style="font-size: 12px; opacity: 0.5;">Selecciona un menú en el administrador</li>
+                {% endif %}
               </ul>
 
             {% when 'social_column' %}
               <ul class="jgt-footer-social">
-                {% if block.settings.show_blog %}
-                  <li><a href="{{ block.settings.blog_url }}"><span class="social-icon">{% render 'icon-rss' %}</span> Blog</a></li>
-                {% endif %}
                 {% if block.settings.facebook_url != blank %}
-                  <li><a href="{{ block.settings.facebook_url }}"><span class="social-icon">{% render 'icon-facebook' %}</span> Facebook</a></li>
+                  <li><a href="{{ block.settings.facebook_url }}">
+                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z"/></svg></span> Facebook</a></li>
                 {% endif %}
                 {% if block.settings.youtube_url != blank %}
-                  <li><a href="{{ block.settings.youtube_url }}"><span class="social-icon">{% render 'icon-youtube' %}</span> Youtube</a></li>
+                  <li><a href="{{ block.settings.youtube_url }}">
+                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m10 15 5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 .61-.03 1.3-.1 2.1-.06.8-.15 1.43-.28 1.9-.13.48-.34.86-.63 1.14-.28.28-.66.49-1.14.63-.48.13-1.1.22-1.9.28-.8.07-1.49.1-2.09.1L12 19.15c-.61 0-1.3-.03-2.1-.1-.8-.06-1.43-.15-1.9-.28-.48-.14-.86-.35-1.14-.63-.28-.28-.49-.66-.63-1.14-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L5.85 12c0-.61.03-1.3.1-2.1.06-.8.15-1.43.28-1.9.13-.48.34-.86.63-1.14.28-.28.66-.49 1.14-.63.48-.13 1.1-.22 1.9-.28.8-.07 1.49-.1 2.09-.1L12 4.85c.61 0 1.3.03 2.1.1.8.06 1.43.15 1.9.28.48.13.86.34 1.14.63.28.28.49.66.63 1.14Z"/></svg></span> Youtube</a></li>
                 {% endif %}
                 {% if block.settings.instagram_url != blank %}
-                  <li><a href="{{ block.settings.instagram_url }}"><span class="social-icon">{% render 'icon-instagram' %}</span> Instagram</a></li>
+                  <li><a href="{{ block.settings.instagram_url }}">
+                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span> Instagram</a></li>
                 {% endif %}
                 {% if block.settings.tiktok_url != blank %}
-                  <li><a href="{{ block.settings.tiktok_url }}"><span class="social-icon">{% render 'icon-tiktok' %}</span> Tiktok</a></li>
+                  <li><a href="{{ block.settings.tiktok_url }}">
+                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 5.82s.51.5 0 0c-.25.15-.48.33-.68.55a4.65 4.65 0 0 0-.95 2.15h-3V15.5a2.5 2.5 0 0 1-2.5 2.5 2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5c.34 0 .65.07.93.2V10.2a5.5 5.5 0 0 0-4.43 5.3 5.5 5.5 0 0 0 5.5 5.5 5.5 5.5 0 0 0 5.5-5.5V9a7.12 7.12 0 0 0 4.1-1.35V4.66a4.12 4.12 0 0 1-2.5 1.16Z"/></svg></span> Tiktok</a></li>
                 {% endif %}
               </ul>
           {% endcase %}
@@ -47,136 +52,54 @@
 </footer>
 
 <style>
-  .jgt-footer {
-    padding: 50px 0;
-    font-family: sans-serif;
-    border-top: 1px solid rgba(255,255,255,0.1);
+  .jgt-footer { padding: 40px 0; font-family: sans-serif; }
+  .jgt-footer-wrapper { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+  .jgt-footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+  .jgt-footer-col { flex: 1; min-width: 200px; }
+  .jgt-footer-title { 
+    font-size: 16px; font-weight: bold; margin-bottom: 15px; 
+    border-bottom: 1px solid white; display: inline-block; padding-bottom: 5px; 
   }
-  .jgt-footer-wrapper {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 40px;
+  .jgt-footer-menu, .jgt-footer-social { list-style: none; padding: 0; margin: 0; }
+  .jgt-footer-menu li, .jgt-footer-social li { margin-bottom: 8px; }
+  .jgt-footer-menu a, .jgt-footer-social a { 
+    color: inherit; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 8px;
   }
-  .jgt-footer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-  }
-  .jgt-footer-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(255,255,255,0.3);
-    display: inline-block;
-    min-width: 150px;
-  }
-  .jgt-footer-menu, .jgt-footer-social {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .jgt-footer-menu li, .jgt-footer-social li {
-    margin-bottom: 12px;
-  }
-  .jgt-footer-menu a, .jgt-footer-social a {
-    color: inherit;
-    text-decoration: none;
-    font-size: 14px;
-    transition: opacity 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .jgt-footer-menu a:hover, .jgt-footer-social a:hover {
-    opacity: 0.7;
-  }
-  .social-icon {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .social-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
-  }
+  .jgt-footer-menu a:hover { text-decoration: underline; }
+  .social-icon { width: 18px; height: 18px; display: inline-block; }
+  .social-icon svg { width: 100%; height: 100%; vertical-align: middle; }
 
-  @media (max-width: 768px) {
-    .jgt-footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 480px) {
-    .jgt-footer-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 768px) { .jgt-footer-col { flex: 1 1 45%; } }
 </style>
 
 {% schema %}
 {
   "name": "Footer Dinámico JGT",
-  "max_blocks": 4,
   "settings": [
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Color de fondo",
-      "default": "#002266"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Color de texto",
-      "default": "#ffffff"
-    }
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#002266" },
+    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#ffffff" }
   ],
   "blocks": [
     {
       "type": "link_list",
       "name": "Columna de Enlaces",
       "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Título de la columna",
-          "default": "Menú"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Seleccionar menú"
-        }
+        { "type": "text", "id": "title", "label": "Título de la columna", "default": "Menú" },
+        { "type": "link_list", "id": "menu", "label": "Seleccionar menú" }
       ]
     },
     {
       "type": "social_column",
       "name": "Columna de Comunidad",
       "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Título",
-          "default": "Comunidad"
-        },
-        { "type": "checkbox", "id": "show_blog", "label": "Mostrar Blog", "default": true },
-        { "type": "url", "id": "blog_url", "label": "Enlace Blog" },
-        { "type": "url", "id": "facebook_url", "label": "Enlace Facebook" },
-        { "type": "url", "id": "youtube_url", "label": "Enlace Youtube" },
-        { "type": "url", "id": "instagram_url", "label": "Enlace Instagram" },
-        { "type": "url", "id": "tiktok_url", "label": "Enlace Tiktok" }
+        { "type": "text", "id": "title", "label": "Título", "default": "Comunidad" },
+        { "type": "url", "id": "facebook_url", "label": "URL Facebook" },
+        { "type": "url", "id": "youtube_url", "label": "URL Youtube" },
+        { "type": "url", "id": "instagram_url", "label": "URL Instagram" },
+        { "type": "url", "id": "tiktok_url", "label": "URL Tiktok" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Footer Dinámico JGT",
-      "blocks": [
-        { "type": "link_list", "settings": { "title": "Quiénes somos" } },
-        { "type": "link_list", "settings": { "title": "Atención al cliente" } },
-        { "type": "link_list", "settings": { "title": "Promociones" } },
-        { "type": "social_column", "settings": { "title": "Comunidad" } }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Footer Dinámico JGT" }]
 }
 {% endschema %}

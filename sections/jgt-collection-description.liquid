@@ -1,39 +1,218 @@
-<section class="jgt-desc-box">
-  <div class="jgt-desc-wrapper" id="DescContainer-{{ section.id }}" style="max-height: {{ section.settings.collapsed_height }}px;">
-    <div class="rte">
-      {{ collection.description }}
+{% comment %}
+  JGT DESCRIPCIÓN DINÁMICA - Versión Pro
+  Permite texto colapsable con efecto degradado y control total de estilo.
+{% endcomment %}
+
+{%- style -%}
+  .jgt-desc-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .jgt-desc-container-{{ section.id }} {
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .jgt-text-wrapper-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    line-height: 1.6;
+  }
+
+  /* Estado colapsado con altura ajustable */
+  .jgt-text-wrapper-{{ section.id }}.is-collapsed {
+    max-height: {{ section.settings.collapsed_height }}px;
+  }
+
+  /* Efecto degradado para indicar que hay más texto */
+  .jgt-text-wrapper-{{ section.id }}.is-collapsed::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(transparent, {{ section.settings.bg_color }});
+    pointer-events: none;
+  }
+
+  .jgt-read-more-btn-{{ section.id }} {
+    background: none;
+    border: none;
+    color: {{ section.settings.accent_color }};
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    display: inline-block;
+  }
+{%- endstyle -%}
+
+<section class="jgt-desc-{{ section.id }} shadow-sm">
+  <div class="jgt-desc-container-{{ section.id }}">
+    
+    <div id="JgtDesc-{{ section.id }}" class="jgt-text-wrapper-{{ section.id }} is-collapsed">
+      <div class="rte">
+        {%- if collection.description != blank -%}
+          {{ collection.description }}
+        {%- else -%}
+          <p>Añade una descripción a tu colección desde el administrador de productos para verla aquí.</p>
+        {%- endif -%}
+      </div>
     </div>
+
+    {%- if collection.description.size > 100 -%}
+      <button 
+        id="JgtBtn-{{ section.id }}" 
+        class="jgt-read-more-btn-{{ section.id }}"
+        onclick="toggleJgtDesc('{{ section.id }}')"
+      >
+        {{ section.settings.btn_label_more }}
+      </button>
+    {%- endif -%}
+    
   </div>
-  {% if collection.description.size > 100 %}
-    <button class="jgt-read-more" onclick="toggleDesc('{{ section.id }}', this)">Leer más</button>
-  {% endif %}
 </section>
 
 <script>
-function toggleDesc(id, btn) {
-  var container = document.getElementById('DescContainer-' + id);
-  if (container.style.maxHeight !== 'none') {
-    container.style.maxHeight = 'none';
-    btn.innerText = 'Leer menos';
-  } else {
-    container.style.maxHeight = '{{ section.settings.collapsed_height }}px';
-    btn.innerText = 'Leer más';
-  }
-}
-</script>
+  function toggleJgtDesc(id) {
+    const container = document.getElementById('JgtDesc-' + id);
+    const btn = document.getElementById('JgtBtn-' + id);
+    const isCollapsed = container.classList.contains('is-collapsed');
 
-<style>
-  .jgt-desc-box { max-width: 800px; margin: 30px auto; text-align: center; padding: 0 20px; }
-  .jgt-desc-wrapper { overflow: hidden; transition: max-height 0.4s ease; position: relative; font-size: 15px; color: #444; line-height: 1.6; }
-  .jgt-read-more { background: none; border: none; color: #002266; font-weight: bold; text-decoration: underline; cursor: pointer; margin-top: 15px; }
-</style>
+    if (isCollapsed) {
+      container.classList.remove('is-collapsed');
+      btn.textContent = "{{ section.settings.btn_label_less }}";
+    } else {
+      container.classList.add('is-collapsed');
+      btn.textContent = "{{ section.settings.btn_label_more }}";
+      // Opcional: scroll suave hacia arriba al cerrar
+      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+</script>
 
 {% schema %}
 {
-  "name": "JGT Descripción Dinámica",
+  "name": "JGT Descripción Pro",
   "settings": [
-    { "type": "range", "id": "collapsed_height", "min": 50, "max": 200, "step": 10, "unit": "px", "label": "Altura visible inicial", "default": 80 }
+    {
+      "type": "header",
+      "content": "Estilo de Contenedor"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Ancho máximo del texto",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Espacio superior",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Espacio inferior",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Tipografía y Contenido"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto",
+      "default": "#444444"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color del botón (Leer más)",
+      "default": "#002266"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alineación",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamaño de fuente",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Configuración del Botón"
+    },
+    {
+      "type": "range",
+      "id": "collapsed_height",
+      "min": 40,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Altura del texto contraído",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "btn_label_more",
+      "label": "Etiqueta 'Leer más'",
+      "default": "Leer más"
+    },
+    {
+      "type": "text",
+      "id": "btn_label_less",
+      "label": "Etiqueta 'Leer menos'",
+      "default": "Leer menos"
+    }
   ],
-  "presets": [ { "name": "JGT Descripción Dinámica" } ]
+  "presets": [
+    {
+      "name": "JGT Descripción Pro"
+    }
+  ]
 }
 {% endschema %}

@@ -46,40 +46,6 @@
         "text_color": "#002266"
       }
     },
-    "banner_1_dinamico_W8kYQr": {
-      "type": "banner-1-dinamico",
-      "blocks": {
-        "promo_item_wKHztQ": {
-          "type": "promo_item",
-          "settings": {
-            "text": "10% en marcas propias"
-          }
-        },
-        "promo_item_m9Q93A": {
-          "type": "promo_item",
-          "settings": {
-            "text": "10% en marcas propias"
-          }
-        },
-        "promo_item_CFDHhW": {
-          "type": "promo_item",
-          "settings": {
-            "text": "10% en marcas propias"
-          }
-        }
-      },
-      "block_order": [
-        "promo_item_wKHztQ",
-        "promo_item_m9Q93A",
-        "promo_item_CFDHhW"
-      ],
-      "name": "Banner Promociones Dinámico",
-      "settings": {
-        "bg_color": "#f0f4f9",
-        "button_label": "Registrarme",
-        "button_link": ""
-      }
-    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -345,7 +311,6 @@
   },
   "order": [
     "main_product_jgt_P9nwDP",
-    "banner_1_dinamico_W8kYQr",
     "main"
   ]
 }

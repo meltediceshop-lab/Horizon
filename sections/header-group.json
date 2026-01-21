@@ -2,64 +2,6 @@
   "type": "header",
   "name": "Header",
   "sections": {
-    "header_announcements_9jGBFp": {
-      "type": "header-announcements",
-      "blocks": {
-        "announcement_84Rqww": {
-          "type": "_announcement",
-          "name": "t:names.announcement",
-          "settings": {
-            "text": "CONTACTA EN PEDIDOS@JUGUETTTOS.ES",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          }
-        },
-        "announcement_q6dwME": {
-          "type": "_announcement",
-          "name": "t:names.announcement",
-          "settings": {
-            "text": "PAGA A PLAZOS SIN INTERESES CON SEQURA",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          }
-        },
-        "announcement_PngLjL": {
-          "type": "_announcement",
-          "name": "t:names.announcement",
-          "settings": {
-            "text": "GASTOS DE ENVÍO GRATIS A PARTIR DE 39.99€",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          }
-        }
-      },
-      "block_order": [
-        "announcement_84Rqww",
-        "announcement_q6dwME",
-        "announcement_PngLjL"
-      ],
-      "name": "t:names.announcement_bar",
-      "settings": {
-        "speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
-        "divider_width": 0,
-        "padding-block-start": 15,
-        "padding-block-end": 15
-      }
-    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -72,6 +14,19 @@
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
+          }
+        },
+        "contact-info": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "CONTACTA EN PEDIDOS@JUGUETTOS.ES SI TIENES ALGÚN PROBLEMA",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "normal",
+            "letter_spacing": "normal",
+            "case": "none"
           }
         },
         "header-menu": {
@@ -88,8 +43,8 @@
             "featured_products_aspect_ratio": "4 / 5",
             "featured_collections_aspect_ratio": "16 / 9",
             "image_border_radius": 0,
-            "navigation_bar": true,
-            "color_scheme_navigation_bar": "scheme-1",
+            "navigation_bar": false,
+            "color_scheme_navigation_bar": "",
             "drawer_accordion": false,
             "drawer_accordion_expand_first": false,
             "drawer_dividers": false
@@ -111,9 +66,9 @@
         "localization_position": "right",
         "localization_row": "top",
         "section_width": "page-width",
-        "section_height": "compact",
+        "section_height": "standard",
         "enable_sticky_header": "always",
-        "divider_width": 1,
+        "divider_width": 0,
         "divider_size": "page-width",
         "border_width": 0,
         "color_scheme_top": "scheme-1",
@@ -129,7 +84,6 @@
     }
   },
   "order": [
-    "header_announcements_9jGBFp",
     "header_section"
   ]
 }

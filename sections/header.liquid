@@ -1,242 +1,127 @@
 {% liquid
-  assign order = 'logo,search,localization,actions'
+  # Estructura simplificada: Logo arriba, búsqueda abajo
+  assign order = 'logo,contact,search'
   
-  if shop.customer_accounts_enabled
-    assign order = 'logo,search,localization,actions'
-  endif
-
-  assign rows = 'top,bottom' | split: ','
+  assign rows = 'top' | split: ','
   assign search_style = 'none'
 
   if section.settings.show_search
-    assign search_style = 'modal'
-  endif
-
-  if section.settings.enable_transparent_header_home and template.name == 'index'
-    assign transparent = 'always'
-    assign transparent_color_scheme = section.settings.home_color_scheme
-  elsif section.settings.enable_transparent_header_product and template.name == 'product'
-    assign transparent = 'always'
-    assign transparent_color_scheme = section.settings.product_color_scheme
-  elsif section.settings.enable_transparent_header_collection and template.name == 'collection'
-    assign transparent = 'always'
-    assign transparent_color_scheme = section.settings.collection_color_scheme
-  endif
-
-  if section.settings.enable_sticky_header == 'always'
-    assign sticky = 'always'
-  elsif section.settings.enable_sticky_header == 'scroll-up'
-    assign sticky = 'scroll-up'
-  endif
-
-  if transparent and sticky
-    assign transparent = 'not-sticky'
-  endif
-
-  if transparent
-    if transparent_color_scheme == 'inverse'
-      assign transparent_color_scheme = 'color-' | append: section.settings.color_scheme_transparent
-    else
-      assign transparent_color_scheme = 'color-' | append: section.settings.color_scheme_top
-    endif
+    assign search_style = 'inline'
   endif
 
   capture logo
+    echo '<div class="header__logo-wrapper">'
     content_for 'block', type: '_header-logo', id: 'header-logo'
-  endcapture
-
-  capture menu
-    content_for 'block', type: '_header-menu', id: 'header-menu'
-  endcapture
-
-  capture mobile_menu
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'mobile'
-  endcapture
-
-  capture navigation_bar
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
-  endcapture
-
-  # MODIFICADO: Acciones personalizadas con iconos de usuario y carrito
-  capture actions
-    echo '<div class="header__actions flex items-center gap-6">'
-    
-    # Icono de usuario
-    if shop.customer_accounts_enabled
-      echo '<a href="' | append: routes.account_url | append: '" class="link link--text hover:opacity-80 transition-opacity" aria-label="Mi cuenta">'
-      echo '<span class="flex items-center gap-1">'
-      echo '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">'
-      echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>'
-      echo '</svg>'
-      echo '<span class="text-sm font-medium hidden md:inline">INICIAR SESIÓN</span>'
-      echo '</span>'
-      echo '</a>'
-    endif
-    
-    # Icono de carrito
-    echo '<a href="' | append: routes.cart_url | append: '" class="link link--text hover:opacity-80 transition-opacity relative" aria-label="Mi cesta">'
-    echo '<span class="flex items-center gap-1">'
-    echo '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">'
-    echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>'
-    echo '</svg>'
-    echo '<span class="text-sm font-medium hidden md:inline">MI CESTA</span>'
-    if cart.item_count > 0
-      echo '<span class="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">' | append: cart.item_count | append: '</span>'
-    endif
-    echo '</span>'
-    echo '</a>'
-    
     echo '</div>'
   endcapture
 
-  # MODIFICADO: Búsqueda siempre visible y centrada
-  if shop.customer_accounts_enabled
-    assign search_class = ''
-  else
-    assign search_class = ''
-  endif
+  capture contact
+    echo '<div class="header__contact-info text-sm text-gray-600 mt-1">'
+    echo 'CONTACTA EN PEDIDOS@JUGUETTOS.ES SI TIENES ALGÚN PROBLEMA'
+    echo '</div>'
+  endcapture
 
-  # MODIFICADO: Localización a la derecha
-  if section.settings.localization_position == 'left'
-    if section.settings.search_position == 'left'
-      if shop.customer_accounts_enabled
-        assign order = 'logo,search,localization,actions'
-      else
-        assign order = 'logo,search,localization,actions'
-      endif
-    else
-      if shop.customer_accounts_enabled
-        assign order = 'logo,localization,search,actions'
-      else
-        assign order = 'logo,localization,search,actions'
-      endif
-    endif
-  else
-    if section.settings.search_position == 'left'
-      if shop.customer_accounts_enabled
-        assign order = 'logo,search,actions,localization'
-      else
-        assign order = 'logo,search,actions,localization'
-      endif
-    endif
-  endif
-  
-  # MODIFICADO: Forzar orden específico: Logo | Búsqueda | Localización | Acciones
-  assign order = 'logo,search,localization,actions'
-  
+  # Búsqueda personalizada y larga
   capture search
-    # Búsqueda personalizada más ancha
-    echo '<div class="search-container w-full max-w-2xl mx-4">'
-    render 'search', style: search_style, class: search_class
+    echo '<div class="header__search-container w-full max-w-3xl mx-auto mt-4">'
+    echo '<form action="' | append: routes.search_url | append: '" method="get" role="search" class="search-form relative">'
+    echo '<input type="hidden" name="type" value="product,article,page">'
+    echo '<input 
+      type="search"
+      name="q"
+      placeholder="Buscar..."
+      value="'
+    echo search.terms | escape
+    echo '"
+      class="search__input w-full py-3 px-6 border-2 border-gray-300 rounded-full text-base focus:outline-none focus:border-black focus:ring-2 focus:ring-black/10"
+      aria-label="'
+    echo 'general.search.placeholder' | t
+    echo '"
+    />'
+    echo '<button type="submit" class="search__button absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black">'
+    echo '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">'
+    echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>'
+    echo '</svg>'
+    echo '<span class="sr-only">'
+    echo 'general.search.search' | t
+    echo '</span>'
+    echo '</button>'
+    echo '</form>'
     echo '</div>'
   endcapture
 
-  # MODIFICADO: Búsqueda móvil
-  assign skip_mobile_search = false
-  if shop.customer_accounts_enabled == false and section.settings.search_position == 'left' and search_style != 'none'
-    assign skip_mobile_search = true
-  endif
+  assign class = 'header header--simple'
 
-  if section.settings.search_row == 'bottom' or search_style != 'none' and skip_mobile_search == false
-    capture mobile_search
-      render 'search', class: 'desktop:hidden', style: search_style
-    endcapture
-  endif
-
-  assign show_language = section.settings.show_language
-  if localization.available_languages.size <= 1
-    assign show_language = false
-  endif
-
-  assign show_country = section.settings.show_country
-  if localization.available_countries.size <= 1
-    assign show_country = false
-  endif
-
-  assign bottom_row_blocks = ''
-
-  if section.settings.menu_row == 'bottom'
-    assign bottom_row_blocks = bottom_row_blocks | append: 'menu,'
-  endif
-
-  if section.settings.search_style != 'none'
-    if section.settings.search_row == 'bottom'
-      assign bottom_row_blocks = bottom_row_blocks | append: 'search,'
-    endif
-  endif
-
-  if section.settings.show_country or section.settings.show_language
-    if section.settings.localization_row == 'bottom'
-      assign bottom_row_blocks = bottom_row_blocks | append: 'localization,'
-    endif
-  endif
-
-  assign bottom_row_blocks = bottom_row_blocks | split: ',' | compact
-
-  if section.settings.section_height == 'compact'
-    assign header_height_class = ' header--compact'
-  endif
-
-  if bottom_row_blocks.size > 0 and section.settings.color_scheme_top.settings.background.rgb == section.settings.color_scheme_bottom.settings.background.rgb and section.settings.divider_width == 0
-    assign collapse_header_paddings_class = 'header--collapse-row-paddings'
-  endif
-
-  assign class = 'header'
-
-  if transparent_color_scheme
-    assign class = class | append: ' ' | append: transparent_color_scheme
-  endif
-
-  if section.settings.color_scheme_top.settings.background.alpha != 1
-    assign class = class | append: ' ' | append: 'header--inherit-color-scheme-on-menu-open'
-  endif
-
-  if header_height_class
-    assign class = class | append: ' ' | append: header_height_class
-  endif
-
-  if collapse_header_paddings_class
-    assign class = class | append: ' ' | append: collapse_header_paddings_class
-  endif
-
-  # MODIFICADO: Estilos CSS personalizados para la estructura
+  # Estilos CSS personalizados
   capture custom_styles
     echo '<style>'
-    echo '.header__row--top .header__columns {'
-    echo '  display: grid;'
-    echo '  grid-template-columns: auto 1fr auto auto;'
-    echo '  align-items: center;'
-    echo '  gap: 2rem;'
-    echo '  width: 100%;'
+    echo '.header--simple {'
+    echo '  padding: 1.5rem 0;'
     echo '}'
-    echo '.header__column--logo { flex: 0 0 auto; }'
-    echo '.header__column--search { flex: 1; min-width: 0; }'
-    echo '.header__column--localization { flex: 0 0 auto; }'
-    echo '.header__column--actions { flex: 0 0 auto; margin-left: auto; }'
-    echo '.search-container .search__input {'
-    echo '  width: 100%;'
-    echo '  max-width: 600px;'
-    echo '  border-radius: 20px;'
-    echo '  border: 1px solid #e5e7eb;'
-    echo '  padding: 0.5rem 1rem;'
-    echo '  height: 40px;'
-    echo '}'
-    echo '.header__actions {'
+    echo '.header__logo-wrapper {'
     echo '  display: flex;'
-    echo '  align-items: center;'
-    echo '  gap: 1.5rem;'
+    echo '  flex-direction: column;'
+    echo '  align-items: flex-start;'
     echo '}'
-    echo '.header__actions a {'
-    echo '  text-decoration: none;'
-    echo '  color: inherit;'
+    echo '.header__contact-info {'
+    echo '  font-size: 0.875rem;'
+    echo '  color: #6b7280;'
+    echo '  margin-top: 0.25rem;'
+    echo '  font-family: inherit;'
+    echo '}'
+    echo '.header__search-container {'
+    echo '  margin-top: 1.5rem;'
+    echo '}'
+    echo '.search__input {'
+    echo '  width: 100%;'
+    echo '  max-width: 800px;'
+    echo '  height: 50px;'
+    echo '  border-radius: 25px !important;'
+    echo '  border: 2px solid #e5e7eb !important;'
+    echo '  padding: 0 1.5rem !important;'
+    echo '  font-size: 1rem !important;'
+    echo '  background: white !important;'
+    echo '}'
+    echo '.search__input:focus {'
+    echo '  border-color: #000 !important;'
+    echo '  box-shadow: 0 0 0 3px rgba(0,0,0,0.1) !important;'
+    echo '  outline: none !important;'
+    echo '}'
+    echo '.search__button {'
+    echo '  right: 1rem !important;'
+    echo '}'
+    echo '.header__row--top .header__columns {'
+    echo '  display: flex;'
+    echo '  flex-direction: column;'
+    echo '  align-items: center;'
+    echo '}'
+    echo '.header__column {'
+    echo '  width: 100%;'
+    echo '  display: flex;'
+    echo '  flex-direction: column;'
+    echo '  align-items: center;'
+    echo '}'
+    echo '.header__column--logo {'
+    echo '  align-items: flex-start;'
+    echo '  width: 100%;'
+    echo '  padding-left: 2rem;'
     echo '}'
     echo '@media (max-width: 768px) {'
-    echo '  .header__row--top .header__columns {'
-    echo '    grid-template-columns: auto 1fr auto;'
-    echo '    gap: 1rem;'
+    echo '  .header--simple {'
+    echo '    padding: 1rem 0;'
     echo '  }'
-    echo '  .header__actions span.hidden.md\\:inline {'
-    echo '    display: none;'
+    echo '  .header__contact-info {'
+    echo '    font-size: 0.75rem;'
+    echo '    text-align: center;'
+    echo '    padding: 0 1rem;'
+    echo '  }'
+    echo '  .header__column--logo {'
+    echo '    align-items: center;'
+    echo '    padding-left: 0;'
+    echo '  }'
+    echo '  .search__input {'
+    echo '    height: 44px;'
+    echo '    font-size: 0.875rem !important;'
     echo '  }'
     echo '}'
     echo '</style>'
@@ -249,58 +134,26 @@
   id="header-component"
   class="{{ class }}"
   data-theme-color="rgb({{ section.settings.color_scheme_top.settings.background.rgb }})"
-  {% if transparent %}transparent="{{ transparent }}"{% endif %}
-  {% if sticky %}sticky="{{ sticky }}"{% endif %}
+  {% if section.settings.enable_sticky_header == 'always' %}sticky="always"{% endif %}
 >
   {% for row in rows %}
     {% liquid
       assign scheme = 'color_scheme_' | append: row
       assign class = 'header__row header__row--[row] color-[row_scheme] section section--full-width-margin section--[section-width]' | replace: '[row]', row | replace: '[row_scheme]', section.settings[scheme] | replace: '[section-width]', section.settings.section_width
-
-      if row == 'bottom'
-        assign class = class | append: ' mobile:hidden'
-      endif
-
-      assign border_bottom_setting_id = 'border_width'
-      if row == 'top' and bottom_row_blocks.size > 0
-        assign border_bottom_setting_id = 'divider_width'
-      endif
     %}
 
-    {% capture content %}
-      {% render 'header-row',
-        row: row,
-        order: order,
-        settings: section.settings,
-        first: first,
-        logo: logo,
-        menu: menu,
-        actions: actions,
-        localization: localization_markup,
-        search: search,
-        mobile_search: mobile_search
-      %}
-    {% endcapture %}
-
-    {% if content != blank %}
-      <div class="{{ class | strip }}" ref="headerRowTop" style="--border-bottom-width: {{ section.settings[border_bottom_setting_id] }}px;">
-        <div class="header__columns spacing-style">
-          {{ content }}
-        </div>
-      </div>
-    {% endif %}
-  {% endfor %}
-  
-  {% comment %} Barra de navegación inferior (menu principal) {% endcomment %}
-  {% if navigation_bar != blank %}
-    <div class="header__row header__row--navigation color-{{ section.settings.color_scheme_bottom }} section section--full-width-margin section--{{ section.settings.section_width }} mobile:hidden">
+    <div class="{{ class | strip }}">
       <div class="header__columns spacing-style">
-        <div class="header__column header__column--full">
-          {{ navigation_bar }}
+        <div class="header__column header__column--logo">
+          {{ logo }}
+          {{ contact }}
+        </div>
+        <div class="header__column header__column--search">
+          {{ search }}
         </div>
       </div>
     </div>
-  {% endif %}
+  {% endfor %}
 </header-component>
 
 <script src="{{ 'header.js' | asset_url }}" type="module"></script>
@@ -328,20 +181,6 @@
     },
     {
       "type": "header",
-      "content": "t:content.menu"
-    },
-    {
-      "type": "select",
-      "id": "menu_row",
-      "label": "t:settings.row",
-      "options": [
-        { "value": "top", "label": "t:options.top" },
-        { "value": "bottom", "label": "t:options.bottom" }
-      ],
-      "default": "bottom"
-    },
-    {
-      "type": "header",
       "content": "t:content.search"
     },
     {
@@ -349,49 +188,6 @@
       "id": "show_search",
       "label": "t:settings.search_icon",
       "default": true
-    },
-    {
-      "type": "select",
-      "id": "search_position",
-      "label": "t:settings.search_position",
-      "options": [
-        { "value": "left", "label": "t:options.left" },
-        { "value": "center", "label": "t:options.center" },
-        { "value": "right", "label": "t:options.right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "header",
-      "content": "t:content.localization"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_country",
-      "label": "t:settings.country_region",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "country_selector_style",
-      "label": "t:settings.flag",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_language",
-      "label": "t:settings.language",
-      "default": false
-    },
-    {
-      "type": "select",
-      "id": "localization_position",
-      "label": "t:settings.position",
-      "options": [
-        { "value": "left", "label": "t:options.left" },
-        { "value": "right", "label": "t:options.right" }
-      ],
-      "default": "right"
     },
     {
       "type": "header",
@@ -405,7 +201,7 @@
         { "value": "compact", "label": "t:options.compact" },
         { "value": "standard", "label": "t:options.standard" }
       ],
-      "default": "compact"
+      "default": "standard"
     },
     {
       "type": "color_scheme",
@@ -414,28 +210,14 @@
       "default": "scheme-1"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme_bottom",
-      "label": "t:settings.bottom_row",
-      "default": "scheme-1"
-    },
-    {
-      "type": "range",
-      "id": "divider_width",
-      "label": "t:settings.divider_width",
-      "min": 0,
-      "max": 5,
-      "step": 1,
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "border_width",
-      "label": "t:settings.border_width",
-      "min": 0,
-      "max": 5,
-      "step": 1,
-      "default": 0
+      "type": "select",
+      "id": "enable_sticky_header",
+      "label": "t:settings.sticky_header",
+      "options": [
+        { "value": "always", "label": "t:options.always" },
+        { "value": "never", "label": "t:options.never" }
+      ],
+      "default": "always"
     },
     {
       "type": "select",
@@ -446,17 +228,6 @@
         { "value": "page-width", "label": "t:options.page_width" }
       ],
       "default": "page-width"
-    },
-    {
-      "type": "select",
-      "id": "enable_sticky_header",
-      "label": "t:settings.sticky_header",
-      "options": [
-        { "value": "always", "label": "t:options.always" },
-        { "value": "scroll-up", "label": "t:options.scroll_up" },
-        { "value": "never", "label": "t:options.never" }
-      ],
-      "default": "always"
     }
   ],
   "presets": []

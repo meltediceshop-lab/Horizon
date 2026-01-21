@@ -1,150 +1,85 @@
 {%- style -%}
-  /* Contenedor principal - Centrado y ancho completo */
+  /* Header de búsqueda minimalista */
   #shopify-section-{{ section.id }} .search-page__header {
     display: flex;
     flex-direction: column;
-    align-items: {{ section.settings.alignment }};
+    align-items: center;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 2rem 1rem;
   }
 
-  /* Contenedor de la barra de búsqueda - Muy larga como en la imagen */
+  /* Barra de búsqueda idéntica a la del header principal */
   #shopify-section-{{ section.id }} [data-block-id="search"] {
     width: 100%;
-    max-width: 900px; /* Más ancho para imitar la imagen */
+    max-width: 800px;
     margin: 0 auto;
-    position: relative;
   }
 
-  /* Estilo de la barra de búsqueda - Idéntica a la imagen */
+  /* Estilo consistente con el header principal */
   #shopify-section-{{ section.id }} input[type="search"],
   #shopify-section-{{ section.id }} .search__input {
     width: 100%;
-    padding: 10px 20px !important;
-    padding-right: 50px !important; /* Espacio para el ícono */
-    min-height: 44px !important;
-    height: 44px !important;
-    border: 2px solid #e5e5e5 !important;
-    border-radius: 24px !important;
+    padding: 12px 24px !important;
+    padding-right: 50px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 25px !important;
     font-size: 16px !important;
-    font-family: inherit;
     background: white !important;
     color: #333 !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
-
-  /* Efecto hover y focus */
-  #shopify-section-{{ section.id }} input[type="search"]:hover,
-  #shopify-section-{{ section.id }} .search__input:hover {
-    border-color: #d1d5db !important;
   }
 
   #shopify-section-{{ section.id }} input[type="search"]:focus,
   #shopify-section-{{ section.id }} .search__input:focus {
-    border-color: #3a3a3a !important;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+    border-color: #000 !important;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1) !important;
     outline: none !important;
   }
 
-  /* Botón de búsqueda - Posicionado dentro del input */
+  /* Botón de búsqueda */
   #shopify-section-{{ section.id }} .search__button {
     position: absolute !important;
-    right: 4px !important;
-    top: 4px !important;
-    height: 36px !important;
-    min-height: 36px !important;
-    width: 36px !important;
-    min-width: 36px !important;
-    padding: 0 !important;
+    right: 16px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
     background: transparent !important;
     border: none !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    transition: background-color 0.2s ease !important;
+    padding: 0 !important;
   }
 
-  #shopify-section-{{ section.id }} .search__button:hover {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-  }
-
-  /* Icono de búsqueda - Estilo simple */
   #shopify-section-{{ section.id }} .search__button .icon {
     width: 20px !important;
     height: 20px !important;
     stroke: #6b7280 !important;
-    stroke-width: 2 !important;
   }
 
-  #shopify-section-{{ section.id }} .search__button:hover .icon {
-    stroke: #374151 !important;
-  }
-
-  /* Título centrado y estilo */
+  /* Título centrado */
   #shopify-section-{{ section.id }} .search-page__header h3 {
-    text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     color: #1f2937;
-    margin-bottom: 1.5rem;
-    width: 100%;
-  }
-
-  /* Contenedor del formulario */
-  #shopify-section-{{ section.id }} .search-form {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  /* Placeholder estilo */
-  #shopify-section-{{ section.id }} input::placeholder {
-    color: #9ca3af !important;
-    font-size: 15px !important;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
     #shopify-section-{{ section.id }} .search-page__header {
-      padding: 1rem;
-    }
-    
-    #shopify-section-{{ section.id }} [data-block-id="search"] {
-      max-width: 100%;
+      padding: 1.5rem 1rem;
     }
     
     #shopify-section-{{ section.id }} .search-page__header h3 {
-      font-size: 20px;
+      font-size: 24px;
     }
-  }
-
-  @media (max-width: 480px) {
+    
     #shopify-section-{{ section.id }} input[type="search"],
     #shopify-section-{{ section.id }} .search__input {
+      min-height: 44px !important;
+      height: 44px !important;
       font-size: 14px !important;
-      padding: 8px 16px !important;
+      padding: 10px 20px !important;
       padding-right: 45px !important;
-      min-height: 40px !important;
-      height: 40px !important;
-    }
-    
-    #shopify-section-{{ section.id }} .search__button {
-      height: 32px !important;
-      min-height: 32px !important;
-      width: 32px !important;
-      min-width: 32px !important;
-      right: 4px !important;
-      top: 4px !important;
-    }
-    
-    #shopify-section-{{ section.id }} .search__button .icon {
-      width: 18px !important;
-      height: 18px !important;
     }
   }
 {%- endstyle -%}
@@ -170,7 +105,7 @@
 
     {% content_for 'block', id: 'heading', type: '_heading', text: heading_text %}
     
-    <div class="search-form">
+    <div class="search-form w-full max-w-3xl mx-auto">
       {% content_for 'block', id: 'search', type: '_search-input' %}
     </div>
   </div>

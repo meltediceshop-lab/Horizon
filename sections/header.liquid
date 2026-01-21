@@ -1,8 +1,8 @@
 {% liquid
-  assign order = 'logo,menu,localization,search,mobile_search,actions'
-
+  assign order = 'logo,search,localization,actions'
+  
   if shop.customer_accounts_enabled
-    assign order = 'mobile_search,logo,menu,localization,search,actions'
+    assign order = 'logo,search,localization,actions'
   endif
 
   assign rows = 'top,bottom' | split: ','
@@ -57,43 +57,81 @@
     content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
   endcapture
 
+  # MODIFICADO: Acciones personalizadas con iconos de usuario y carrito
   capture actions
-    render 'header-actions'
+    echo '<div class="header__actions flex items-center gap-6">'
+    
+    # Icono de usuario
+    if shop.customer_accounts_enabled
+      echo '<a href="' | append: routes.account_url | append: '" class="link link--text hover:opacity-80 transition-opacity" aria-label="Mi cuenta">'
+      echo '<span class="flex items-center gap-1">'
+      echo '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">'
+      echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>'
+      echo '</svg>'
+      echo '<span class="text-sm font-medium hidden md:inline">INICIAR SESIÓN</span>'
+      echo '</span>'
+      echo '</a>'
+    endif
+    
+    # Icono de carrito
+    echo '<a href="' | append: routes.cart_url | append: '" class="link link--text hover:opacity-80 transition-opacity relative" aria-label="Mi cesta">'
+    echo '<span class="flex items-center gap-1">'
+    echo '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">'
+    echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>'
+    echo '</svg>'
+    echo '<span class="text-sm font-medium hidden md:inline">MI CESTA</span>'
+    if cart.item_count > 0
+      echo '<span class="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">' | append: cart.item_count | append: '</span>'
+    endif
+    echo '</span>'
+    echo '</a>'
+    
+    echo '</div>'
   endcapture
 
+  # MODIFICADO: Búsqueda siempre visible y centrada
   if shop.customer_accounts_enabled
-    assign search_class = 'mobile:hidden'
+    assign search_class = ''
+  else
+    assign search_class = ''
   endif
 
-  # Handle localization positioning [cite: 39]
+  # MODIFICADO: Localización a la derecha
   if section.settings.localization_position == 'left'
     if section.settings.search_position == 'left'
       if shop.customer_accounts_enabled
-        assign order = 'mobile_search,logo,search,localization,menu,actions'
+        assign order = 'logo,search,localization,actions'
       else
-        assign order = 'logo,search,localization,menu,mobile_search,actions'
+        assign order = 'logo,search,localization,actions'
       endif
     else
       if shop.customer_accounts_enabled
-        assign order = 'mobile_search,logo,localization,menu,search,actions'
+        assign order = 'logo,localization,search,actions'
       else
-        assign order = 'logo,localization,menu,search,mobile_search,actions'
+        assign order = 'logo,localization,search,actions'
       endif
     endif
   else
     if section.settings.search_position == 'left'
       if shop.customer_accounts_enabled
-        assign order = 'mobile_search,logo,search,menu,localization,actions'
+        assign order = 'logo,search,actions,localization'
       else
-        assign order = 'logo,search,menu,localization,mobile_search,actions'
+        assign order = 'logo,search,actions,localization'
       endif
     endif
   endif
+  
+  # MODIFICADO: Forzar orden específico: Logo | Búsqueda | Localización | Acciones
+  assign order = 'logo,search,localization,actions'
+  
   capture search
+    # Búsqueda personalizada más ancha
+    echo '<div class="search-container w-full max-w-2xl mx-4">'
     render 'search', style: search_style, class: search_class
+    echo '</div>'
   endcapture
 
-  # Skip mobile search under specific conditions [cite: 41]
+  # MODIFICADO: Búsqueda móvil
   assign skip_mobile_search = false
   if shop.customer_accounts_enabled == false and section.settings.search_position == 'left' and search_style != 'none'
     assign skip_mobile_search = true
@@ -160,68 +198,52 @@
   if collapse_header_paddings_class
     assign class = class | append: ' ' | append: collapse_header_paddings_class
   endif
+
+  # MODIFICADO: Estilos CSS personalizados para la estructura
+  capture custom_styles
+    echo '<style>'
+    echo '.header__row--top .header__columns {'
+    echo '  display: grid;'
+    echo '  grid-template-columns: auto 1fr auto auto;'
+    echo '  align-items: center;'
+    echo '  gap: 2rem;'
+    echo '  width: 100%;'
+    echo '}'
+    echo '.header__column--logo { flex: 0 0 auto; }'
+    echo '.header__column--search { flex: 1; min-width: 0; }'
+    echo '.header__column--localization { flex: 0 0 auto; }'
+    echo '.header__column--actions { flex: 0 0 auto; margin-left: auto; }'
+    echo '.search-container .search__input {'
+    echo '  width: 100%;'
+    echo '  max-width: 600px;'
+    echo '  border-radius: 20px;'
+    echo '  border: 1px solid #e5e7eb;'
+    echo '  padding: 0.5rem 1rem;'
+    echo '  height: 40px;'
+    echo '}'
+    echo '.header__actions {'
+    echo '  display: flex;'
+    echo '  align-items: center;'
+    echo '  gap: 1.5rem;'
+    echo '}'
+    echo '.header__actions a {'
+    echo '  text-decoration: none;'
+    echo '  color: inherit;'
+    echo '}'
+    echo '@media (max-width: 768px) {'
+    echo '  .header__row--top .header__columns {'
+    echo '    grid-template-columns: auto 1fr auto;'
+    echo '    gap: 1rem;'
+    echo '  }'
+    echo '  .header__actions span.hidden.md\\:inline {'
+    echo '    display: none;'
+    echo '  }'
+    echo '}'
+    echo '</style>'
+  endcapture
 %}
 
-{% capture localization_markup %}
-  {% liquid
-    assign localization_font = '--menu-localization-font: var(--font-[localization_font]--family); ' | replace: '[localization_font]', section.settings.localization_font
-    assign localization_font_size = '--menu-localization-font-size: [localization_font_size]; ' | replace: '[localization_font_size]', section.settings.localization_font_size
-    assign color_shadow = '--color-shadow: rgb(var(--color-foreground-rgb) / var(--opacity-10-25));'
-    assign form_style = localization_font | append: localization_font_size | append: color_shadow
-  %}
-  {% if show_language and show_country == false %}
-    <div class="dropdown-localization mobile:hidden">
-      {% render 'localization-form',
-        show_country: show_country,
-        show_language: show_language,
-        localization_style: 'dropdown',
-        form_style: form_style,
-        block_id: block.id
-      %}
-    </div>
-  {% elsif show_country %}
-    <dropdown-localization-component class="dropdown-localization mobile:hidden">
-      <button
-        type="button"
-        class="button dropdown-localization__button localization-selector link link--text"
-        aria-expanded="false"
-        aria-controls="dropdown-localization-results"
-        ref="button"
-        style="{{ localization_font }} {{ localization_font_size }}"
-      >
-        {% if show_country %}
-          {% if section.settings.country_selector_style == true %}
-            {% liquid
-              assign background_brightness = section.settings.color_scheme_top.settings.background | color_brightness
-              if background_brightness < 64
-                assign shadow_size = 4
-              else
-                assign shadow_size = 2
-              endif
-            %}
-            <span
-              class="icon-flag"
-              style="background-image: url({{- localization.country | image_url: width: 32 }}); --size-shadow: {{ shadow_size }}px; --color-shadow: rgb(var(--color-foreground-rgb) / var(--opacity-30-60));"
-            ></span>
-          {% endif %}
-          <span class="currency-code" data-testid="localization-currency-code">
-            {{- localization.country.name -}}
-          </span>
-        {% endif %}
-      </button>
-
-      <div class="localization-wrapper {{ section.settings.localization_position }}-bound color-{{ settings.popover_color_scheme }}" hidden ref="panel">
-        {% render 'localization-form',
-          show_country: show_country,
-          show_language: show_language,
-          localization_style: 'dropdown',
-          form_style: form_style,
-          block_id: block.id
-        %}
-      </div>
-    </dropdown-localization-component>
-  {% endif %}
-{% endcapture %}
+{{ custom_styles }}
 
 <header-component
   id="header-component"
@@ -268,103 +290,20 @@
       </div>
     {% endif %}
   {% endfor %}
+  
+  {% comment %} Barra de navegación inferior (menu principal) {% endcomment %}
+  {% if navigation_bar != blank %}
+    <div class="header__row header__row--navigation color-{{ section.settings.color_scheme_bottom }} section section--full-width-margin section--{{ section.settings.section_width }} mobile:hidden">
+      <div class="header__columns spacing-style">
+        <div class="header__column header__column--full">
+          {{ navigation_bar }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </header-component>
 
 <script src="{{ 'header.js' | asset_url }}" type="module"></script>
-
-{% stylesheet %}
-  /* --- ESTILOS CORPORATIVOS JUGUETTOS --- */
-  .header, .header__row {
-    background-color: #003087 !important; /* Azul Juguettos [cite: 78, 79] */
-  }
-
-  /* Forzar colores blancos para textos e iconos [cite: 82] */
-  .header, .header .header-logo, .header .menu-list__link, .header .dropdown-localization, .header .header-actions__action, .header .header__icon svg {
-    --color-foreground: 255, 255, 255 !important;
-    color: white !important;
-    fill: white !important;
-  }
-
-  /* --- BARRA DE BÚSQUEDA CENTRADA Y FINA --- */
-  .header .search-modal__button {
-    background-color: white !important;
-    border-radius: 30px !important; /* Estilo píldora  */
-    padding: 0 15px !important;
-    height: 36px !important; /* Más fina para que coincida con la imagen */
-    min-width: 320px !important;
-    max-width: 550px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    margin: 0 auto !important;
-  }
-
-  .header .search-modal__button::after {
-    content: 'Buscar'; /* Texto personalizado [cite: 85] */
-    color: #003087 !important;
-    font-size: 15px !important;
-    font-weight: 500;
-    order: -1;
-  }
-
-  .header .search-modal__button svg {
-    color: #003087 !important; /* Lupa en azul */
-    fill: #003087 !important;
-    width: 18px !important;
-    height: 18px !important;
-  }
-
-  /* --- REJILLA (GRID) DE 3 COLUMNAS --- */
-  @media screen and (min-width: 750px) {
-    .header__columns {
-      display: grid !important;
-      grid-template-areas: 'left center right' !important;
-      grid-template-columns: 1fr 2fr 1fr !important; /* El centro es más ancho [cite: 125, 126] */
-      align-items: center !important;
-    }
-
-    .header__column--left { grid-area: left !important; }
-    .header__column--right { grid-area: right !important; }
-    
-    /* Mover el buscador específicamente al centro */
-    .search-action {
-      grid-area: center !important;
-      display: flex !important;
-      justify-content: center !important;
-    }
-  }
-
-  /* --- ICONOS CON TEXTO DEBAJO --- */
-  .header-actions, .dropdown-localization {
-    display: flex !important;
-    align-items: flex-end !important;
-    gap: 15px !important;
-  }
-
-  .header-actions__action, .dropdown-localization__button {
-    display: flex !important;
-    flex-direction: column !important; /* Icono arriba, texto abajo */
-    align-items: center !important;
-    text-decoration: none !important;
-    font-size: 10px !important;
-    text-transform: uppercase !important;
-    gap: 2px !important;
-  }
-
-  .header-actions__action svg, .dropdown-localization__button svg {
-    width: 22px !important;
-    height: 22px !important;
-  }
-
-  /* Badge del carrito en rojo Juguettos [cite: 92] */
-  .cart-count-bubble {
-    background-color: #e30613 !important;
-    color: white !important;
-    top: -5px !important;
-    right: -2px !important;
-    font-size: 10px !important;
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -417,9 +356,10 @@
       "label": "t:settings.search_position",
       "options": [
         { "value": "left", "label": "t:options.left" },
+        { "value": "center", "label": "t:options.center" },
         { "value": "right", "label": "t:options.right" }
       ],
-      "default": "right"
+      "default": "center"
     },
     {
       "type": "header",
@@ -429,13 +369,19 @@
       "type": "checkbox",
       "id": "show_country",
       "label": "t:settings.country_region",
-      "default": true
+      "default": false
     },
     {
       "type": "checkbox",
       "id": "country_selector_style",
       "label": "t:settings.flag",
-      "default": true
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_language",
+      "label": "t:settings.language",
+      "default": false
     },
     {
       "type": "select",
@@ -466,6 +412,51 @@
       "id": "color_scheme_top",
       "label": "t:settings.default",
       "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_bottom",
+      "label": "t:settings.bottom_row",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "t:settings.divider_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "t:settings.border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.section_width",
+      "options": [
+        { "value": "full-width", "label": "t:options.full_width" },
+        { "value": "page-width", "label": "t:options.page_width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "select",
+      "id": "enable_sticky_header",
+      "label": "t:settings.sticky_header",
+      "options": [
+        { "value": "always", "label": "t:options.always" },
+        { "value": "scroll-up", "label": "t:options.scroll_up" },
+        { "value": "never", "label": "t:options.never" }
+      ],
+      "default": "always"
     }
   ],
   "presets": []

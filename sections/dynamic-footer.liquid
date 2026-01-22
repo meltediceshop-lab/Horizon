@@ -1,45 +1,47 @@
 {% comment %}
-  FOOTER DINÁMICO JGT - Versión con Iconos Integrados (Sin Errores)
+  FOOTER DINÁMICO PRO - Estilo Juguettos
+  Permite crear columnas, editar tamaños de texto y gestionar enlaces dinámicamente.
 {% endcomment %}
 
-<footer class="jgt-footer" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+<footer class="jgt-footer-pro" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
   <div class="jgt-footer-wrapper">
     
     <div class="jgt-footer-grid">
       {% for block in section.blocks %}
         <div class="jgt-footer-col" {{ block.shopify_attributes }}>
           
-          <h3 class="jgt-footer-title">{{ block.settings.title }}</h3>
+          <h3 class="jgt-footer-h3" style="font-size: {{ section.settings.title_size }}px;">
+            {{ block.settings.title }}
+          </h3>
           
           {% case block.type %}
-            {% when 'link_list' %}
-              <ul class="jgt-footer-menu">
-                {% if block.settings.menu != blank %}
-                  {% for link in block.settings.menu.links %}
-                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                  {% endfor %}
-                {% else %}
-                  <li style="font-size: 12px; opacity: 0.5;">Selecciona un menú en el administrador</li>
-                {% endif %}
+            {% when 'menu_column' %}
+              <ul class="jgt-footer-list">
+                {% for link in block.settings.menu.links %}
+                  <li>
+                    <a href="{{ link.url }}" style="font-size: {{ section.settings.link_size }}px;">
+                      {{ link.title }}
+                    </a>
+                  </li>
+                {% endfor %}
               </ul>
 
             {% when 'social_column' %}
-              <ul class="jgt-footer-social">
-                {% if block.settings.facebook_url != blank %}
-                  <li><a href="{{ block.settings.facebook_url }}">
-                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z"/></svg></span> Facebook</a></li>
+              <ul class="jgt-footer-social-list">
+                {% if block.settings.blog_url != blank %}
+                  <li><a href="{{ block.settings.blog_url }}"><span class="icon">{% render 'icon-rss' %}</span> Blog</a></li>
                 {% endif %}
-                {% if block.settings.youtube_url != blank %}
-                  <li><a href="{{ block.settings.youtube_url }}">
-                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m10 15 5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 .61-.03 1.3-.1 2.1-.06.8-.15 1.43-.28 1.9-.13.48-.34.86-.63 1.14-.28.28-.66.49-1.14.63-.48.13-1.1.22-1.9.28-.8.07-1.49.1-2.09.1L12 19.15c-.61 0-1.3-.03-2.1-.1-.8-.06-1.43-.15-1.9-.28-.48-.14-.86-.35-1.14-.63-.28-.28-.49-.66-.63-1.14-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L5.85 12c0-.61.03-1.3.1-2.1.06-.8.15-1.43.28-1.9.13-.48.34-.86.63-1.14.28-.28.66-.49 1.14-.63.48-.13 1.1-.22 1.9-.28.8-.07 1.49-.1 2.09-.1L12 4.85c.61 0 1.3.03 2.1.1.8.06 1.43.15 1.9.28.48.13.86.34 1.14.63.28.28.49.66.63 1.14Z"/></svg></span> Youtube</a></li>
+                {% if block.settings.fb_url != blank %}
+                  <li><a href="{{ block.settings.fb_url }}"><span class="icon">{% render 'icon-facebook' %}</span> Facebook</a></li>
                 {% endif %}
-                {% if block.settings.instagram_url != blank %}
-                  <li><a href="{{ block.settings.instagram_url }}">
-                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span> Instagram</a></li>
+                {% if block.settings.yt_url != blank %}
+                  <li><a href="{{ block.settings.yt_url }}"><span class="icon">{% render 'icon-youtube' %}</span> Youtube</a></li>
                 {% endif %}
-                {% if block.settings.tiktok_url != blank %}
-                  <li><a href="{{ block.settings.tiktok_url }}">
-                    <span class="social-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 5.82s.51.5 0 0c-.25.15-.48.33-.68.55a4.65 4.65 0 0 0-.95 2.15h-3V15.5a2.5 2.5 0 0 1-2.5 2.5 2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5c.34 0 .65.07.93.2V10.2a5.5 5.5 0 0 0-4.43 5.3 5.5 5.5 0 0 0 5.5 5.5 5.5 5.5 0 0 0 5.5-5.5V9a7.12 7.12 0 0 0 4.1-1.35V4.66a4.12 4.12 0 0 1-2.5 1.16Z"/></svg></span> Tiktok</a></li>
+                {% if block.settings.ig_url != blank %}
+                  <li><a href="{{ block.settings.ig_url }}"><span class="icon">{% render 'icon-instagram' %}</span> Instagram</a></li>
+                {% endif %}
+                {% if block.settings.tk_url != blank %}
+                  <li><a href="{{ block.settings.tk_url }}"><span class="icon">{% render 'icon-tiktok' %}</span> Tiktok</a></li>
                 {% endif %}
               </ul>
           {% endcase %}
@@ -49,57 +51,98 @@
     </div>
 
   </div>
+
+  {% if section.settings.show_float_btns %}
+    <div class="jgt-float-container">
+      <a href="{{ section.settings.chat_url }}" class="jgt-float-chat">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338C8.47 21.513 10.179 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.477 0-2.883-.394-4.089-1.082l-.293-.169-3.003.804.804-3.003-.169-.293A7.957 7.957 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+      </a>
+      <a href="https://wa.me/{{ section.settings.wa_number }}" class="jgt-float-wa">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.258.405 2.422 1.093 3.37l-.714 2.605 2.664-.699c.82.505 1.774.794 2.796.794 3.181 0 5.767-2.586 5.767-5.767s-2.586-5.767-5.767-5.767zm3.388 8.163c-.144.405-.729.742-1.011.787-.27.045-.607.067-1.147-.135-.293-.112-.66-.255-1.121-.454-1.954-.84-3.218-2.842-3.315-2.97-.097-.128-.787-1.047-.787-1.996 0-.949.495-1.416.674-1.619.18-.202.394-.255.525-.255s.262.007.375.012c.119.005.281-.045.441.335.163.387.558 1.358.607 1.458.05.1.083.217.016.35s-.1.217-.2.335c-.1.117-.21.262-.3.375-.105.121-.215.253-.092.464.123.21.547.904 1.173 1.464.806.721 1.484.945 1.696 1.053.21.108.334.09.46-.054.125-.144.538-.626.683-.841.144-.215.289-.18.487-.108s1.255.592 1.471.699c.217.108.361.163.414.255.054.09.054.525-.09.93z"/></svg>
+      </a>
+    </div>
+  {% endif %}
 </footer>
 
 <style>
-  .jgt-footer { padding: 40px 0; font-family: sans-serif; }
-  .jgt-footer-wrapper { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-  .jgt-footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
-  .jgt-footer-col { flex: 1; min-width: 200px; }
-  .jgt-footer-title { 
-    font-size: 16px; font-weight: bold; margin-bottom: 15px; 
-    border-bottom: 1px solid white; display: inline-block; padding-bottom: 5px; 
+  .jgt-footer-pro { padding: 60px 0 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .jgt-footer-wrapper { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+  .jgt-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  
+  .jgt-footer-h3 { 
+    font-weight: 700; margin-bottom: 20px; padding-bottom: 8px; 
+    border-bottom: 1px solid rgba(255,255,255,0.3); display: inline-block; min-width: 120px;
   }
-  .jgt-footer-menu, .jgt-footer-social { list-style: none; padding: 0; margin: 0; }
-  .jgt-footer-menu li, .jgt-footer-social li { margin-bottom: 8px; }
-  .jgt-footer-menu a, .jgt-footer-social a { 
-    color: inherit; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 8px;
-  }
-  .jgt-footer-menu a:hover { text-decoration: underline; }
-  .social-icon { width: 18px; height: 18px; display: inline-block; }
-  .social-icon svg { width: 100%; height: 100%; vertical-align: middle; }
 
-  @media (max-width: 768px) { .jgt-footer-col { flex: 1 1 45%; } }
+  .jgt-footer-list, .jgt-footer-social-list { list-style: none; padding: 0; margin: 0; }
+  .jgt-footer-list li, .jgt-footer-social-list li { margin-bottom: 12px; }
+  .jgt-footer-list a, .jgt-footer-social-list a { 
+    color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: opacity 0.2s;
+  }
+  .jgt-footer-list a:hover { opacity: 0.7; }
+  
+  .icon { width: 20px; height: 20px; display: flex; align-items: center; }
+  .icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+  /* Flotantes */
+  .jgt-float-container { position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; pointer-events: none; z-index: 999; }
+  .jgt-float-chat, .jgt-float-wa { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; pointer-events: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .jgt-float-chat { background: #1a5a7a; } /* Color chat image_ba2213.png */
+  .jgt-float-wa { background: #25d366; }
+  .jgt-float-chat svg, .jgt-float-wa svg { width: 35px; height: 35px; }
+
+  @media (max-width: 768px) {
+    .jgt-footer-grid { grid-template-columns: 1fr 1fr; }
+    .jgt-footer-wrapper { padding: 0 20px; }
+  }
 </style>
 
 {% schema %}
 {
-  "name": "Footer Dinámico JGT",
+  "name": "Footer Dinámico PRO",
+  "max_blocks": 5,
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#002266" },
-    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#ffffff" }
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#002266" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
+    { "type": "range", "id": "title_size", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Tamaño Títulos", "default": 18 },
+    { "type": "range", "id": "link_size", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Tamaño Enlaces", "default": 14 },
+    { "type": "header", "content": "Botones Flotantes" },
+    { "type": "checkbox", "id": "show_float_btns", "label": "Mostrar botones flotantes", "default": true },
+    { "type": "text", "id": "wa_number", "label": "Número WhatsApp (ej: 34600000000)" },
+    { "type": "url", "id": "chat_url", "label": "Enlace Chat" }
   ],
   "blocks": [
     {
-      "type": "link_list",
+      "type": "menu_column",
       "name": "Columna de Enlaces",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título de la columna", "default": "Menú" },
-        { "type": "link_list", "id": "menu", "label": "Seleccionar menú" }
+        { "type": "text", "id": "title", "label": "Título Sección", "default": "Nueva Sección" },
+        { "type": "link_list", "id": "menu", "label": "Menú (Subsecciones)" }
       ]
     },
     {
       "type": "social_column",
-      "name": "Columna de Comunidad",
+      "name": "Columna Comunidad",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Comunidad" },
-        { "type": "url", "id": "facebook_url", "label": "URL Facebook" },
-        { "type": "url", "id": "youtube_url", "label": "URL Youtube" },
-        { "type": "url", "id": "instagram_url", "label": "URL Instagram" },
-        { "type": "url", "id": "tiktok_url", "label": "URL Tiktok" }
+        { "type": "url", "id": "blog_url", "label": "Blog" },
+        { "type": "url", "id": "fb_url", "label": "Facebook" },
+        { "type": "url", "id": "yt_url", "label": "Youtube" },
+        { "type": "url", "id": "ig_url", "label": "Instagram" },
+        { "type": "url", "id": "tk_url", "label": "Tiktok" }
       ]
     }
   ],
-  "presets": [{ "name": "Footer Dinámico JGT" }]
+  "presets": [
+    {
+      "name": "Footer Dinámico PRO",
+      "blocks": [
+        { "type": "menu_column", "settings": { "title": "Quiénes somos" } },
+        { "type": "menu_column", "settings": { "title": "Atención al cliente" } },
+        { "type": "menu_column", "settings": { "title": "Promociones" } },
+        { "type": "social_column", "settings": { "title": "Comunidad" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

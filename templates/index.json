@@ -15,7 +15,26 @@
         "simple_link_nXnUYw": {
           "type": "simple_link",
           "settings": {
-            "title": "Enlace",
+            "title": "",
+            "link": "",
+            "icon_img": "shopify://shop_images/Imaginarium-Logo-700x394.png",
+            "highlight": true,
+            "badge": ""
+          }
+        },
+        "simple_link_8kKaji": {
+          "type": "simple_link",
+          "settings": {
+            "title": "super ofertas",
+            "link": "",
+            "highlight": true,
+            "badge": ""
+          }
+        },
+        "simple_link_ftWkpw": {
+          "type": "simple_link",
+          "settings": {
+            "title": "EXCLUSIVOS",
             "link": "",
             "highlight": false,
             "badge": ""
@@ -24,7 +43,7 @@
         "mega_menu_gWJWgE": {
           "type": "mega_menu",
           "settings": {
-            "title": "Categoría",
+            "title": "Edades ",
             "link": "",
             "menu": "",
             "highlight": false,
@@ -34,17 +53,35 @@
         "mega_menu_D7WULk": {
           "type": "mega_menu",
           "settings": {
-            "title": "Categoría",
+            "title": "Juguetes ",
             "link": "",
             "menu": "",
             "highlight": false,
             "badge": ""
           }
         },
-        "simple_link_ftWkpw": {
+        "simple_link_7xGfN7": {
           "type": "simple_link",
           "settings": {
-            "title": "Enlace",
+            "title": "MARCA JUGUETTOS",
+            "link": "",
+            "highlight": false,
+            "badge": "-10%"
+          }
+        },
+        "simple_link_R6hUUi": {
+          "type": "simple_link",
+          "settings": {
+            "title": "FAN ZONE",
+            "link": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "simple_link_WKGy8g": {
+          "type": "simple_link",
+          "settings": {
+            "title": "otras marcas",
             "link": "",
             "highlight": false,
             "badge": ""
@@ -53,9 +90,13 @@
       },
       "block_order": [
         "simple_link_nXnUYw",
+        "simple_link_8kKaji",
+        "simple_link_ftWkpw",
         "mega_menu_gWJWgE",
         "mega_menu_D7WULk",
-        "simple_link_ftWkpw"
+        "simple_link_7xGfN7",
+        "simple_link_R6hUUi",
+        "simple_link_WKGy8g"
       ],
       "name": "Menú Dinámico JGT",
       "settings": {

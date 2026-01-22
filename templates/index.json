@@ -16,7 +16,7 @@
           "type": "simple_link",
           "settings": {
             "title": "",
-            "link": "",
+            "link": "shopify://collections/all",
             "icon_img": "shopify://shop_images/Imaginarium-Logo-700x394.png",
             "highlight": true,
             "badge": ""
@@ -26,7 +26,7 @@
           "type": "simple_link",
           "settings": {
             "title": "super ofertas",
-            "link": "",
+            "link": "shopify://collections/all",
             "highlight": true,
             "badge": ""
           }

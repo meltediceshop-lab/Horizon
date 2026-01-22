@@ -1,49 +1,48 @@
 {% comment %}
-  FOOTER DINÁMICO PRO ESTILO JUGUETTOS
-  Permite editar columnas, tamaños de texto, enlaces y botones flotantes.
+  FOOTER DINÁMICO JGT - VERSIÓN FINAL CORREGIDA
+  Diseño inspirado en Juguettos con control total de secciones y subsecciones.
 {% endcomment %}
 
-<footer class="jgt-footer-dynamic" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
-  <div class="jgt-footer-container">
+<footer class="jgt-footer-final" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+  <div class="jgt-footer-max-width">
     
     <div class="jgt-footer-grid">
       {% for block in section.blocks %}
-        <div class="jgt-footer-column" {{ block.shopify_attributes }}>
+        <div class="jgt-footer-col" {{ block.shopify_attributes }}>
           
-          <h3 class="jgt-footer-title" style="font-size: {{ section.settings.title_size }}px;">
+          <h3 class="jgt-footer-h3" style="font-size: {{ section.settings.title_size }}px; color: {{ section.settings.text_color }};">
             {{ block.settings.title }}
           </h3>
           
           {% case block.type %}
             {% when 'menu_column' %}
-              <ul class="jgt-footer-links">
+              <ul class="jgt-footer-ul">
                 {% if block.settings.menu != blank %}
                   {% for link in block.settings.menu.links %}
                     <li>
-                      <a href="{{ link.url }}" style="font-size: {{ section.settings.link_size }}px;">
+                      <a href="{{ link.url }}" style="font-size: {{ section.settings.link_size }}px; color: {{ section.settings.text_color }};">
                         {{ link.title }}
                       </a>
                     </li>
                   {% endfor %}
+                {% else %}
+                  <p style="font-size: 10px; opacity: 0.5;">Selecciona un menú en el administrador</p>
                 {% endif %}
               </ul>
 
             {% when 'social_column' %}
               <ul class="jgt-footer-social">
-                {% if block.settings.blog_url != blank %}
-                  <li><a href="{{ block.settings.blog_url }}"><img src="https://cdn.shopify.com/s/files/1/0000/0000/files/icon-rss.png" class="social-icon"> Blog</a></li>
-                {% endif %}
                 {% if block.settings.fb_url != blank %}
-                  <li><a href="{{ block.settings.fb_url }}"><img src="https://cdn.shopify.com/s/files/1/0000/0000/files/icon-facebook.png" class="social-icon"> Facebook</a></li>
-                {% endif %}
-                {% if block.settings.yt_url != blank %}
-                  <li><a href="{{ block.settings.yt_url }}"><img src="https://cdn.shopify.com/s/files/1/0000/0000/files/icon-youtube.png" class="social-icon"> Youtube</a></li>
+                  <li><a href="{{ block.settings.fb_url }}"><span class="jgt-icon">{% render 'icon-facebook' %}</span> Facebook</a></li>
                 {% endif %}
                 {% if block.settings.ig_url != blank %}
-                  <li><a href="{{ block.settings.ig_url }}"><img src="https://cdn.shopify.com/s/files/1/0000/0000/files/icon-instagram.png" class="social-icon"> Instagram</a></li>
+                  <li><a href="{{ block.settings.ig_url }}"><span class="jgt-icon">{% render 'icon-instagram' %}</span> Instagram</a></li>
                 {% endif %}
                 {% if block.settings.tk_url != blank %}
-                  <li><a href="{{ block.settings.tk_url }}"><img src="https://cdn.shopify.com/s/files/1/0000/0000/files/icon-tiktok.png" class="social-icon"> Tiktok</a></li>
+                  <li><a href="{{ block.settings.tk_url }}"><span class="jgt-icon">{% render 'icon-tiktok' %}</span> Tiktok</a></li>
+                {% endif %}
+                {% if block.settings.yt_url != blank %}
+                  <li><a href="{{ block.settings.yt_url }}"><span class="jgt-icon">{% render 'icon-youtube' %}</span> Youtube</a></li>
                 {% endif %}
               </ul>
           {% endcase %}
@@ -54,48 +53,63 @@
 
   </div>
 
-  {% if section.settings.show_float_btns %}
-    <div class="jgt-floating-actions">
-      <a href="{{ section.settings.chat_url }}" class="jgt-btn-chat">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338C8.47 21.513 10.179 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+  {% if section.settings.show_float %}
+    <div class="jgt-floating-wrapper">
+      <a href="{{ section.settings.chat_url }}" class="jgt-float-btn jgt-chat-bg">
+        <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338C8.47 21.513 10.179 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.477 0-2.883-.394-4.089-1.082l-.293-.169-3.003.804.804-3.003-.169-.293A7.957 7.957 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
       </a>
-      <a href="https://wa.me/{{ section.settings.wa_number }}" class="jgt-btn-wa">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.258.405 2.422 1.093 3.37l-.714 2.605 2.664-.699c.82.505 1.774.794 2.796.794 3.181 0 5.767-2.586 5.767-5.767s-2.586-5.767-5.767-5.767z"/></svg>
+      <a href="https://wa.me/{{ section.settings.wa_number }}" class="jgt-float-btn jgt-wa-bg">
+        <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.258.405 2.422 1.093 3.37l-.714 2.605 2.664-.699c.82.505 1.774.794 2.796.794 3.181 0 5.767-2.586 5.767-5.767s-2.586-5.767-5.767-5.767z"/></svg>
       </a>
     </div>
   {% endif %}
 </footer>
 
 <style>
-  .jgt-footer-dynamic { padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.1); }
-  .jgt-footer-container { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
-  .jgt-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .jgt-footer-title { font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.2); display: inline-block; padding-bottom: 5px; }
-  .jgt-footer-links, .jgt-footer-social { list-style: none; padding: 0; margin: 0; }
-  .jgt-footer-links li, .jgt-footer-social li { margin-bottom: 10px; }
-  .jgt-footer-links a, .jgt-footer-social a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-  .social-icon { width: 24px; height: 24px; }
+  .jgt-footer-final { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); font-family: sans-serif; }
+  .jgt-footer-max-width { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+  .jgt-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
   
-  /* Botones flotantes estilo Juguettos */
-  .jgt-floating-actions { position: fixed; bottom: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; pointer-events: none; z-index: 1000; }
-  .jgt-btn-chat, .jgt-btn-wa { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; pointer-events: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-  .jgt-btn-chat { background-color: #1a5e80; } /* Azul chat */
-  .jgt-btn-wa { background-color: #25d366; } /* Verde WhatsApp */
-  .jgt-btn-chat svg, .jgt-btn-wa svg { width: 30px; height: 30px; }
+  .jgt-footer-h3 { 
+    font-weight: 700; margin-bottom: 20px; padding-bottom: 8px; 
+    border-bottom: 2px solid rgba(255,255,255,0.3); display: inline-block; min-width: 150px;
+    text-transform: none;
+  }
 
-  @media (max-width: 768px) { .jgt-footer-grid { grid-template-columns: 1fr 1fr; } }
+  .jgt-footer-ul, .jgt-footer-social { list-style: none; padding: 0; margin: 0; }
+  .jgt-footer-ul li, .jgt-footer-social li { margin-bottom: 12px; }
+  .jgt-footer-ul a, .jgt-footer-social a { 
+    text-decoration: none; display: flex; align-items: center; gap: 10px; transition: opacity 0.2s;
+  }
+  .jgt-footer-ul a:hover { opacity: 0.7; }
+  
+  /* Iconos e imágenes de red social */
+  .jgt-icon { width: 22px; height: 22px; display: inline-block; }
+  .jgt-icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+  /* Botones flotantes (WhatsApp y Chat) */
+  .jgt-floating-wrapper { position: fixed; bottom: 30px; left: 30px; right: 30px; display: flex; justify-content: space-between; pointer-events: none; z-index: 1000; }
+  .jgt-float-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; pointer-events: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s; }
+  .jgt-float-btn:hover { transform: scale(1.1); }
+  .jgt-chat-bg { background-color: #1a5e80; } /* Estilo Juguettos image_ba2213.png */
+  .jgt-wa-bg { background-color: #25d366; }
+
+  @media (max-width: 768px) {
+    .jgt-footer-grid { grid-template-columns: 1fr 1fr; }
+    .jgt-footer-max-width { padding: 0 20px; }
+  }
 </style>
 
 {% schema %}
 {
-  "name": "Footer Dinámico PRO",
+  "name": "Footer Dinámico JGT",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#002266" },
-    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#ffffff" },
-    { "type": "range", "id": "title_size", "min": 14, "max": 24, "step": 1, "unit": "px", "label": "Tamaño Títulos", "default": 18 },
-    { "type": "range", "id": "link_size", "min": 12, "max": 20, "step": 1, "unit": "px", "label": "Tamaño Enlaces", "default": 14 },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#002266" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
+    { "type": "range", "id": "title_size", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Tamaño Títulos", "default": 18 },
+    { "type": "range", "id": "link_size", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Tamaño Enlaces", "default": 14 },
     { "type": "header", "content": "Botones Flotantes" },
-    { "type": "checkbox", "id": "show_float_btns", "label": "Mostrar botones", "default": true },
+    { "type": "checkbox", "id": "show_float", "label": "Mostrar botones flotantes", "default": true },
     { "type": "text", "id": "wa_number", "label": "Número WhatsApp (ej: 34600000000)" },
     { "type": "url", "id": "chat_url", "label": "Enlace Chat" }
   ],
@@ -104,7 +118,7 @@
       "type": "menu_column",
       "name": "Columna de Enlaces",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título Sección", "default": "Sección" },
+        { "type": "text", "id": "title", "label": "Título de la columna", "default": "Nueva Sección" },
         { "type": "link_list", "id": "menu", "label": "Menú de Shopify" }
       ]
     },
@@ -113,17 +127,16 @@
       "name": "Columna Comunidad",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Comunidad" },
-        { "type": "url", "id": "blog_url", "label": "URL Blog" },
         { "type": "url", "id": "fb_url", "label": "URL Facebook" },
-        { "type": "url", "id": "yt_url", "label": "URL Youtube" },
         { "type": "url", "id": "ig_url", "label": "URL Instagram" },
-        { "type": "url", "id": "tk_url", "label": "URL Tiktok" }
+        { "type": "url", "id": "tk_url", "label": "URL Tiktok" },
+        { "type": "url", "id": "yt_url", "label": "URL Youtube" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Footer Dinámico PRO",
+      "name": "Footer Dinámico JGT",
       "blocks": [
         { "type": "menu_column", "settings": { "title": "Quiénes somos" } },
         { "type": "menu_column", "settings": { "title": "Atención al cliente" } },

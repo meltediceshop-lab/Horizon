@@ -75,6 +75,33 @@
     "dynamic_footer_7QKM4Q": {
       "type": "dynamic-footer",
       "blocks": {
+        "custom_links_A7fmxp": {
+          "type": "custom_links",
+          "settings": {
+            "title": "Quiénes somos",
+            "title_link": "",
+            "link_text_1": "",
+            "link_url_1": "",
+            "link_text_2": "",
+            "link_url_2": "",
+            "link_text_3": "",
+            "link_url_3": "",
+            "link_text_4": "",
+            "link_url_4": "",
+            "link_text_5": "",
+            "link_url_5": "",
+            "link_text_6": "",
+            "link_url_6": "",
+            "link_text_7": "",
+            "link_url_7": "",
+            "link_text_8": "",
+            "link_url_8": "",
+            "link_text_9": "",
+            "link_url_9": "",
+            "link_text_10": "",
+            "link_url_10": ""
+          }
+        },
         "custom_links_GU8wgW": {
           "type": "custom_links",
           "settings": {
@@ -89,22 +116,31 @@
             "link_text_4": "Tarjetas regalo",
             "link_url_4": "",
             "link_text_5": "Fámilia numerosa",
-            "link_url_5": ""
+            "link_url_5": "",
+            "link_text_6": "",
+            "link_url_6": "",
+            "link_text_7": "",
+            "link_url_7": "",
+            "link_text_8": "",
+            "link_url_8": "",
+            "link_text_9": "",
+            "link_url_9": "",
+            "link_text_10": "",
+            "link_url_10": ""
           }
         }
       },
       "block_order": [
+        "custom_links_A7fmxp",
         "custom_links_GU8wgW"
       ],
+      "custom_css": [],
       "name": "Footer Dinámico JGT",
       "settings": {
-        "bg_color": "#002266",
+        "bg_color": "#002d87",
         "text_color": "#ffffff",
         "title_size": 18,
-        "link_size": 14,
-        "show_float": true,
-        "wa_number": "",
-        "chat_url": ""
+        "link_size": 13
       }
     }
   },

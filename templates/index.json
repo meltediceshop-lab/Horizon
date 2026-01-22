@@ -171,6 +171,44 @@
         "padding_bottom": 16
       }
     },
+    "jgt_promo_EzriWW": {
+      "type": "jgt-promo",
+      "blocks": {
+        "image_block_aeqTGa": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/667_Banner_Secundario-Home_440x440_c548ffaf-153f-4cc6-82eb-ad29992347b1.jpg",
+            "link": ""
+          }
+        },
+        "image_block_e3GCVd": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/655_banner_home_WOW_Movil.jpg",
+            "link": ""
+          }
+        },
+        "image_block_BERPnP": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/666_HP_Banner_home_440x440_MVL.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_aeqTGa",
+        "image_block_e3GCVd",
+        "image_block_BERPnP"
+      ],
+      "name": "JGT Promociones Dinámicas",
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "info_ipfwMm": {
       "type": "info",
       "name": "Info Text",
@@ -180,44 +218,6 @@
         "color_scheme": "scheme-2",
         "padding_top": 16,
         "padding_bottom": 12
-      }
-    },
-    "jgt_promo_k8EJCN": {
-      "type": "jgt-promo",
-      "blocks": {
-        "image_block_HfNmDG": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/667_Banner_Secundario-Home_440x440_c548ffaf-153f-4cc6-82eb-ad29992347b1.jpg",
-            "link": ""
-          }
-        },
-        "image_block_WnQBpb": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/655_banner_home_WOW_Movil.jpg",
-            "link": ""
-          }
-        },
-        "image_block_REnrh4": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/666_HP_Banner_home_440x440_MVL.jpg",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_block_HfNmDG",
-        "image_block_WnQBpb",
-        "image_block_REnrh4"
-      ],
-      "name": "JGT Promociones",
-      "settings": {
-        "bg_color": "#f8f8f8",
-        "columns_desktop": 3,
-        "padding_top": 40,
-        "padding_bottom": 40
       }
     },
     "jgt_edades_htRWKc": {
@@ -333,8 +333,8 @@
     "mega_menu_jpg_HNKdw8",
     "hero_jVaWmY",
     "collection_circles_wRYMFc",
+    "jgt_promo_EzriWW",
     "info_ipfwMm",
-    "jgt_promo_k8EJCN",
     "jgt_edades_htRWKc",
     "jgt_promo_qVAWpx"
   ]

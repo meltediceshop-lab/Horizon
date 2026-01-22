@@ -75,57 +75,36 @@
     "dynamic_footer_7QKM4Q": {
       "type": "dynamic-footer",
       "blocks": {
-        "social_column_d9RJXq": {
-          "type": "social_column",
+        "custom_links_GU8wgW": {
+          "type": "custom_links",
           "settings": {
             "title": "Quiénes somos",
-            "facebook_url": "",
-            "youtube_url": "",
-            "instagram_url": "",
-            "tiktok_url": ""
-          }
-        },
-        "social_column_xbYeAx": {
-          "type": "social_column",
-          "settings": {
-            "title": "Atención al cliente",
-            "facebook_url": "",
-            "youtube_url": "",
-            "instagram_url": "",
-            "tiktok_url": ""
-          }
-        },
-        "social_column_w7qdFG": {
-          "type": "social_column",
-          "settings": {
-            "title": "Promociones",
-            "facebook_url": "",
-            "youtube_url": "",
-            "instagram_url": "",
-            "tiktok_url": ""
-          }
-        },
-        "social_column_Y4Ma7k": {
-          "type": "social_column",
-          "settings": {
-            "title": "Comunidad",
-            "facebook_url": "",
-            "youtube_url": "",
-            "instagram_url": "",
-            "tiktok_url": ""
+            "title_link": "",
+            "link_text_1": "Sobre nosotros",
+            "link_url_1": "",
+            "link_text_2": "Nuestras tiendas",
+            "link_url_2": "",
+            "link_text_3": "Club Juguettos",
+            "link_url_3": "",
+            "link_text_4": "Tarjetas regalo",
+            "link_url_4": "",
+            "link_text_5": "Fámilia numerosa",
+            "link_url_5": ""
           }
         }
       },
       "block_order": [
-        "social_column_d9RJXq",
-        "social_column_xbYeAx",
-        "social_column_w7qdFG",
-        "social_column_Y4Ma7k"
+        "custom_links_GU8wgW"
       ],
       "name": "Footer Dinámico JGT",
       "settings": {
         "bg_color": "#002266",
-        "text_color": "#ffffff"
+        "text_color": "#ffffff",
+        "title_size": 18,
+        "link_size": 14,
+        "show_float": true,
+        "wa_number": "",
+        "chat_url": ""
       }
     }
   },

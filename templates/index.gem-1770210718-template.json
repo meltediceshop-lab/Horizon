@@ -1,0 +1,341 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mega_menu_jpg_HNKdw8": {
+      "type": "mega-menu-jpg",
+      "blocks": {
+        "simple_link_nXnUYw": {
+          "type": "simple_link",
+          "settings": {
+            "title": "",
+            "link": "shopify:\/\/collections\/all",
+            "icon_img": "shopify:\/\/shop_images\/Imaginarium-Logo-700x394.png",
+            "highlight": true,
+            "badge": ""
+          }
+        },
+        "simple_link_8kKaji": {
+          "type": "simple_link",
+          "settings": {
+            "title": "super ofertas",
+            "link": "shopify:\/\/collections\/all",
+            "highlight": true,
+            "badge": ""
+          }
+        },
+        "simple_link_ftWkpw": {
+          "type": "simple_link",
+          "settings": {
+            "title": "EXCLUSIVOS",
+            "link": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "mega_menu_gWJWgE": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "Edades ",
+            "link": "",
+            "menu": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "mega_menu_D7WULk": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "Juguetes ",
+            "link": "",
+            "menu": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "simple_link_7xGfN7": {
+          "type": "simple_link",
+          "settings": {
+            "title": "MARCA JUGUETTOS",
+            "link": "",
+            "highlight": false,
+            "badge": "-10%"
+          }
+        },
+        "simple_link_R6hUUi": {
+          "type": "simple_link",
+          "settings": {
+            "title": "FAN ZONE",
+            "link": "",
+            "highlight": false,
+            "badge": ""
+          }
+        },
+        "simple_link_WKGy8g": {
+          "type": "simple_link",
+          "settings": {
+            "title": "otras marcas",
+            "link": "",
+            "highlight": false,
+            "badge": ""
+          }
+        }
+      },
+      "block_order": [
+        "simple_link_nXnUYw",
+        "simple_link_8kKaji",
+        "simple_link_ftWkpw",
+        "mega_menu_gWJWgE",
+        "mega_menu_D7WULk",
+        "simple_link_7xGfN7",
+        "simple_link_R6hUUi",
+        "simple_link_WKGy8g"
+      ],
+      "name": "Menú Dinámico JGT",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_vertical": 11
+      }
+    },
+    "hero_jVaWmY": {
+      "type": "hero",
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify:\/\/shop_images\/656_Banner_Principal-Home-Desk_1920x500_15a3ac9e-f9c5-4536-b1fd-3a390329886e.jpg",
+        "media_type_2": "image",
+        "image_2": "shopify:\/\/shop_images\/670_OFBanner_Principal-Home-Desk_1920x500_ce387e93-220e-467e-b593-b3c4fc75c474.jpg",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 26,
+        "section_width": "page-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": true,
+        "overlay_color": "#12121266",
+        "overlay_style": "solid",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 65,
+        "padding-block-end": 72
+      }
+    },
+    "collection_circles_wRYMFc": {
+      "type": "collection-circles",
+      "blocks": {
+        "collection_gMQ9Wn": {
+          "type": "collection",
+          "settings": {
+            "collection": "lego",
+            "custom_image": "shopify:\/\/shop_images\/LEGO_logo_svg.png",
+            "placeholder_text": ""
+          }
+        },
+        "collection_jWxdRU": {
+          "type": "collection",
+          "settings": {
+            "collection": "playmobil",
+            "custom_image": "shopify:\/\/shop_images\/640_playmobil_377x377_bc19ae2a-6ca9-459d-b700-a6823cfc8065.png",
+            "placeholder_text": "Select Collection"
+          }
+        }
+      },
+      "block_order": [
+        "collection_gMQ9Wn",
+        "collection_jWxdRU"
+      ],
+      "name": "Collection Circles",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 16
+      }
+    },
+    "jgt_promo_EzriWW": {
+      "type": "jgt-promo",
+      "blocks": {
+        "image_block_aeqTGa": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/667_Banner_Secundario-Home_440x440_c548ffaf-153f-4cc6-82eb-ad29992347b1.jpg",
+            "link": ""
+          }
+        },
+        "image_block_e3GCVd": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/655_banner_home_WOW_Movil.jpg",
+            "link": ""
+          }
+        },
+        "image_block_BERPnP": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/666_HP_Banner_home_440x440_MVL.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_aeqTGa",
+        "image_block_e3GCVd",
+        "image_block_BERPnP"
+      ],
+      "name": "JGT Promociones Dinámicas",
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "info_ipfwMm": {
+      "type": "info",
+      "name": "Info Text",
+      "settings": {
+        "heading": "Juguetería online",
+        "description": "<h6>Descubre en nuestra tienda de juguetes más de 1000 referencias diferentes con las mejores marcas y licencias en todos los productos. Desde <a href=\"\/collections\/all\" title=\"Todos los productos\">juguetes educativos<\/a>, <a href=\"\/collections\/all\" title=\"Todos los productos\">juegos de mesa<\/a>, pasando por las <a href=\"\/collections\/all\" title=\"Todos los productos\">mejores disfraces<\/a> para las celebraciones más divertidas.<\/h6>",
+        "color_scheme": "scheme-2",
+        "padding_top": 16,
+        "padding_bottom": 12
+      }
+    },
+    "jgt_edades_htRWKc": {
+      "type": "jgt-edades",
+      "blocks": {
+        "age_button_gwbErb": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "1 a 2 años",
+            "age_link": "shopify:\/\/collections\/all"
+          }
+        },
+        "age_button_mQJQh4": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "3 a 4 años",
+            "age_link": "shopify:\/\/collections\/all"
+          }
+        },
+        "age_button_qWkFzb": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "4 a 5 años",
+            "age_link": "shopify:\/\/collections\/all"
+          }
+        },
+        "age_button_VgiJ6x": {
+          "type": "age_button",
+          "settings": {
+            "age_label": "5 a 6 años",
+            "age_link": "shopify:\/\/collections\/all"
+          }
+        }
+      },
+      "block_order": [
+        "age_button_gwbErb",
+        "age_button_mQJQh4",
+        "age_button_qWkFzb",
+        "age_button_VgiJ6x"
+      ],
+      "name": "JGT Edades",
+      "settings": {
+        "title": "Juguetes para:",
+        "title_color": "#003087",
+        "title_font_size": 24,
+        "title_font_weight": 600,
+        "title_alignment": "center",
+        "title_spacing": 24,
+        "background_color": "#ffffff",
+        "buttons_alignment": "center",
+        "buttons_gap": 12,
+        "button_padding_x": 20,
+        "button_padding_y": 10,
+        "button_border_radius": 25,
+        "button_border_width": 2,
+        "button_background_color": "#ffffff",
+        "button_border_color": "#e0e0e0",
+        "button_text_color": "#333333",
+        "button_hover_background_color": "#0030870d",
+        "button_hover_border_color": "#003087",
+        "button_hover_text_color": "#003087",
+        "button_font_size": 14,
+        "section_padding_top": 40,
+        "section_padding_bottom": 40,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30,
+        "buttons_gap_mobile": 8,
+        "button_padding_x_mobile": 16,
+        "button_padding_y_mobile": 8,
+        "button_font_size_mobile": 13
+      }
+    },
+    "jgt_promo_qVAWpx": {
+      "type": "jgt-promo",
+      "blocks": {
+        "image_block_Fr3QUx": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/584_Landing_Nancy_Juguettos_400x400px.jpg",
+            "link": ""
+          }
+        },
+        "image_block_k7LYfF": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/502_JUEGATERAPIA_MINNIE_440X440_54237f40-8603-4c05-aa9a-4fff10eda9ef.jpg",
+            "link": ""
+          }
+        },
+        "image_block_qadrPY": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/504_440X440_HOT_WHEELS.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_Fr3QUx",
+        "image_block_k7LYfF",
+        "image_block_qadrPY"
+      ],
+      "name": "JGT Promociones Dinámicas",
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "columns_desktop": 3,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "mega_menu_jpg_HNKdw8",
+    "hero_jVaWmY",
+    "collection_circles_wRYMFc",
+    "jgt_promo_EzriWW",
+    "info_ipfwMm",
+    "jgt_edades_htRWKc",
+    "jgt_promo_qVAWpx"
+  ]
+}
